@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Homepage;
 use App\Http\Controllers\Controller;
 use App\Models\Slideshow;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 
 class SlideshowController extends Controller
@@ -77,7 +78,12 @@ class SlideshowController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $slide = Slideshow::find($id);
+        $sliders = Slideshow::all();
+        return view('dashboard.pages.homepage.slideshow', [
+            'slide' => $slide,
+            'sliders' => $sliders
+        ]);
     }
 
     /**
@@ -85,7 +91,34 @@ class SlideshowController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'slideshow_image' => 'nullable|mimes:jpg,webp,png,jpeg',
+            'caption' => 'required|max:100',
+            'body' => 'required|max:200',
+        ]);
+
+        if(!is_null($request->file('slideshow_image')))
+        {
+            $imagePath = $this->uploadProfileImage($request->file('slideshow_image'));
+        }
+
+        $slider = Slideshow::findOrFail($id);
+        $slider->caption = $request->input('caption');
+        $slider->body = $request->input('body');
+        !isset($imagePath) ?
+        '' : $slider->slideshow_image = $imagePath;
+
+        $slider->save();
+        $sliders = Slideshow::all();
+        return back()
+               ->with('success', 'Slider Successfully Updated')
+               ->with('sliders', $sliders);
+
+        // return Route::view('slideshow/'.$id , [
+        //     'success' => 'Slider Successfully Updated',
+        //     'sliders' => $slider
+        // ]);
+
     }
 
     /**

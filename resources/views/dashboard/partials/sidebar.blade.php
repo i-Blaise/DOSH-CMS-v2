@@ -45,7 +45,10 @@
             </a>
             <div class="collapse" id="homepage">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('slideshow.create') ? 'active' : '' }}" href="{{ route('slideshow.create') }}"> Sliders </a></li>
+                <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('slideshow.create') ? 'active' : '' }}" href="{{ route('slideshow.create') }}"> Sliders </a>
+                </li>
+                {{-- <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('slideshow.create') ? 'active' : '' }}" href="{{ route('slideshow.create') }}"> Home body </a>
+                </li> --}}
               </ul>
             </div>
           </li>

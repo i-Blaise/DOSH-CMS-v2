@@ -65,53 +65,38 @@
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-md-6 grid-margin stretch-card">
+            <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <div class="title-row" style="display: inline-flex; width: 100%;">
-                        <h4 class="card-title">{{ Route::currentRouteNamed('slideshow.edit') ? 'Update Slideshow' : 'Add New Slideshow' }}</h4>
-                    @if (Route::currentRouteNamed('slideshow.edit'))
-                    <a href="{{ route('slideshow.create') }}">
-                    <button style="margin-left: 18rem; margin-top: -12px;" type="button" class="btn btn-primary">Create Slider</button>
-                    </a>
-                    @endif
-                    </div>
-
-
-                    {{-- route('slideshow.update', ['id', $slide->id]) --}}
+                    <h4 class="card-title">Edit Insurance Post</h4>
 
 
                     <form class="forms-sample" method="POST"
-                    action="{{ Route::currentRouteNamed('slideshow.edit') ? '/slideshow/'.$slide->id : route('slideshow.store') }}"
+                    action="/"
                     enctype="multipart/form-data">
-
                     @csrf
-                    @if (Route::currentRouteNamed('slideshow.edit'))
-                        @method('PUT')
-                    @else
-                        @method('POST')
-                    @endif
-
-
-
+                    @method('POST')
 
                         <div class="form-group">
                             <label>Slideshow Image</label>
                             <input type="file" name="slideshow_image" class="file-upload-default">
-                            <div class="input-group col-xs-12">
+                            <div class="input-group col-xs-12 col-md-8">
                               <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                               <span class="input-group-append">
                                 <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                               </span>
                             </div>
+                            <div class="col-xs-12 col-md-4">
+                                <img src="{{ asset('images/uploads/slideshow/UTNoPHoxaFpojLoqMsqlH2ehgWbc0ARAB03gZDvA.jpg') }}" alt="">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">Caption</label>
-                            <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ Route::currentRouteNamed('slideshow.edit') ? $slide->caption : old('caption') }}</textarea>
+                            <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ old('caption') }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Body</label>
-                            <textarea class="form-control" id="myeditorinstance-body" name="body">{{ Route::currentRouteNamed('slideshow.edit') ? $slide->body : old('body') }}</textarea>
+                            <textarea class="form-control" id="myeditorinstance-body" name="body">{{ old('body') }}</textarea>
                         </div>
                       <button type="submit" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
@@ -121,58 +106,6 @@
                 </div>
               </div>
 
-              <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">All Sliders</h4>
-                    <p class="card-description">
-                      All currently published sliders on the homepage
-                    </p>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th>No.</th>
-                            <th>Image</th>
-                            <th>Caption</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($sliders as $slider)
-                          <tr>
-                            <td>{{ $slider->id }}</td>
-                            <td class="py-1">
-                              <img src="{{ asset($slider->slideshow_image) }}" alt="image"/>
-                            </td>
-                            <td>{!! $slider->caption !!}</td>
-                            <td>
-                                <form method="POST" action="/slideshow/{{ $slider->id }}/edit">
-                                    @csrf
-                                    @method('GET')
-                                <button type="submit" class="btn btn-inverse-info btn-icon">
-                                    <i class="mdi mdi-file-document-edit"></i>
-                                </button>
-                                </form>
-                            </td>
-                            <td>
-                                <form method="POST" action="/slideshow/{{ $slider->id }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-inverse-danger btn-icon">
-                                        <i class="icon-trash"></i>
-                                    </button>
-                                </form>
-                            </td>
-                          </tr>
-                            @endforeach
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
           </div>
 
 

@@ -5,9 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Homepage\SlideshowController;
 use App\Http\Controllers\UserProfileController;
 
-// Route::get('/slideshow', function () {
-//     return view('dashboard.pages.homepage.slideshow');
-// })->name('slideshow');
+Route::get('/homepage', function () {
+    return view('dashboard.pages.homepage.index');
+})->name('home');
 
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
