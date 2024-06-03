@@ -137,7 +137,6 @@
                                 <form method="POST" action="/slideshow/{{ $slider->id }}">
                                     @csrf
                                     @method('DELETE')
-                                    {{-- <input type="text" name="id" value="{{ $slider->id }}" hidden> --}}
                                     <button type="submit" class="btn btn-inverse-danger btn-icon">
                                         <i class="icon-trash"></i>
                                     </button>

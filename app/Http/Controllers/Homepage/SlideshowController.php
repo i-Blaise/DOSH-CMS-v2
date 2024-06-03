@@ -94,6 +94,6 @@ class SlideshowController extends Controller
     public function destroy(string $id)
     {
         Slideshow::where('id', $id)->delete();
-        return redirect()->back()->with('success', 'Team Card Deleted');
+        return redirect()->back()->with('success', 'Slider Successfully Deleted');
     }
 }
