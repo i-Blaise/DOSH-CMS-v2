@@ -71,7 +71,7 @@ return [
     'defaults' => [
         'gravity' => 'toastify-top',
         'position' => 'right',
-        'duration' => 5000,
+        'duration' => 9000,
         'close' => true,
         'stopOnFocus' => true
     ],

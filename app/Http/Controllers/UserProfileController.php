@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserProfileController extends Controller
 {
@@ -56,33 +57,70 @@ class UserProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
+    public function uploadProfileImage($imageFile): string
+    { //Move Uploaded File to public folder
+        $destinationPath = 'images/uploads/profiles/';
+        $hashed_image_name = $imageFile->hashName();
+        $profile_img_path = $destinationPath.$hashed_image_name;
+        $imageFile->move(public_path($destinationPath), $hashed_image_name);
+
+        return $profile_img_path;
+    }
+
+
     public function update(Request $request, string $id)
     {
+
+        $profile = User::findOrFail($id);
+
+
         if($request->input('pass_submit'))
         {
-            dd($request);
+            $request->validate([
+                'current_password' => 'required',
+                'password' => 'required|different:current_password',
+                'password_confirmation' => 'required|same:password',
+            ]);
+
+            if (Hash::check($request->current_password, $profile->password))
+            {
+                $profile->fill([
+                 'password' => Hash::make($request->new_password)
+                 ])->save();
+
+                 return back()->with('success', 'Profile updated successfully');
+
+             } else {
+                return back()->with('error', 'Current password does not match this accounts password');
+             }
+
+
+        }else{
+
+            $request->validate([
+                'profile_picture' => 'mimes:jpg,webp,png,jpeg',
+                'full_name' => 'required|max:255',
+                'email' => 'required|email',
+            ]);
+
+
+            if(!is_null($request->file('profile_picture')))
+            {
+                $profile_img_path = $this->uploadProfileImage($request->file('profile_picture'));
+            }
+
+
+
+            // dd($profile_picture_path);
+            $profile->name = $request->input('full_name');
+            $profile->email = $request->input('email');
+            !isset($profile_img_path) ?
+            '' : $profile->profile_picture = $profile_img_path;
+
+            $profile->save();
+            return back()->with('success', 'Profile updated successfully');
         }
-        if(!is_null($request->file('profile_picture')))
-        {
-            //Move Uploaded File to public folder
-            $destinationPath = 'images/uploads/profiles/';
-            $file = $request->file('profile_picture');
-            $hashed_image_name = $file->hashName();
-            $profile_img_path = $destinationPath.$hashed_image_name;
-            $request->profile_picture->move(public_path($destinationPath), $hashed_image_name);
-        }
-
-
-
-        // dd($profile_picture_path);
-        $profile = User::find($id);
-        $profile->name = $request->input('full_name');
-        $profile->email = $request->input('email');
-        !isset($profile_img_path) ?
-        '' : $profile->profile_picture = $profile_img_path;
-
-        $profile->save();
-        return back()->with('success', 'Profile updated successfully');
     }
 
     /**

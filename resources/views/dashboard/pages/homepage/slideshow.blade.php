@@ -24,6 +24,8 @@
   <link rel="manifest" href="{{ asset('assets/favicon_io/site.webmanifest') }}">
     {{-- Toastify  --}}
     @toastifyCss
+    {{-- TinyMCE head  --}}
+    <x-head.tinymce-config/>
 </head>
 {{-- @if(count($errors) > 0)
 @foreach($errors->all() as $error)
@@ -66,87 +68,90 @@
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Edit Profile</h4>
-                    <form class="forms-sample" method="POST" action="/profile/{{ Auth::user()->id }}" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
+                    <h4 class="card-title">Add New Slideshow</h4>
+
+                    <form class="forms-sample" method="POST"
+                    action="{{ route('slideshow.store') }}"
+                    enctype="multipart/form-data">
+                    @csrf
+                    @method('POST')
+
                         <div class="form-group">
-                            <label>Profile Picture</label>
-                            <input type="file" name="profile_picture" class="file-upload-default">
+                            <label>Slideshow Image</label>
+                            <input type="file" name="slideshow_image" class="file-upload-default">
                             <div class="input-group col-xs-12">
                               <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                               <span class="input-group-append">
                                 <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                               </span>
                             </div>
-                          </div>
-                      <div class="form-group">
-                        <label for="exampleInputUsername1">Full Name</label>
-                        <input type="text" class="form-control" name="full_name" id="exampleInputUsername1" placeholder="Full Name" value="{{ Auth::user()->name }}">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Email" value="{{ Auth::user()->email }}">
-                      </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUsername1">Caption</label>
+                            <x-forms.tinymce-editor-caption/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Body</label>
+                            <x-forms.tinymce-editor-body/>
+                        </div>
                       <button type="submit" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
                     </form>
+
                   </div>
                 </div>
               </div>
 
-              <div class="col-md-6 grid-margin stretch-card">
+              <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Current Profile</h4>
-                    <div class="profile">
-                        <div class="user-profile">
-                            <div class="user-image">
-                                @if (is_null(Auth::user()->profile_picture))
-                                    <img src="{{ asset('images/faces/user-icon.webp') }}" style="height: 29rem;border-radius: 16rem;">
-                                @else
-                                    <img src="{{ asset( Auth::user()->profile_picture ) }}" style="height: 29rem;border-radius: 16rem;">
-                                @endif
-                            </div>
-                        </div>
+                    <h4 class="card-title">All Sliders</h4>
+                    <p class="card-description">
+                      All currently published sliders on the homepage
+                    </p>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>No.</th>
+                            <th>Image</th>
+                            <th>Caption</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($sliders as $slider)
+                          <tr>
+                            <td>{{ $slider->id }}</td>
+                            <td class="py-1">
+                              <img src="{{ asset($slider->slideshow_image) }}" alt="image"/>
+                            </td>
+                            <td>{!! $slider->caption !!}</td>
+                            <td>
+                                <button type="button" class="btn btn-inverse-info btn-icon">
+                                    <i class="mdi mdi-file-document-edit"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <form method="POST" action="/slideshow/{{ $slider->id }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    {{-- <input type="text" name="id" value="{{ $slider->id }}" hidden> --}}
+                                    <button type="submit" class="btn btn-inverse-danger btn-icon">
+                                        <i class="icon-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                          </tr>
+                            @endforeach
+                        </tbody>
+                      </table>
                     </div>
-
                   </div>
                 </div>
               </div>
           </div>
-
-
-
-          <div class="content-wrapper">
-            <div class="row">
-              <div class="col-md-6 grid-margin stretch-card">
-                  <div class="card">
-                    <div class="card-body">
-                      <h4 class="card-title">Change Password</h4>
-                      <form class="forms-sample" method="POST" action="/profile/{{ Auth::user()->id }}" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-                        <div class="form-group">
-                          <label for="exampleInputPassword1">Current Password</label>
-                          <input type="password" class="form-control" id="exampleInputPassword1" name="current_password" placeholder="Current Password">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputPassword1">New Password</label>
-                          <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="New Password">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputConfirmPassword1">Confirm New Password</label>
-                          <input type="password" class="form-control" id="exampleInputConfirmPassword1" name="password_confirmation" placeholder="Confirm New Password">
-                        </div>
-                        <button type="submit" class="btn btn-primary mr-2" name="pass_submit" value="submit">Submit</button>
-                        <button class="btn btn-light">Cancel</button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </div>
 
 
         <!-- content-wrapper ends -->
