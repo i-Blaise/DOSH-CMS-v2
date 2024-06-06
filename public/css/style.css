@@ -22843,3 +22843,9 @@ dl li {
     object-fit: cover;
     overflow: hidden;
 }
+
+.btn-active {
+    color: #fff;
+    background-color: #a08053;
+    border-color: #a08053;
+  }

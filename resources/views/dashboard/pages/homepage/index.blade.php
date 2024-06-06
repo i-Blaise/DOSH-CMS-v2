@@ -82,31 +82,31 @@
                       <p class="card-description">Click on a section to edit it on the right</p>
                       <div class="template-demo">
                         <a href="{{ route('home-sections.edit', 'insurance') }}">
-                            <button type="button" class="btn btn-primary btn-lg btn-block">
+                            <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'insurance' ? 'btn-active' : '' }}">
                              Health Insurance
                             </button>
                         </a>
 
                         <a href="{{ route('home-sections.edit', 'finance') }}">
-                            <button type="button" class="btn btn-primary btn-lg btn-block">
+                            <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'finance' ? 'btn-active' : '' }}">
                              Finance
                             </button>
                         </a>
 
                         <a href="{{ route('home-sections.edit', 'ride') }}">
-                            <button type="button" class="btn btn-primary btn-lg btn-block">
+                            <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'ride' ? 'btn-active' : '' }}">
                              Ride
                             </button>
                         </a>
 
                         <a href="{{ route('home-sections.edit', 'erp') }}">
-                            <button type="button" class="btn btn-primary btn-lg btn-block">
+                            <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'erp' ? 'btn-active' : '' }}">
                              ERP
                             </button>
                         </a>
 
                         <a href="{{ route('home-sections.edit', 'commerce') }}">
-                            <button type="button" class="btn btn-primary btn-lg btn-block">
+                            <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'commerce' ? 'btn-active' : '' }}">
                              Commerce
                             </button>
                         </a>
