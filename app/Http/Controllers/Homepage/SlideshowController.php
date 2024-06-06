@@ -78,6 +78,10 @@ class SlideshowController extends Controller
      */
     public function edit(string $id)
     {
+        if(Slideshow::find($id) == null)
+        {
+            return back()->with('info', 'no');
+        }
         $slide = Slideshow::find($id);
         $sliders = Slideshow::all();
         return view('dashboard.pages.homepage.slideshow', [
@@ -101,6 +105,7 @@ class SlideshowController extends Controller
         {
             $imagePath = $this->uploadProfileImage($request->file('slideshow_image'));
         }
+
 
         $slider = Slideshow::findOrFail($id);
         $slider->caption = $request->input('caption');

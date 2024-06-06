@@ -47,8 +47,8 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('slideshow.create') ? 'active' : '' }}" href="{{ route('slideshow.create') }}"> Sliders </a>
                 </li>
-                {{-- <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('slideshow.create') ? 'active' : '' }}" href="{{ route('slideshow.create') }}"> Home body </a>
-                </li> --}}
+                <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('home-sections.edit') ? 'active' : '' }}" href="{{ route('home-sections.edit', 'insurance') }}"> Home Sections </a>
+                </li>
               </ul>
             </div>
           </li>

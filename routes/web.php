@@ -2,12 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Homepage\HomeSectionsController;
 use App\Http\Controllers\Homepage\SlideshowController;
 use App\Http\Controllers\UserProfileController;
 
-Route::get('/homepage', function () {
-    return view('dashboard.pages.homepage.index');
-})->name('home');
+
 
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
@@ -28,5 +27,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resources([
         'profile' => UserProfileController::class,
         'slideshow' => SlideshowController::class,
+        'home-sections' => HomeSectionsController::class
     ]);
 });

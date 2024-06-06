@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>!D - Admin</title>
     {{-- Favicon  --}}
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="images/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('images/favicon/site.webmanifest') }}">
 
   <!-- base:css -->
   <link rel="stylesheet" href="{{ asset('vendors/mdi/css/materialdesignicons.min.css') }}">
@@ -39,15 +39,19 @@
 @endforeach
 @endif --}}
 @foreach ($errors->all() as $error)
-    {{ toastify()->error($error) }}
+{{ toastify()->error($error) }}
 @endforeach
 
 @if(session('success'))
-    {{ toastify()->success(session('success')) }}
+{{ toastify()->success(session('success')) }}
+@endif
+
+@if(session('info'))
+{{ toastify()->info(session('info')) }}
 @endif
 
 @if(session('error'))
-    {{ toastify()->error(session('error')) }}
+{{ toastify()->error(session('error')) }}
 @endif
 
 
@@ -71,43 +75,140 @@
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
+            <div class="col-md-3 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Homepage Sections</h4>
+                      <p class="card-description">Click on a section to edit it on the right</p>
+                      <div class="template-demo">
+                        <a href="{{ route('home-sections.edit', 'insurance') }}">
+                            <button type="button" class="btn btn-primary btn-lg btn-block">
+                             Health Insurance
+                            </button>
+                        </a>
+
+                        <a href="{{ route('home-sections.edit', 'finance') }}">
+                            <button type="button" class="btn btn-primary btn-lg btn-block">
+                             Finance
+                            </button>
+                        </a>
+
+                        <a href="{{ route('home-sections.edit', 'ride') }}">
+                            <button type="button" class="btn btn-primary btn-lg btn-block">
+                             Ride
+                            </button>
+                        </a>
+
+                        <a href="{{ route('home-sections.edit', 'erp') }}">
+                            <button type="button" class="btn btn-primary btn-lg btn-block">
+                             ERP
+                            </button>
+                        </a>
+
+                        <a href="{{ route('home-sections.edit', 'commerce') }}">
+                            <button type="button" class="btn btn-primary btn-lg btn-block">
+                             Commerce
+                            </button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
+            <div class="col-md-9 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Edit Insurance Post</h4>
+                    <h4 class="card-title">Edit {{ $section }} section</h4>
+
+                    @foreach ($homeSections as $homeSection)
+
+
+                    @switch($section)
+                        @case('insurance')
+                            @php
+                                $image = $homeSection->insurance_image;
+
+                                $caption = old('caption') !== null ? old('caption') : $homeSection->insurance_caption;
+
+                                $body = old('body') !== null ? old('body') : $homeSection->insurance_body;
+                            @endphp
+                        @break
+
+                        @case('finance')
+                            @php
+                                $image = $homeSection->finance_image;
+
+                                $caption = old('caption') !== null ? old('caption') : $homeSection->finance_caption;
+
+                                $body = old('body') !== null ? old('body') : $homeSection->finance_body;
+                            @endphp
+                        @break
+
+                        @case('ride')
+                            @php
+                                $image = $homeSection->ride_image;
+
+                                $caption = old('caption') !== null ? old('caption') : $homeSection->ride_caption;
+
+                                $body = old('body') !== null ? old('body') : $homeSection->ride_body;
+                            @endphp
+                        @break
+
+                        @case('erp')
+                            @php
+                                $image = $homeSection->erp_image;
+
+                                $caption = old('caption') !== null ? old('caption') : $homeSection->erp_caption;
+
+                                $body = old('body') !== null ? old('body') : $homeSection->erp_body;
+                            @endphp
+                        @break
+
+                        @case('commerce')
+                            @php
+                                $image = $homeSection->commerce_image;
+
+                                $caption = old('caption') !== null ? old('caption') : $homeSection->commerce_caption;
+
+                                $body = old('body') !== null ? old('body') : $homeSection->commerce_body;
+                            @endphp
+                        @break
+
+                    @endswitch
 
 
                     <form class="forms-sample" method="POST"
-                    action="/"
+                    action="{{ route('home-sections.update', $section) }}"
                     enctype="multipart/form-data">
                     @csrf
-                    @method('POST')
+                    @method('PUT')
 
-                        <div class="form-group">
+                        <div class="form-group" style="display: flex;">
                             <label>Slideshow Image</label>
-                            <input type="file" name="slideshow_image" class="file-upload-default">
-                            <div class="input-group col-xs-12 col-md-8">
+                            <input type="file" name="home_section_image" class="file-upload-default">
+                            <div class="input-group col-xs-12 col-md-8" style="height:3rem;">
                               <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                               <span class="input-group-append">
                                 <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                               </span>
                             </div>
-                            <div class="col-xs-12 col-md-4">
-                                <img src="{{ asset('images/uploads/slideshow/UTNoPHoxaFpojLoqMsqlH2ehgWbc0ARAB03gZDvA.jpg') }}" alt="">
+                            <div class="col-xs-12 col-md-4 homesec-image-container">
+                                <img src="{{ asset($image) }}" alt="">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">Caption</label>
-                            <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ old('caption') }}</textarea>
+                            <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ $caption }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Body</label>
-                            <textarea class="form-control" id="myeditorinstance-body" name="body">{{ old('body') }}</textarea>
+                            <textarea class="form-control" id="myeditorinstance-body" name="body">{{ $body }}</textarea>
                         </div>
                       <button type="submit" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
                     </form>
 
+                    @endforeach
                   </div>
                 </div>
               </div>

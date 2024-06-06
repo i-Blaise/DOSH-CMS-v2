@@ -22825,3 +22825,21 @@ dl li {
 }
 
 /*# sourceMappingURL=maps/style.css.map */
+
+
+
+
+.template-demo a {
+    text-decoration: none;
+}
+.template-demo a button {
+    margin-bottom: 1rem !important;
+}
+
+
+.homesec-image-container img {
+    width: 83%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}

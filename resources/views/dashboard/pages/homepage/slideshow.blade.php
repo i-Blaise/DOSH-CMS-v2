@@ -47,6 +47,10 @@
     {{ toastify()->success(session('success')) }}
 @endif
 
+@if(session('info'))
+    {{ toastify()->info(session('info')) }}
+@endif
+
 @if(session('error'))
     {{ toastify()->error(session('error')) }}
 @endif
