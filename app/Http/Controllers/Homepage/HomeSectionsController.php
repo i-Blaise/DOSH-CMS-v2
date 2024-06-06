@@ -65,7 +65,7 @@ class HomeSectionsController extends Controller
         $request->validate([
             'home_section_image' => 'nullable|mimes:jpg,webp,png,jpeg',
             'caption' => 'required|max:100',
-            'body' => 'required|max:100',
+            'body' => 'required|max:800',
         ]);
 
         if(!is_null($request->file('home_section_image')))
