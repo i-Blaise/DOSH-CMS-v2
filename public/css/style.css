@@ -19666,7 +19666,7 @@ code {
 }
 
 .btn-primary, .btn-primary:hover {
-  box-shadow: 0 2px 2px 0 rgba(236, 55, 252, 0.14), 0 3px 1px -2px rgba(236, 55, 252, 0.2), 0 1px 5px 0 rgba(236, 55, 252, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(181, 154, 113, 0.14), 0 3px 1px -2px rgba(181, 154, 113, 0.2), 0 1px 5px 0 rgba(181, 154, 113, 0.12);
 }
 
 .btn-inverse-secondary {
@@ -19936,7 +19936,7 @@ code {
 }
 
 .btn-primary, .btn-primary:hover {
-  box-shadow: 0 2px 2px 0 rgba(236, 55, 252, 0.14), 0 3px 1px -2px rgba(236, 55, 252, 0.2), 0 1px 5px 0 rgba(236, 55, 252, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(181, 154, 113, 0.14), 0 3px 1px -2px rgba(181, 154, 113, 0.2), 0 1px 5px 0 rgba(181, 154, 113, 0.12);
 }
 
 .btn-outline-secondary {
@@ -21961,17 +21961,17 @@ dl li {
   font-size: 0.875rem;
   line-height: 1;
   height: auto;
-  border-top: 1px solid #ec37fc;
+  border-top: 1px solid #ffffff;
   margin: 0;
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link:hover {
-  color: #b10dbf;
+  color: #b79b73;
   background: transparent;
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link:hover::before {
-  border: 1px solid #b10dbf;
+  border: 1px solid #b79b73;
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link.active {

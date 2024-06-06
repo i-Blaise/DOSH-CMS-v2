@@ -23,22 +23,8 @@
             </a>
           </li>
 
-          {{-- <li class="nav-item active">
-            <a class="nav-link" data-toggle="collapse" href="auth" aria-expanded="true" aria-controls="auth">
-              <i class="icon-file menu-icon"></i>
-              <span class="menu-title">Homepage</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('slideshow') ? 'active' : '' }}" href="{{ route('slideshow') }}"> Sliders </a></li>
-                <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('') ? 'active' : '' }}" href="#"> Create Blog </a></li>
-              </ul>
-            </div>
-          </li> --}}
-
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#homepage" aria-expanded="false" aria-controls="homepage">
+            <a class="nav-link" data-toggle="collapse" href="#homepage" aria-expanded="{{ Route::currentRouteNamed('home-sections.edit') || Route::currentRouteNamed('slideshow.create') ? 'true' : 'false' }}" aria-controls="homepage">
               <i class="icon-disc menu-icon"></i>
               <span class="menu-title">Homepage</span>
               <i class="menu-arrow"></i>
