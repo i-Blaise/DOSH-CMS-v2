@@ -12,10 +12,10 @@ class HomepageController extends Controller
 
     public function showSlideShowData()
     {
-        $slideshows = Slideshow::select('slideshow_image', 'caption', 'body')->get();
-        foreach($slideshows as $slideshow){
-           $slideshow['slideshow_image'] = 'https://doshcms.interactivedigital.com.gh/'.$slideshow['slideshow_image'];
-        }
+        $slideshow = Slideshow::select('slideshow_image', 'caption', 'body')->get();
+        // foreach($slideshows as $slideshow){
+        //    $slideshow['slideshow_image'] = 'https://doshcms.interactivedigital.com.gh/'.$slideshow['slideshow_image'];
+        // }
         return response()->json($slideshow);
     }
 
