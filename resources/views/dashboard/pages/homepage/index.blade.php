@@ -184,7 +184,7 @@
                     @method('PUT')
 
                         <div class="form-group" style="display: flex;">
-                            <label>Slideshow Image</label>
+                            <label>Section Image</label>
                             <input type="file" name="home_section_image" class="file-upload-default">
                             <div class="input-group col-xs-12 col-md-8" style="height:3rem;">
                               <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">

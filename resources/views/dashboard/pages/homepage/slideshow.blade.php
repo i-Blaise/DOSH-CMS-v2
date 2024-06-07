@@ -151,9 +151,13 @@
                           </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $id = 1;
+                            @endphp
                             @foreach ($sliders as $slider)
+
                           <tr>
-                            <td>{{ $slider->id }}</td>
+                            <td>{{ $id++ }}</td>
                             <td class="py-1">
                               <img src="{{ asset($slider->slideshow_image) }}" alt="image"/>
                             </td>
