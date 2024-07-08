@@ -35,7 +35,7 @@ class SlideshowController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        dd($request);
         $request->validate([
             'slideshow_image' => 'required|mimes:jpg,webp,png,jpeg',
             'caption' => 'required|max:100',
@@ -95,6 +95,12 @@ class SlideshowController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // dd($request);
+        $slider = Slideshow::findOrFail($id);
+        // if(!is_null($request->input('publish')))
+        // {
+        //     $slider->published = $request->input('publish');
+        // }
         $request->validate([
             'slideshow_image' => 'nullable|mimes:jpg,webp,png,jpeg',
             'caption' => 'required|max:100',
@@ -107,7 +113,6 @@ class SlideshowController extends Controller
         }
 
 
-        $slider = Slideshow::findOrFail($id);
         $slider->caption = $request->input('caption');
         $slider->body = $request->input('body');
         !isset($imagePath) ?
@@ -133,5 +138,24 @@ class SlideshowController extends Controller
     {
         Slideshow::where('id', $id)->delete();
         return redirect()->back()->with('success', 'Slider Successfully Deleted');
+    }
+
+
+
+
+    // Other Functions for slideshow
+
+    public function publish(Request $request, string $id)
+    {
+        $slider = Slideshow::findOrFail($id);
+        $slider->published = $request->input('publish');
+
+        $slider->save();
+        $sliders = Slideshow::all();
+        return back()
+               ->with('success', $request->input('publish') == 1 ? 'Slider Published Successfully' : 'Slider Removed Successfully')
+               ->with('sliders', $sliders);
+
+
     }
 }

@@ -29,4 +29,6 @@ Route::group(['middleware' => 'auth'], function () {
         'slideshow' => SlideshowController::class,
         'home-sections' => HomeSectionsController::class
     ]);
+
+    Route::post('publish-slider/{id}', [SlideshowController::class, 'publish'])->name('publish-slider');
 });

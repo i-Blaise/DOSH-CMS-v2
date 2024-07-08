@@ -39,6 +39,12 @@
             </div>
           </li>
 
+          <li class="nav-item {{ Route::currentRouteNamed('admin') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('admin') }}">
+              <i class="icon-box menu-icon"></i>
+              <span class="menu-title">About Us</span>
+            </a>
+          </li>
 
           {{-- <li class="nav-item">
             <a class="nav-link" href="pages/forms/basic_elements.html">

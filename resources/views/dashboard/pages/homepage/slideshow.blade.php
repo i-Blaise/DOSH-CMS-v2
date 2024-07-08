@@ -143,11 +143,11 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <th>No.</th>
                             <th>Image</th>
-                            <th>Caption</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Preview</th>
+                            <th>Publish</th>
+                            <th>Status</th>
+                            <th>Actions</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -157,28 +157,61 @@
                             @foreach ($sliders as $slider)
 
                           <tr>
-                            <td>{{ $id++ }}</td>
                             <td class="py-1">
                               <img src="{{ asset($slider->slideshow_image) }}" alt="image"/>
                             </td>
-                            <td>{!! $slider->caption !!}</td>
                             <td>
-                                <form method="POST" action="/slideshow/{{ $slider->id }}/edit">
-                                    @csrf
-                                    @method('GET')
-                                <button type="submit" class="btn btn-inverse-info btn-icon">
-                                    <i class="mdi mdi-file-document-edit"></i>
-                                </button>
-                                </form>
+                                <button type="button" class="btn btn-inverse-success btn-fw">Preview</button>
                             </td>
                             <td>
-                                <form method="POST" action="/slideshow/{{ $slider->id }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-inverse-danger btn-icon">
-                                        <i class="icon-trash"></i>
+                                @if ($slider->published == 0)
+                                    <form method="POST" action="{{ route('publish-slider', ['id'=>$slider->id]) }}">
+                                        @csrf
+                                        @method('POST')
+                                        <button type="submit" name="publish" value="1" class="btn btn-inverse-success btn-fw">Publish</button>
+                                    </form>
+                                @else
+                                    <form method="POST" action="{{ route('publish-slider', ['id'=>$slider->id]) }}">
+                                        @csrf
+                                        @method('POST')
+                                        <button type="submit" name="publish" value="0"  class="btn btn-inverse-danger btn-fw">Unpublish</button>
+                                    </form>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($slider->published == 0)
+                                    <label class="badge badge-danger">Unpublished</label>
+                                @else
+                                    <label class="badge badge-success">Published</label>
+                                @endif
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-inverse-dark btn-icon" data-toggle="dropdown">
+                                        <i class="mdi mdi-menu"></i>
                                     </button>
-                                </form>
+                                    <div class="dropdown-menu">
+                                      <a class="dropdown-item">
+                                        <form method="POST" action="/slideshow/{{ $slider->id }}/edit">
+                                            @csrf
+                                            @method('GET')
+                                        <button type="submit" class="btn btn-inverse-info ">
+                                            Edit
+                                        </button>
+                                        </form>
+                                      </a>
+
+                                      <a class="dropdown-item">
+                                        <form method="POST" action="/slideshow/{{ $slider->id }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-inverse-danger">
+                                                Delete
+                                            </button>
+                                        </form>
+                                      </a>
+                                    </div>
+                                </div>
                             </td>
                           </tr>
                             @endforeach
