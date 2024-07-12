@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUs\AboutUsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Homepage\HomeSectionsController;
@@ -27,8 +28,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resources([
         'profile' => UserProfileController::class,
         'slideshow' => SlideshowController::class,
-        'home-sections' => HomeSectionsController::class
+        'home-sections' => HomeSectionsController::class,
+        'aboutus-sections' => AboutUsController::class
     ]);
 
     Route::post('publish-slider/{id}', [SlideshowController::class, 'publish'])->name('publish-slider');
+
+    Route::get('/about-us', function () {
+        return view('dashboard.pages.aboutus.index');
+    })->name('about-us');
 });

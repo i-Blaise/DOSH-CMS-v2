@@ -39,9 +39,9 @@
             </div>
           </li>
 
-          <li class="nav-item {{ Route::currentRouteNamed('admin') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('admin') }}">
-              <i class="icon-box menu-icon"></i>
+          <li class="nav-item {{ Route::currentRouteNamed('aboutus-sections.edit') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('aboutus-sections.edit', 'whoweare') }}">
+              <i class="icon-head menu-icon"></i>
               <span class="menu-title">About Us</span>
             </a>
           </li>
