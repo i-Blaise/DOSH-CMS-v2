@@ -66,7 +66,7 @@ class AboutUsController extends Controller
         $request->validate([
             'aboutus_section_image' => 'nullable|mimes:jpg,webp,png,jpeg',
             'caption' => 'required|max:100',
-            'body' => 'required|max:800',
+            'body' => 'required|max:900',
         ]);
 
         if(!is_null($request->file('aboutus_section_image')))
@@ -85,32 +85,26 @@ class AboutUsController extends Controller
                 $aboutus_section->who_we_are_body = $request->input('body');
                 break;
 
-            case 'finance':
+            case 'mission':
                 !isset($imagePath) ?
-                '' : $aboutus_section->finance_image = $imagePath;
-                $aboutus_section->finance_caption = $request->input('caption');
-                $aboutus_section->finance_body = $request->input('body');
+                '' : $aboutus_section->mission_image = $imagePath;
+                $aboutus_section->mission_caption = $request->input('caption');
+                $aboutus_section->mission_body = $request->input('body');
                 break;
 
-            case 'ride':
-                !isset($imagePath) ?
-                '' : $aboutus_section->ride_image = $imagePath;
-                $aboutus_section->ride_caption = $request->input('caption');
-                $aboutus_section->ride_body = $request->input('body');
+            case 'values':
+                $aboutus_section->values_caption = $request->input('caption');
+                $aboutus_section->values_body = $request->input('body');
                 break;
 
-            case 'erp':
-                !isset($imagePath) ?
-                '' : $aboutus_section->erp_image = $imagePath;
-                $aboutus_section->erp_caption = $request->input('caption');
-                $aboutus_section->erp_body = $request->input('body');
+            case 'expertise':
+                $aboutus_section->expertise_caption = $request->input('caption');
+                $aboutus_section->expertise_body = $request->input('body');
                 break;
 
-            case 'commerce':
-                !isset($imagePath) ?
-                '' : $aboutus_section->commerce_image = $imagePath;
-                $aboutus_section->commerce_caption = $request->input('caption');
-                $aboutus_section->commerce_body = $request->input('body');
+            case 'inspiration':
+                $aboutus_section->inspiration_caption = $request->input('caption');
+                $aboutus_section->inspiration_body = $request->input('body');
                 break;
         }
 

@@ -29,7 +29,7 @@
               <span class="menu-title">Homepage</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="homepage">
+            <div class="collapse {{ Route::currentRouteNamed('home-sections.edit') || Route::currentRouteNamed('slideshow.create') ? 'show' : '' }}" id="homepage">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('slideshow.create') ? 'active' : '' }}" href="{{ route('slideshow.create') }}"> Sliders </a>
                 </li>
@@ -38,7 +38,7 @@
               </ul>
             </div>
           </li>
-
+          {{-- {{ dd(Route::currentRouteNamed('home-sections.edit')) }} --}}
           <li class="nav-item {{ Route::currentRouteNamed('aboutus-sections.edit') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('aboutus-sections.edit', 'whoweare') }}">
               <i class="icon-head menu-icon"></i>

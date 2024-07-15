@@ -86,22 +86,22 @@
                              Who We Are
                             </button>
                         </a>
-                        <a href="{{ route('aboutus-sections.edit', 'whoweare') }}">
+                        <a href="{{ route('aboutus-sections.edit', 'mission') }}">
                             <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'mission' ? 'btn-active' : '' }}">
                              Mission
                             </button>
                         </a>
-                        <a href="{{ route('aboutus-sections.edit', 'whoweare') }}">
+                        <a href="{{ route('aboutus-sections.edit', 'values') }}">
                             <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'values' ? 'btn-active' : '' }}">
                              Core Values
                             </button>
                         </a>
-                        <a href="{{ route('aboutus-sections.edit', 'whoweare') }}">
+                        <a href="{{ route('aboutus-sections.edit', 'expertise') }}">
                             <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'expertise' ? 'btn-active' : '' }}">
                              Expertise
                             </button>
                         </a>
-                        <a href="{{ route('aboutus-sections.edit', 'whoweare') }}">
+                        <a href="{{ route('aboutus-sections.edit', 'inspiration') }}">
                             <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'inspiration' ? 'btn-active' : '' }}">
                              Inspiration
                             </button>
@@ -116,61 +116,55 @@
                   <div class="card-body">
                     <h4 class="card-title">Edit Who we are section</h4>
 
-                    {{-- @foreach ($homeSections as $homeSection)
+                    @foreach ($aboutUsSections as $aboutUsSection)
 
 
                     @switch($section)
-                        @case('insurance')
+                        @case('whoweare')
                             @php
-                                $image = $homeSection->insurance_image;
+                                $image = $aboutUsSection->who_we_are_image;
 
-                                $caption = old('caption') !== null ? old('caption') : $homeSection->insurance_caption;
+                                $caption = old('caption') !== null ? old('caption') : $aboutUsSection->who_we_are_caption;
 
-                                $body = old('body') !== null ? old('body') : $homeSection->insurance_body;
+                                $body = old('body') !== null ? old('body') : $aboutUsSection->who_we_are_body;
                             @endphp
                         @break
 
-                        @case('finance')
+                        @case('mission')
                             @php
-                                $image = $homeSection->finance_image;
+                                $image = $aboutUsSection->mission_image;
 
-                                $caption = old('caption') !== null ? old('caption') : $homeSection->finance_caption;
+                                $caption = old('caption') !== null ? old('caption') : $aboutUsSection->mission_caption;
 
-                                $body = old('body') !== null ? old('body') : $homeSection->finance_body;
+                                $body = old('body') !== null ? old('body') : $aboutUsSection->mission_body;
                             @endphp
                         @break
 
-                        @case('ride')
+                        @case('values')
                             @php
-                                $image = $homeSection->ride_image;
+                                $caption = old('caption') !== null ? old('caption') : $aboutUsSection->values_caption;
 
-                                $caption = old('caption') !== null ? old('caption') : $homeSection->ride_caption;
-
-                                $body = old('body') !== null ? old('body') : $homeSection->ride_body;
+                                $body = old('body') !== null ? old('body') : $aboutUsSection->values_body;
                             @endphp
                         @break
 
-                        @case('erp')
+                        @case('expertise')
                             @php
-                                $image = $homeSection->erp_image;
+                                $caption = old('caption') !== null ? old('caption') : $aboutUsSection->expertise_caption;
 
-                                $caption = old('caption') !== null ? old('caption') : $homeSection->erp_caption;
-
-                                $body = old('body') !== null ? old('body') : $homeSection->erp_body;
+                                $body = old('body') !== null ? old('body') : $aboutUsSection->expertise_body;
                             @endphp
                         @break
 
-                        @case('commerce')
+                        @case('inspiration')
                             @php
-                                $image = $homeSection->commerce_image;
+                                $caption = old('caption') !== null ? old('caption') : $aboutUsSection->inspiration_caption;
 
-                                $caption = old('caption') !== null ? old('caption') : $homeSection->commerce_caption;
-
-                                $body = old('body') !== null ? old('body') : $homeSection->commerce_body;
+                                $body = old('body') !== null ? old('body') : $aboutUsSection->inspiration_body;
                             @endphp
                         @break
 
-                    @endswitch --}}
+                    @endswitch
 
 
                     <form class="forms-sample" method="POST"
@@ -179,32 +173,36 @@
                     @csrf
                     @method('PUT')
 
+                    @if (isset($image))
                         <div class="form-group" style="display: flex;">
                             <label>Section Image</label>
                             <input type="file" name="aboutus_section_image" class="file-upload-default">
                             <div class="input-group col-xs-12 col-md-8" style="height:3rem;">
-                              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                              <span class="input-group-append">
+                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                            <span class="input-group-append">
                                 <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                              </span>
+                            </span>
                             </div>
                             <div class="col-xs-12 col-md-4 homesec-image-container">
-                                <img src="{{ asset() }}" alt="">
+                                <img src="{{ asset($image) }}" alt="">
                             </div>
                         </div>
+                    @endif
+
+
                         <div class="form-group">
                             <label for="exampleInputUsername1">Caption</label>
-                            <textarea class="form-control" id="myeditorinstance-caption" name="caption"></textarea>
+                            <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ $caption }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Body</label>
-                            <textarea class="form-control" id="myeditorinstance-body" name="body"></textarea>
+                            <textarea class="form-control" id="myeditorinstance-body" name="body">{{ $body }}</textarea>
                         </div>
                       <button type="submit" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
                     </form>
 
-                    {{-- @endforeachs --}}
+                    @endforeach
                   </div>
                 </div>
               </div>
