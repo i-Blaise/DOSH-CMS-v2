@@ -34,7 +34,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('publish-slider/{id}', [SlideshowController::class, 'publish'])->name('publish-slider');
 
-    Route::get('/about-us', function () {
-        return view('dashboard.pages.aboutus.index');
-    })->name('about-us');
+    // Route::get('/about-us', function () {
+    //     return view('dashboard.pages.aboutus.index');
+    // })->name('about-us');
+
+    Route::get('pns-header', function () {
+        return view('dashboard.pages.pns.header');
+    })->name('pns-header');
 });

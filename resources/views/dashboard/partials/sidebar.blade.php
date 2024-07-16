@@ -38,12 +38,28 @@
               </ul>
             </div>
           </li>
-          {{-- {{ dd(Route::currentRouteNamed('home-sections.edit')) }} --}}
+
           <li class="nav-item {{ Route::currentRouteNamed('aboutus-sections.edit') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('aboutus-sections.edit', 'whoweare') }}">
               <i class="icon-head menu-icon"></i>
               <span class="menu-title">About Us</span>
             </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#pns" aria-expanded="false" aria-controls="pns">
+              <i class="icon-content-left menu-icon"></i>
+              <span class="menu-title">Products & Services</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="pns">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ route('pns-header') }}"> Header </a>
+                </li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('home-sections.edit', 'insurance') }}"> P&S Sections </a>
+                </li>
+              </ul>
+            </div>
           </li>
 
           {{-- <li class="nav-item">

@@ -81,6 +81,11 @@
                       <h4 class="card-title">About Us Sections</h4>
                       <p class="card-description">Click on a section to edit it on the right</p>
                       <div class="template-demo">
+                        <a href="{{ route('aboutus-sections.edit', 'header') }}">
+                            <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'header' ? 'btn-active' : '' }}">
+                             Header Image
+                            </button>
+                        </a>
                         <a href="{{ route('aboutus-sections.edit', 'whoweare') }}">
                             <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'whoweare' ? 'btn-active' : '' }}">
                              Who We Are
@@ -106,6 +111,11 @@
                              Inspiration
                             </button>
                         </a>
+                        <a href="{{ route('aboutus-sections.edit', 'banner') }}">
+                            <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'banner' ? 'btn-active' : '' }}">
+                             Banner
+                            </button>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -114,12 +124,18 @@
             <div class="col-md-9 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Edit Who we are section</h4>
+                    <h4 class="card-title">Edit {{ $section }} section</h4>
 
                     @foreach ($aboutUsSections as $aboutUsSection)
 
 
                     @switch($section)
+                        @case('header')
+                            @php
+                                $image = $aboutUsSection->aboutus_header_image;
+                            @endphp
+                        @break
+
                         @case('whoweare')
                             @php
                                 $image = $aboutUsSection->who_we_are_image;
@@ -164,6 +180,12 @@
                             @endphp
                         @break
 
+                        @case('banner')
+                        @php
+                                $image = $aboutUsSection->banner_image;
+                        @endphp
+                    @break
+
                     @endswitch
 
 
@@ -190,6 +212,7 @@
                     @endif
 
 
+                    @if (isset($body))
                         <div class="form-group">
                             <label for="exampleInputUsername1">Caption</label>
                             <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ $caption }}</textarea>
@@ -198,6 +221,8 @@
                             <label for="exampleInputEmail1">Body</label>
                             <textarea class="form-control" id="myeditorinstance-body" name="body">{{ $body }}</textarea>
                         </div>
+                    @endif
+
                       <button type="submit" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
                     </form>

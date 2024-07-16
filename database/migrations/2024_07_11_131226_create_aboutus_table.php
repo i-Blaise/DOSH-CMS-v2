@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('aboutus', function (Blueprint $table) {
             $table->id();
+            $table->string('aboutus_header_image');
             $table->string('who_we_are_image');
             $table->string('who_we_are_caption');
             $table->string('who_we_are_body', 1000);

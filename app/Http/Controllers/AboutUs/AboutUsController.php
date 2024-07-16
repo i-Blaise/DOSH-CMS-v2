@@ -45,7 +45,7 @@ class AboutUsController extends Controller
      */
     public function edit(string $section)
     {
-        $sections = ['whoweare', 'mission', 'values', 'expertise', 'inspiration'];
+        $sections = ['header', 'whoweare', 'mission', 'values', 'expertise', 'inspiration', 'banner'];
         if(!in_array($section, $sections))
         {
             return back()->with('info', 'no');
@@ -63,11 +63,19 @@ class AboutUsController extends Controller
     public function update(Request $request, string $section)
     {
         // dd($request->file('aboutus_section_image'));
-        $request->validate([
-            'aboutus_section_image' => 'nullable|mimes:jpg,webp,png,jpeg',
-            'caption' => 'required|max:100',
-            'body' => 'required|max:900',
-        ]);
+        if($section == 'header'|| $section == 'banner')
+        {
+            $request->validate([
+                'aboutus_section_image' => 'nullable|mimes:jpg,webp,png,jpeg'
+            ]);
+        }else{
+            $request->validate([
+                'aboutus_section_image' => 'nullable|mimes:jpg,webp,png,jpeg',
+                'caption' => 'required|max:100',
+                'body' => 'required|max:900',
+            ]);
+        }
+
 
         if(!is_null($request->file('aboutus_section_image')))
         {
@@ -78,6 +86,14 @@ class AboutUsController extends Controller
         $aboutus_section = AboutUs::find(1);
 
         switch($section) {
+            case 'header':
+                !isset($imagePath) ?
+                '' : $aboutus_section->aboutus_header_image = $imagePath;
+                break;
+            case 'banner':
+                !isset($imagePath) ?
+                '' : $aboutus_section->banner_image = $imagePath;
+                break;
             case 'whoweare':
                 !isset($imagePath) ?
                 '' : $aboutus_section->who_we_are_image = $imagePath;
