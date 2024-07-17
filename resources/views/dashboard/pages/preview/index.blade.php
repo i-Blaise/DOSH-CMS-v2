@@ -76,96 +76,16 @@
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-md-6 grid-margin stretch-card">
+            <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <div class="title-row" style="display: inline-flex; width: 100%;">
-                        <h4 class="card-title">Products and Services Header</h4>
+                        <h4 class="card-title">Edit Products and Services Header</h4>
                     </div>
-
-
-                    {{-- route('slideshow.update', ['id', $slide->id]) --}}
-
-
-                    <form class="forms-sample" method="POST"
-                    action="{{ route('preview-header', 1) }}"
-                    enctype="multipart/form-data">
-                    @method('POST')
-
-
-
-
-                        <div class="form-group">
-                            <label>Header Image</label>
-                            <input type="file" name="header_image" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                              <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                              </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputUsername1">Caption</label>
-                            <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ $header->caption }}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Body</label>
-                            <textarea class="form-control" id="myeditorinstance-body" name="body">{{ $header->body }}</textarea>
-                        </div>
-                      <button type="submit" class="btn btn-primary mr-2">Preview</button>
-                      <button class="btn btn-light">Cancel</button>
-                    </form>
-
+                    <iframe src="https://www.0800dosh.me/about/" style="width: 73rem; height: 41rem; overflow-x: hidden;"></iframe>
                   </div>
                 </div>
-              </div>
-
-              <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Product and Services Header</h4>
-                    <p class="card-description">
-                      Current Header
-                    </p>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th>Image</th>
-                            <th>Preview</th>
-                            <th>Last Edited</th>
-                            <th>Last Edited By</th>
-                            <th>Status</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            {{-- @foreach ($sliders as $slider) --}}
-
-                          <tr>
-                            <td class="py-1">
-                              <img src="" alt="image"/>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-inverse-success btn-fw">Preview</button>
-                            </td>
-                            <td>
-                                17.09.2924
-                            </td>
-                            <td>
-                                John Doe
-                            </td>
-                            <td>
-                                <label class="badge badge-success">Active</label>
-                            </td>
-                          </tr>
-                            {{-- @endforeach --}}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            </div>
           </div>
 
 
