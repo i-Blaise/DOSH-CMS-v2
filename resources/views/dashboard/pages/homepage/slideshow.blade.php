@@ -161,7 +161,9 @@
                               <img src="{{ asset($slider->slideshow_image) }}" alt="image"/>
                             </td>
                             <td>
+                                <a href="{{ route('preview') }}">
                                 <button type="button" class="btn btn-inverse-success btn-fw">Preview</button>
+                                </a>
                             </td>
                             <td>
                                 @if ($slider->published == 0)

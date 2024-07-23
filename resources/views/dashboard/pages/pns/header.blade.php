@@ -148,9 +148,9 @@
                               <img src="{{ asset($header->image) }}" alt="image"/>
                             </td>
                             <td>
-                                <a href="{{ route('preview-header') }}">
+                                <a href="{{ route('preview') }}">
                                 <button type="button" class="btn btn-inverse-success btn-fw">Preview</button>
-                            </a>
+                                </a>
                             </td>
                             <td>
                                 17.09.2924

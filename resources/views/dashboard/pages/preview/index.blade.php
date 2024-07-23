@@ -83,12 +83,22 @@
                         <h4 class="card-title">Preview of Products and Services Page Header</h4>
                     </div>
                     <div class="row preview-btn-row">
+
+
+                        @if(Route::currentRouteNamed('preview'))
+                        <a href="{{ URL::previous() }}"><button type="button" class="btn btn-primary btn-lg">Back</button></a>
+                        @endif
+
+
+                        @if(Route::currentRouteNamed('preview-header'))
                         <a href="{{ route('pns-header', ['status' => 'pns-preview']) }}"><button type="button" class="btn btn-primary btn-lg">Back To Form</button></a>
+
                         <form method="POST" action="{{ route('submit-pns-header') }}">
                             @csrf
                             @method('POST')
                             <button type="submit" class="btn btn-primary btn-lg submit-btn">Submit Header</button>
                         </form>
+                        @endif
                     </div>
                     <iframe src="https://www.0800dosh.me/about/" style="width: 70rem; height: 41rem; overflow-x: hidden;"></iframe>
                   </div>
