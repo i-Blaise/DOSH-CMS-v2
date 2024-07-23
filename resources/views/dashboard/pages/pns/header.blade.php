@@ -88,16 +88,17 @@
 
 
                     <form class="forms-sample" method="POST"
-                    action="{{ route('preview-header', 1) }}"
+                    action="{{ route('preview-header') }}"
                     enctype="multipart/form-data">
                     @method('POST')
+                    @csrf
 
 
 
 
                         <div class="form-group">
-                            <label>Header Image</label>
-                            <input type="file" name="header_image" class="file-upload-default">
+                            <label>Header Image {{ isset($status) ? $status : '' }}</label>
+                            <input type="file" name="image" class="file-upload-default">
                             <div class="input-group col-xs-12">
                               <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                               <span class="input-group-append">
@@ -107,11 +108,11 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">Caption</label>
-                            <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ $header->caption }}</textarea>
+                            <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ !is_null($status) ? $headerPreview->caption : $header->caption }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Body</label>
-                            <textarea class="form-control" id="myeditorinstance-body" name="body">{{ $header->body }}</textarea>
+                            <textarea class="form-control" id="myeditorinstance-body" name="body">{{ !is_null($status) ? $headerPreview->body : $header->body }}</textarea>
                         </div>
                       <button type="submit" class="btn btn-primary mr-2">Preview</button>
                       <button class="btn btn-light">Cancel</button>
@@ -144,10 +145,12 @@
 
                           <tr>
                             <td class="py-1">
-                              <img src="" alt="image"/>
+                              <img src="{{ asset($header->image) }}" alt="image"/>
                             </td>
                             <td>
+                                <a href="{{ route('preview-header') }}">
                                 <button type="button" class="btn btn-inverse-success btn-fw">Preview</button>
+                            </a>
                             </td>
                             <td>
                                 17.09.2924

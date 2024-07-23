@@ -36,19 +36,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('publish-slider/{id}', [SlideshowController::class, 'publish'])->name('publish-slider');
 
     // Products and Services
-    Route::get('pns-header', [PnSHeaderController::class, 'index'])->name('pns-header');
+    Route::get('pns-header/{status?}', [PnSHeaderController::class, 'index'])->name('pns-header');
 
-    Route::post('preview-header/{id}', [PnSHeaderController::class, 'submitToPreview'])->name('preview-header');
+    Route::post('preview-header', [PnSHeaderController::class, 'submitToPreview'])->name('preview-header');
+
+    Route::post('submit-pns-header', [PnSHeaderController::class, 'previewToHeaderPnS'])->name('submit-pns-header');
 
     // Route::get('/about-us', function () {
     //     return view('dashboard.pages.aboutus.index');
     // })->name('about-us');
 
-    // Route::get('pns-header', function () {
-    //     return view('dashboard.pages.pns.header');
-    // })->name('pns-header');
-
     Route::get('preview', function () {
         return view('dashboard.pages.preview.index');
     })->name('preview');
+
+    Route::get('pns-section', function () {
+        return view('dashboard.pages.pns.pns-sections');
+    })->name('pns-section');
+
 });

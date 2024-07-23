@@ -59,6 +59,34 @@
               <p class="font-weight-normal mb-2 text-muted">{{ now()->format('l');}}</p>
             </div>
           </div>
+          <div class="row">
+            <div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Area chart</h4>
+                  <canvas id="areaChart"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Doughnut chart</h4>
+                  <canvas id="doughnutChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Bar chart</h4>
+                    <canvas id="barChart"></canvas>
+                  </div>
+                </div>
+              </div>
+          </div>
           <div class="row mt-3">
             <div class="col-xl-3 flex-column d-flex grid-margin stretch-card">
               <div class="row flex-grow">
@@ -75,8 +103,8 @@
                 <div class="col-sm-12 stretch-card">
                     <div class="card">
                       <div class="card-body">
-                          <h4 class="card-title">Orders</h4>
-                          <p>6% decrease in earnings</p>
+                          <h4 class="card-title">Messages</h4>
+                          <p>6% increase in messages</p>
                           <h4 class="text-dark font-weight-bold mb-2">55,543</h4>
                           <canvas id="orders"></canvas>
                       </div>
@@ -139,7 +167,7 @@
                     </div>
                   </div>
               </div>
-              <div class="col-xl-4 grid-margin stretch-card">
+              <div class="col-xl-8 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Traffic Sources</h4>
@@ -195,7 +223,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-xl-4 grid-margin stretch-card">
+              {{-- <div class="col-xl-4 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title mb-3">Recent Activity</h4>
@@ -205,7 +233,7 @@
                           <div class="d-flex pb-3 border-bottom justify-content-between">
                             <div class="mr-3"><i class="mdi mdi-signal-cellular-outline icon-md"></i></div>
                             <div class="font-weight-bold mr-sm-4">
-                              <div>Deposit has updated to Paid</div>
+                              <div>John Doe updated sliders</div>
                               <div class="text-muted font-weight-normal mt-1">32 Minutes Ago</div>
                             </div>
                             <div><h6 class="font-weight-bold text-info ml-sm-2">$325</h6></div>
@@ -213,7 +241,7 @@
                           <div class="d-flex pb-3 pt-3 border-bottom justify-content-between">
                             <div class="mr-3"><i class="mdi mdi-signal-cellular-outline icon-md"></i></div>
                             <div class="font-weight-bold mr-sm-4">
-                              <div>Your Withdrawal Proceeded</div>
+                              <div>Jane Doe added new slider</div>
                               <div class="text-muted font-weight-normal mt-1">45 Minutes Ago</div>
                             </div>
                             <div><h6 class="font-weight-bold text-info ml-sm-2">$4987</h6></div>
@@ -221,7 +249,7 @@
                           <div class="d-flex pb-3 pt-3 border-bottom justify-content-between">
                             <div class="mr-3"><i class="mdi mdi-signal-cellular-outline icon-md"></i></div>
                             <div class="font-weight-bold mr-sm-4">
-                              <div>Deposit has updated to Paid                              </div>
+                              <div>John Doe logged in                            </div>
                               <div class="text-muted font-weight-normal mt-1">1 Days Ago</div>
                             </div>
                             <div><h6 class="font-weight-bold text-info ml-sm-2">$5391</h6></div>
@@ -229,7 +257,7 @@
                           <div class="d-flex pt-3 justify-content-between">
                             <div class="mr-3"><i class="mdi mdi-signal-cellular-outline icon-md"></i></div>
                             <div class="font-weight-bold mr-sm-4">
-                              <div>Deposit has updated to Paid</div>
+                              <div>Jane Doe chaneged about us header</div>
                               <div class="text-muted font-weight-normal mt-1">3 weeks Ago</div>
                             </div>
                             <div><h6 class="font-weight-bold text-info ml-sm-2">$264</h6></div>
@@ -239,147 +267,88 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> --}}
           </div>
           <div class="row">
-            <div class="col-xl-9 grid-margin-lg-0 grid-margin stretch-card">
+            <div class="col-xl-12 grid-margin-lg-0 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Top Sellers</h4>
+                    <h4 class="card-title">Recent Activities</h4>
                     <div class="table-responsive mt-3">
                       <table class="table table-header-bg">
                         <thead>
                           <tr>
                             <th>
-                                Country
+                                User pic
                             </th>
                             <th>
-                                Revenue
+                                User Name
                             </th>
                             <th>
-                                Vs Last Month
+                                Date
                             </th>
                             <th>
-                                Goal Reached
+                                Time
+                            </th>
+                            <th>
+                                Activity
                             </th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>
-                              <i class="flag-icon flag-icon-us mr-2" title="us" id="us"></i> United States
+                            <td class="py-1">
+                                <img src="{{ Auth::user()->profile_picture }}" alt="image"/>
                             </td>
                             <td>
-                              $911,200
+                            John Doe
                             </td>
                             <td>
-                              <div class="text-success"><i class="icon-arrow-up mr-2"></i>+60%</div>
+                              15/07/2024
                             </td>
                             <td>
-                              <div class="row">
-                                <div class="col-sm-10">
-                                  <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-2">
-                                  25%
-                                </div>
-                              </div>
+                              9:32 AM
+                            </td>
+                            <td>
+                              Updated About Us Page Header
                             </td>
 
                           </tr>
                           <tr>
-                            <td>
-                              <i class="flag-icon flag-icon-at mr-2" title="us" id="at"></i> Austria
+                            <td class="py-1">
+                                <img src="" alt="image"/>
                             </td>
                             <td>
-                                $821,600
+                                Jane Doe
                             </td>
                             <td>
-                              <div class="text-danger"><i class="icon-arrow-down mr-2"></i>-40%</div>
+                              15/07/2024
                             </td>
                             <td>
-                              <div class="row">
-                                <div class="col-sm-10">
-                                  <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-2">
-                                  50%
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <i class="flag-icon flag-icon-fr mr-2" title="us" id="fr"></i> France
+                              9:32 AM
                             </td>
                             <td>
-                                $323,700
+                              Updated About Us Page Header
                             </td>
-                            <td>
-                              <div class="text-success"><i class="icon-arrow-up mr-2"></i>+40%</div>
-                            </td>
-                            <td>
-                              <div class="row">
-                                <div class="col-sm-10">
-                                  <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-2">
-                                  10%
-                                </div>
-                              </div>
-                            </td>
+
                           </tr>
                           <tr>
                             <td class="py-1">
-                              <i class="flag-icon flag-icon-de mr-2" title="us" id="de"></i> Germany
+                                <img src="" alt="image"/>
                             </td>
                             <td>
-                                $833,205
+                                Jack Doe
                             </td>
                             <td>
-                              <div class="text-danger"><i class="icon-arrow-down mr-2"></i>-80%</div>
+                              15/07/2024
                             </td>
                             <td>
-                              <div class="row">
-                                <div class="col-sm-10">
-                                  <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 70%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-2">
-                                  70%
-                                </div>
-                              </div>
+                              9:32 AM
                             </td>
-                          </tr>
-                          <tr>
-                            <td class="pb-0">
-                              <i class="flag-icon flag-icon-ae mr-2" title="ae" id="ae"></i> united arab emirates
+                            <td>
+                              Updated About Us Page Header
                             </td>
-                            <td class="pb-0">
-                                $232,243
-                            </td>
-                            <td class="pb-0">
-                              <div class="text-success"><i class="icon-arrow-up mr-2"></i>+80%</div>
-                            </td>
-                            <td class="pb-0">
-                              <div class="row">
-                                <div class="col-sm-10">
-                                  <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-2">
-                                  0%
-                                </div>
-                              </div>
-                            </td>
+
                           </tr>
 
                         </tbody>
@@ -388,7 +357,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 grid-margin-lg-0 grid-margin stretch-card">
+            {{-- <div class="col-xl-3 grid-margin-lg-0 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-3">Overall rating</h4>
@@ -553,7 +522,7 @@
 
                 </div>
               </div>
-            </div>
+            </div> --}}
           </div>
         </div>
         <!-- content-wrapper ends -->
@@ -587,6 +556,10 @@
     <!-- End plugin js for this page -->
     <!-- Custom js for this page-->
     <script src="{{ asset('js/dashboard.js') }}"></script>
+
+    {{-- Chart  --}}
+  <script src="{{ asset('vendors/chart.js/Chart.min.js') }}"></script>
+  <script src="{{ asset('js/chart.js') }}"></script>
     <!-- End custom js for this page-->
 
   {{-- Toastify Notifications  --}}

@@ -47,14 +47,14 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#pns" aria-expanded="false" aria-controls="pns">
+            <a class="nav-link" data-toggle="collapse" href="#pns" aria-expanded="{{ Route::currentRouteNamed('home-sections.edit') || Route::currentRouteNamed('pns-header') ? 'true' : 'false' }}" aria-controls="pns">
               <i class="icon-content-left menu-icon"></i>
               <span class="menu-title">Products & Services</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="pns">
+            <div class="collapse {{ Route::currentRouteNamed('home-sections.edit') || Route::currentRouteNamed('pns-header') ? 'show' : '' }}" id="pns">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('pns-header') }}"> Header </a>
+                <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('pns-header') ? 'active' : '' }}" href="{{ route('pns-header') }}"> Header </a>
                 </li>
                 <li class="nav-item"> <a class="nav-link" href="{{ route('home-sections.edit', 'insurance') }}"> P&S Sections </a>
                 </li>

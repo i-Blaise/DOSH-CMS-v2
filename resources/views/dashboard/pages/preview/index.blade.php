@@ -80,9 +80,17 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="title-row" style="display: inline-flex; width: 100%;">
-                        <h4 class="card-title">Edit Products and Services Header</h4>
+                        <h4 class="card-title">Preview of Products and Services Page Header</h4>
                     </div>
-                    <iframe src="https://www.0800dosh.me/about/" style="width: 73rem; height: 41rem; overflow-x: hidden;"></iframe>
+                    <div class="row preview-btn-row">
+                        <a href="{{ route('pns-header', ['status' => 'pns-preview']) }}"><button type="button" class="btn btn-primary btn-lg">Back To Form</button></a>
+                        <form method="POST" action="{{ route('submit-pns-header') }}">
+                            @csrf
+                            @method('POST')
+                            <button type="submit" class="btn btn-primary btn-lg submit-btn">Submit Header</button>
+                        </form>
+                    </div>
+                    <iframe src="https://www.0800dosh.me/about/" style="width: 70rem; height: 41rem; overflow-x: hidden;"></iframe>
                   </div>
                 </div>
             </div>

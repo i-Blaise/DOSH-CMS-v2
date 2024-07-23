@@ -22849,3 +22849,19 @@ dl li {
     background-color: #a08053;
     border-color: #a08053;
   }
+
+  .preview-btn-row {
+    display: inline-flex;
+    width: 70rem;
+    margin-left: 3px;
+    margin-bottom: 8px;
+  }
+
+  .submit-btn {
+    margin-left: 46rem;
+  }
+
+
+  .pns-row a:not(:first-child) {
+    margin-left: 2rem;
+  }

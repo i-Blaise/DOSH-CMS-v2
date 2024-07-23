@@ -10,16 +10,19 @@ use Illuminate\Support\Facades\View;
 
 class PnSHeaderController extends Controller
 {
-    public function index()
+    public function index($status = null)
     {
         $header = PnSHeader::find(1);
-        return view('dashboard.pages.pns.header')
-               ->with('header', $header);
+        $headerPreview = PnSHeaderPreview::first();
+        return view('dashboard.pages.pns.header', [
+            'header' => $header,
+            'headerPreview' => $headerPreview,
+            'status' => $status
+        ]);
     }
 
-    public function submitToPreview(Request $request, int $id)
+    public function submitToPreview(Request $request)
     {
-        dd('good');
         $request->validate([
             'image' => 'nullable|mimes:jpg,webp,png,jpeg',
             'caption' => 'required|max:200',
@@ -31,13 +34,16 @@ class PnSHeaderController extends Controller
             $imagePath = $this->uploadProfileImage($request->file('image'));
         }
 
-        $pns_header_preview = PnSHeaderPreview::find($id);
+        // dd($request->input('body'));
+
+        $pns_header_preview = new PnSHeaderPreview;
         !isset($imagePath) ?
         '' : $pns_header_preview->image = $imagePath;
         $pns_header_preview->caption = $request->input('caption');
-        $pns_header_preview->body = $request->input('body');
+        $pns_header_preview->body = !is_null($request->input('body')) ? $request->input('body') : '';
 
         $pns_header_preview->save();
+
         return View::make('dashboard.pages.preview.index',
         ['header' => $pns_header_preview]);
     }
@@ -50,5 +56,33 @@ class PnSHeaderController extends Controller
         $imageFile->move(public_path($destinationPath), $hashed_image_name);
 
         return $profile_img_path;
+    }
+
+
+
+    public function previewToHeaderPnS()
+    {
+        // dd('check');
+        $header = PnSHeader::find(1);
+        $headerPreview = PnSHeaderPreview::first();
+
+        !is_null($headerPreview->image) ? $header->image = $headerPreview->image : '';
+        !is_null($headerPreview->caption) ? $header->caption = $headerPreview->caption : '';
+        !is_null($headerPreview->body) ? $header->body = $headerPreview->body : '';
+
+        $header->save();
+        $headerPreview->delete();
+
+        return redirect()->route('pns-header')->with(
+            'header', $header,
+            'success', 'Header Updated Successfully',
+            'status', null
+        );
+
+        // return view('dashboard.pages.pns.header', [
+        //     'header' => $header,
+        //     'success' => 'Header Updated Successfully',
+        //     'status' => null,
+        // ]);
     }
 }
