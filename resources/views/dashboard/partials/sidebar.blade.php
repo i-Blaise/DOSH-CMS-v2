@@ -56,7 +56,7 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('pns-header') ? 'active' : '' }}" href="{{ route('pns-header') }}"> Header </a>
                 </li>
-                <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('pns-section') ? 'active' : '' }}" href="{{ route('pns-section') }}"> P&S Sections </a>
+                <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('pns-section') ? 'active' : '' }}" href="{{ route('pns-section', 'insurance') }}"> P&S Sections </a>
                 </li>
               </ul>
             </div>
