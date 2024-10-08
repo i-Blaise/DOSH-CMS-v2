@@ -50,7 +50,7 @@ class PnSController extends Controller
 
     public function uploadProfileImage($imageFile): string
     { //Move Uploaded File to public folder
-        $destinationPath = 'images/uploads/pns-header/';
+        $destinationPath = 'images/uploads/pns/';
         $hashed_image_name = $imageFile->hashName();
         $profile_img_path = $destinationPath.$hashed_image_name;
         $imageFile->move(public_path($destinationPath), $hashed_image_name);
@@ -88,7 +88,8 @@ class PnSController extends Controller
      */
     public function edit(string $name = null)
     {
-        if($name == 'insurance')
+
+        if($name == 'insurance' || $name == 'financial')
         {
             $pns_page = DoshInsurance::where('insurance_type', $name)->first();
         }else{
@@ -104,12 +105,12 @@ class PnSController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         $request->validate([
-            'image' => 'nullable|mimes:jpg,webp,png,jpeg',
-            'caption' => 'required|max:200',
-            'body' => 'nullable|max:300',
+            'image' => 'nullable|image|mimes:jpg,webp,png,jpeg,jpg file|max:2048',
+            'caption' => 'nullable',
+            'body' => 'nullable',
         ]);
 
         if(!is_null($request->file('image')))
@@ -117,18 +118,33 @@ class PnSController extends Controller
             $imagePath = $this->uploadProfileImage($request->file('image'));
         }
 
-        // dd($request->input('body'));
+        // dd($request->input('submit'));
 
-        $insurance = DoshInsurance::find(1);
-        !isset($imagePath) ?
-        '' : $insurance->image = $imagePath;
-        $insurance->caption = $request->input('caption');
-        $insurance->body = !is_null($request->input('body')) ? $request->input('body') : '';
+        if($request->input('submit') == 'financial'|| $request->input('submit') == 'insurance')
+        {
+            $insurance = DoshInsurance::where('insurance_type', $request->input('submit'))->first();
 
-        $insurance->save();
+            $insurance->home_caption = $request->input('caption');
+            $insurance->home_body = $request->input('body');
+            !isset($imagePath) ?
+            '' : $insurance->home_image = $imagePath;
 
-        return back()->with(
-            'success', 'Header Updated Successfully');
+            $insurance->save();
+
+            return back()->with('success', 'Update Successful');
+        }else{
+
+            $insurance = DoshInsurance::where('insurance_name', $request->input('submit'))->first();
+            !isset($imagePath) ?
+            '' : $insurance->image = $imagePath;
+            $insurance->desc = $request->input('body');
+
+            $insurance->save();
+
+            return back()->with('success', 'Update Successful');
+        }
+
+
     }
 
     /**

@@ -43,6 +43,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('pns-sections/{name?}', [PnSController::class, 'edit'])->name('pns-section');
 
+    Route::post('pns-sections-update', [PnSController::class, 'update'])->name('pns-sections-update');
+
     // Route::post('submit-pns-header', [PnSHeaderController::class, 'previewToHeaderPnS'])->name('submit-pns-header');
 
     // Route::get('/about-us', function () {
