@@ -88,7 +88,7 @@
 
 
                     <form class="forms-sample" method="POST"
-                    action="{{ route('preview-header') }}"
+                    action="{{ route('submit-pns-header') }}"
                     enctype="multipart/form-data">
                     @method('POST')
                     @csrf
@@ -97,7 +97,7 @@
 
 
                         <div class="form-group">
-                            <label>Header Image {{ isset($status) ? $status : '' }}</label>
+                            <label>Header Image</label>
                             <input type="file" name="image" class="file-upload-default">
                             <div class="input-group col-xs-12">
                               <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
@@ -108,13 +108,13 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">Caption</label>
-                            <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ !is_null($status) ? $headerPreview->caption : $header->caption }}</textarea>
+                            <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ $header->caption }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Body</label>
-                            <textarea class="form-control" id="myeditorinstance-body" name="body">{{ !is_null($status) ? $headerPreview->body : $header->body }}</textarea>
+                            <textarea class="form-control" id="myeditorinstance-body" name="body">{{ $header->body }}</textarea>
                         </div>
-                      <button type="submit" class="btn btn-primary mr-2">Preview</button>
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
                     </form>
 
@@ -134,7 +134,7 @@
                         <thead>
                           <tr>
                             <th>Image</th>
-                            <th>Preview</th>
+                            <th>Live Preview</th>
                             <th>Last Edited</th>
                             <th>Last Edited By</th>
                             <th>Status</th>

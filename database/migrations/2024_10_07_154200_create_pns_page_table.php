@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pns_header_preview', function (Blueprint $table) {
+        Schema::create('pns_page', function (Blueprint $table) {
             $table->id();
-            $table->string('image')->nullable();
-            $table->string('caption')->nullable();
-            $table->string('body')->nullable();
+            $table->string('header_image');
+            $table->string('header_caption');
+            $table->text('header_body')->nullable();
+            $table->string('pns-video');
+            $table->string('video_caption');
+            $table->text('video_desc');
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pns_header_preview');
+        Schema::dropIfExists('pns_page');
     }
 };

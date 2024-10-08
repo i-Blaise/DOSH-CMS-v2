@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Homepage\HomeSectionsController;
 use App\Http\Controllers\Homepage\SlideshowController;
+use App\Http\Controllers\PnS\PnSController;
 use App\Http\Controllers\PnS\PnSHeaderController;
 use App\Http\Controllers\UserProfileController;
 
@@ -36,11 +37,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('publish-slider/{id}', [SlideshowController::class, 'publish'])->name('publish-slider');
 
     // Products and Services
-    Route::get('pns-header/{status?}', [PnSHeaderController::class, 'index'])->name('pns-header');
+    Route::get('pns-header/{status?}', [PnSController::class, 'index'])->name('pns-header');
 
-    Route::post('preview-header', [PnSHeaderController::class, 'submitToPreview'])->name('preview-header');
+    Route::post('submit-pns-header', [PnSController::class, 'storePnSHeader'])->name('submit-pns-header');
 
-    Route::post('submit-pns-header', [PnSHeaderController::class, 'previewToHeaderPnS'])->name('submit-pns-header');
+    Route::get('pns-sections/{name?}', [PnSController::class, 'edit'])->name('pns-section');
+
+    // Route::post('submit-pns-header', [PnSHeaderController::class, 'previewToHeaderPnS'])->name('submit-pns-header');
 
     // Route::get('/about-us', function () {
     //     return view('dashboard.pages.aboutus.index');
@@ -50,8 +53,8 @@ Route::group(['middleware' => 'auth'], function () {
         return view('dashboard.pages.preview.index');
     })->name('preview');
 
-    Route::get('pns-section', function () {
-        return view('dashboard.pages.pns.pns-sections');
-    })->name('pns-section');
+    // Route::get('pns-section', function () {
+    //     return view('dashboard.pages.pns.pns-sections');
+    // })->name('pns-section');
 
 });

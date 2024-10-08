@@ -80,18 +80,18 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="title-row" style="display: inline-flex; width: 100%;">
-                        <h4 class="card-title">Preview of Products and Services Page Header</h4>
+                        <h4 class="card-title">DOSH Products & Services</h4>
                     </div>
                     <div class="pns-row">
-                        <a href="{{ route('pns-header', ['status' => 'pns-preview']) }}"><button type="button" class="btn btn-primary btn-lg btn-active">Dosh Insurance</button></a>
+                        <a href="{{ route('pns-section') }}/?type=insurance"><button type="button" class="btn btn-primary btn-lg btn-active">Dosh Insurance</button></a>
 
-                        <a href="{{ route('pns-header', ['status' => 'pns-preview']) }}"><button type="button" class="btn btn-primary btn-lg">Dosh Financial</button></a>
+                        <a href="{{ route('pns-section') }}/?type=financial"><button type="button" class="btn btn-primary btn-lg">Dosh Financial</button></a>
 
-                        <a href="{{ route('pns-header', ['status' => 'pns-preview']) }}"><button disabled type="button" class="btn btn-primary btn-lg">Dosh Ride</button></a>
+                        <a href="#"><button disabled type="button" class="btn btn-primary btn-lg">Dosh Ride</button></a>
 
-                        <a href="{{ route('pns-header', ['status' => 'pns-preview']) }}"><button disabled type="button" class="btn btn-primary btn-lg">Dosh ERP</button></a>
+                        <a href="#"><button disabled type="button" class="btn btn-primary btn-lg">Dosh ERP</button></a>
 
-                        <a href="{{ route('pns-header', ['status' => 'pns-preview']) }}"><button disabled type="button" class="btn btn-primary btn-lg">Dosh Commerce</button></a>
+                        <a href="#"><button disabled type="button" class="btn btn-primary btn-lg">Dosh Commerce</button></a>
 
                         {{-- <form method="POST" action="{{ route('submit-pns-header') }}">
                             @csrf
@@ -108,45 +108,82 @@
             <div class="col-md-3 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                      <h4 class="card-title">About Us Sections</h4>
+                      <h4 class="card-title">Insurance Types Sections</h4>
                       <p class="card-description">Click on a section to edit it on the right</p>
                       <div class="template-demo">
-                        <a href="{{ route('aboutus-sections.edit', 'header') }}">
-                            <button type="button" class="btn btn-primary btn-lg btn-block btn-active">
-                            Insurance Section
-                            </button>
-                        </a>
+                        @if (request('type') == 'insurance' || !request('type'))
+                            <a href="{{ route('pns-section', ['name' => 'insurance']) }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block btn-active">
+                                Insurance Section
+                                </button>
+                            </a>
 
-                        <a href="{{ route('aboutus-sections.edit', 'header') }}">
-                            <button type="button" class="btn btn-primary btn-lg btn-block">
-                             DOSH 365
-                            </button>
-                        </a>
-                        <a href="{{ route('aboutus-sections.edit', 'whoweare') }}">
-                            <button type="button" class="btn btn-primary btn-lg btn-block">
-                             DOSH 750
-                            </button>
-                        </a>
-                        <a href="{{ route('aboutus-sections.edit', 'mission') }}">
-                            <button type="button" class="btn btn-primary btn-lg btn-block">
-                             DOSH 1000
-                            </button>
-                        </a>
-                        <a href="{{ route('aboutus-sections.edit', 'values') }}">
-                            <button type="button" class="btn btn-primary btn-lg btn-block">
-                             DOSH 2500
-                            </button>
-                        </a>
-                        <a href="{{ route('aboutus-sections.edit', 'expertise') }}">
-                            <button type="button" class="btn btn-primary btn-lg btn-block">
-                             DOSH 5000
-                            </button>
-                        </a>
-                        <a href="{{ route('aboutus-sections.edit', 'inspiration') }}">
-                            <button type="button" class="btn btn-primary btn-lg btn-block">
-                             DOSH 10000
-                            </button>
-                        </a>
+                            <a href="{{ route('pns-section', ['name' => '365'])  }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block">
+                                DOSH 365
+                                </button>
+                            </a>
+                            <a href="{{ route('pns-section', ['name' => '750']) }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block">
+                                DOSH 750
+                                </button>
+                            </a>
+                            <a href="{{ route('pns-section', ['name' => '1000']) }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block">
+                                DOSH 1000
+                                </button>
+                            </a>
+                            <a href="{{ route('pns-section', ['name' => '2500']) }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block">
+                                DOSH 2500
+                                </button>
+                            </a>
+                            <a href="{{ route('pns-section', ['name' => '5000']) }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block">
+                                DOSH 5000
+                                </button>
+                            </a>
+                            <a href="{{ route('pns-section', ['name' => '10000'])}}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block">
+                                DOSH 10000
+                                </button>
+                            </a>
+
+                        @elseif (request('type') == 'financial')
+
+                            <a href="{{ route('pns-section', 'header') }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block btn-active">
+                                Financial Section
+                                </button>
+                            </a>
+
+                            <a href="{{ route('pns-section', 'header') }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block">
+                                Personal
+                                </button>
+                            </a>
+                            <a href="{{ route('pns-section', 'whoweare') }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block">
+                                Family
+                                </button>
+                            </a>
+                            <a href="{{ route('pns-section', 'mission') }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block">
+                                SOHO
+                                </button>
+                            </a>
+                            <a href="{{ route('pns-section', 'values') }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block">
+                                SMB
+                                </button>
+                            </a>
+                            <a href="{{ route('pns-section', 'expertise') }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block">
+                                Enterprise
+                                </button>
+                            </a>
+                        @endif
+
                       </div>
                     </div>
                   </div>
@@ -157,67 +194,7 @@
                   <div class="card-body">
                     <h4 class="card-title">Edit  section</h4>
 
-                    {{-- @foreach ($aboutUsSections as $aboutUsSection)
 
-
-                    @switch($section)
-                        @case('header')
-                            @php
-                                $image = $aboutUsSection->aboutus_header_image;
-                            @endphp
-                        @break
-
-                        @case('whoweare')
-                            @php
-                                $image = $aboutUsSection->who_we_are_image;
-
-                                $caption = old('caption') !== null ? old('caption') : $aboutUsSection->who_we_are_caption;
-
-                                $body = old('body') !== null ? old('body') : $aboutUsSection->who_we_are_body;
-                            @endphp
-                        @break
-
-                        @case('mission')
-                            @php
-                                $image = $aboutUsSection->mission_image;
-
-                                $caption = old('caption') !== null ? old('caption') : $aboutUsSection->mission_caption;
-
-                                $body = old('body') !== null ? old('body') : $aboutUsSection->mission_body;
-                            @endphp
-                        @break
-
-                        @case('values')
-                            @php
-                                $caption = old('caption') !== null ? old('caption') : $aboutUsSection->values_caption;
-
-                                $body = old('body') !== null ? old('body') : $aboutUsSection->values_body;
-                            @endphp
-                        @break
-
-                        @case('expertise')
-                            @php
-                                $caption = old('caption') !== null ? old('caption') : $aboutUsSection->expertise_caption;
-
-                                $body = old('body') !== null ? old('body') : $aboutUsSection->expertise_body;
-                            @endphp
-                        @break
-
-                        @case('inspiration')
-                            @php
-                                $caption = old('caption') !== null ? old('caption') : $aboutUsSection->inspiration_caption;
-
-                                $body = old('body') !== null ? old('body') : $aboutUsSection->inspiration_body;
-                            @endphp
-                        @break
-
-                        @case('banner')
-                        @php
-                                $image = $aboutUsSection->banner_image;
-                        @endphp
-                    @break
-
-                    @endswitch --}}
 
 
                     <form class="forms-sample" method="POST"
@@ -226,28 +203,43 @@
                     @csrf
                     @method('PUT')
 
-                        <div class="form-group" style="display: flex;">
-                            <label>Section Image</label>
-                            <input type="file" name="aboutus_section_image" class="file-upload-default">
-                            <div class="input-group col-xs-12 col-md-8" style="height:3rem;">
-                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                            <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                            </span>
-                            </div>
-                            <div class="col-xs-12 col-md-4 homesec-image-container">
-                                <img src="" alt="">
-                            </div>
-                        </div>
+                    @if (request('name') != 'insurance')
 
-                        <div class="form-group">
-                            <label for="exampleInputUsername1">Caption</label>
-                            <textarea class="form-control" id="myeditorinstance-caption" name="caption"></textarea>
+                    <div class="form-group" style="display: flex;">
+                        <label>Section Image</label>
+                        <input type="file" name="aboutus_section_image" class="file-upload-default">
+                        <div class="input-group col-xs-12 col-md-8" style="height:3rem;">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                        <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                        </span>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Body</label>
-                            <textarea class="form-control" id="myeditorinstance-body" name="body"></textarea>
+                        <div class="col-xs-12 col-md-4 homesec-image-container">
+                            <img src="{{ $pns_page[0]->image }}" alt="">
                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Description</label>
+                        <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ $pns_page[0]->desc }}</textarea>
+                    </div>
+
+                    @else
+
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Caption</label>
+                        <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ $pns_page->home_caption }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Body</label>
+                        <textarea class="form-control" id="myeditorinstance-body" name="body">{{ $pns_page->home_body }}</textarea>
+                    </div>
+
+                    @endif
+
+
+
 
                       <button type="submit" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
