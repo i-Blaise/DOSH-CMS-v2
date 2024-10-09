@@ -62,8 +62,8 @@
             </div>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+          <li class="nav-item {{ Route::currentRouteNamed('contact-page') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('contact-page') }}">
               <i class="icon-file menu-icon"></i>
               <span class="menu-title">Contact Page</span>
             </a>

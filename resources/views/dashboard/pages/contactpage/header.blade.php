@@ -88,7 +88,7 @@
 
 
                     <form class="forms-sample" method="POST"
-                    action="{{ route('submit-pns-header') }}"
+                    action="{{ route('contact-page-update') }}"
                     enctype="multipart/form-data">
                     @method('POST')
                     @csrf
@@ -108,11 +108,11 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">Caption</label>
-                            <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ $header->caption }}</textarea>
+                            <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ $header->header_caption }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Body</label>
-                            <textarea class="form-control" id="myeditorinstance-body" name="body">{{ $header->body }}</textarea>
+                            <textarea class="form-control" id="myeditorinstance-body" name="body">{{ $header->header_body }}</textarea>
                         </div>
                       <button type="submit" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
@@ -145,7 +145,7 @@
 
                           <tr>
                             <td class="py-1">
-                              <img src="{{ asset($header->image) }}" alt="image"/>
+                              <img src="{{ asset($header->header_image) }}" alt="image"/>
                             </td>
                             <td>
                                 <a href="{{ route('preview') }}">
@@ -156,7 +156,7 @@
                                 17.09.2924
                             </td>
                             <td>
-                                John Doe
+                                {{ Auth::user()->name }}
                             </td>
                             <td>
                                 <label class="badge badge-success">Active</label>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutUs\AboutUsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactPage\ContactPageController;
 use App\Http\Controllers\Homepage\HomeSectionsController;
 use App\Http\Controllers\Homepage\SlideshowController;
 use App\Http\Controllers\PnS\PnSController;
@@ -45,11 +46,15 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('pns-sections-update', [PnSController::class, 'update'])->name('pns-sections-update');
 
-    // Route::post('submit-pns-header', [PnSHeaderController::class, 'previewToHeaderPnS'])->name('submit-pns-header');
 
-    // Route::get('/about-us', function () {
-    //     return view('dashboard.pages.aboutus.index');
-    // })->name('about-us');
+
+
+
+    // Contact Page
+    Route::get('contact-header', [ContactPageController::class, 'index'])->name('contact-page');
+
+    Route::post('contact-header-update', [ContactPageController::class, 'storeContactPageHeader'])->name('contact-page-update');
+
 
     Route::get('preview', function () {
         return view('dashboard.pages.preview.index');
