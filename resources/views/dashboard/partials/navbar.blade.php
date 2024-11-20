@@ -20,9 +20,9 @@
           </li>
         </ul> --}}
         <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item dropdown d-lg-flex d-none">
-                <button type="button" class="btn btn-info font-weight-bold">+ Create New User</button>
-            </li>
+            {{-- <li class="nav-item dropdown d-lg-flex d-none">
+                <button type="button" class="btn btn-primary font-weight-bold">+ Create New User</button>
+            </li> --}}
           {{-- <li class="nav-item dropdown d-flex">
             <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="" data-toggle="dropdown">
               <i class="icon-air-play mx-0"></i>
