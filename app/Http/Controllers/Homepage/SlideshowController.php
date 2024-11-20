@@ -35,7 +35,7 @@ class SlideshowController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $request->validate([
             'slideshow_image' => 'required|mimes:jpg,webp,png,jpeg',
             'caption' => 'required|max:100',

@@ -100,7 +100,7 @@
                         </form>
                         @endif
                     </div>
-                    <iframe src="https://www.0800dosh.me/about/" style="width: 70rem; height: 41rem; overflow-x: hidden;"></iframe>
+                    <iframe src="https://www.0800dosh.me/" style="width: 70rem; height: 41rem; overflow-x: hidden;"></iframe>
                   </div>
                 </div>
             </div>
