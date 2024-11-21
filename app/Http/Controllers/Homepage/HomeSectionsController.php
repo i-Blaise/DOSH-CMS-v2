@@ -45,7 +45,7 @@ class HomeSectionsController extends Controller
      */
     public function edit(string $section)
     {
-        $sections = ['insurance', 'finance', 'ride', 'erp', 'commerce'];
+        $sections = ['insurance', 'finance', 'ride', 'erp', 'risk'];
         if(!in_array($section, $sections))
         {
             return back()->with('info', 'no');
@@ -104,7 +104,7 @@ class HomeSectionsController extends Controller
                 $home_section->erp_body = $request->input('body');
                 break;
 
-            case 'commerce':
+            case 'risk':
                 !isset($imagePath) ?
                 '' : $home_section->commerce_image = $imagePath;
                 $home_section->commerce_caption = $request->input('caption');

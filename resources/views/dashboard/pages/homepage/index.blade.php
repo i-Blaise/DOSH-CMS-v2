@@ -89,7 +89,7 @@
 
                         <a href="{{ route('home-sections.edit', 'finance') }}">
                             <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'finance' ? 'btn-active' : '' }}">
-                             Finance
+                             Finance Insurance
                             </button>
                         </a>
 
@@ -105,9 +105,9 @@
                             </button>
                         </a>
 
-                        <a href="{{ route('home-sections.edit', 'commerce') }}">
-                            <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'commerce' ? 'btn-active' : '' }}">
-                             Commerce
+                        <a href="{{ route('home-sections.edit', 'risk') }}">
+                            <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'risk' ? 'btn-active' : '' }}">
+                             Risk
                             </button>
                         </a>
                       </div>
@@ -164,7 +164,7 @@
                             @endphp
                         @break
 
-                        @case('commerce')
+                        @case('risk')
                             @php
                                 $image = $homeSection->commerce_image;
 

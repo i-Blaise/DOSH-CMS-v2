@@ -80,7 +80,7 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="title-row" style="display: inline-flex; width: 100%;">
-                        <h4 class="card-title">Preview of Products and Services Page Header</h4>
+                        <h4 class="card-title">Preview of Homepage Page Header</h4>
                     </div>
                     <div class="row preview-btn-row">
 
