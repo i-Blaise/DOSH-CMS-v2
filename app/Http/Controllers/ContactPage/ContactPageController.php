@@ -22,12 +22,17 @@ class ContactPageController extends Controller
         $request->validate([
             'image' => 'nullable|mimes:jpg,webp,png,jpeg',
             'caption' => 'required',
-            'body' => 'nullable',
+            'section_image' => 'nullable|mimes:jpg,webp,png,jpeg',
         ]);
 
         if(!is_null($request->file('image')))
         {
             $imagePath = $this->uploadProfileImage($request->file('image'));
+        }
+
+        if(!is_null($request->file('section_image')))
+        {
+            $sectionImagePath = $this->uploadProfileImage($request->file('section_image'));
         }
 
         // dd($request->input('body'));
@@ -36,7 +41,8 @@ class ContactPageController extends Controller
         !isset($imagePath) ?
         '' : $header->header_image = $imagePath;
         $header->header_caption = $request->input('caption');
-        $header->header_body = !is_null($request->input('body')) ? $request->input('body') : '';
+        !isset($sectionImagePath) ?
+        '' : $header->section_image = $sectionImagePath;
 
         $header->save();
 

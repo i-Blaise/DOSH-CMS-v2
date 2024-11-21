@@ -76,11 +76,11 @@
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-md-6 grid-margin stretch-card">
+            <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <div class="title-row" style="display: inline-flex; width: 100%;">
-                        <h4 class="card-title">Contact Page Header</h4>
+                        <h4 class="card-title">Contact Page</h4>
                     </div>
 
 
@@ -96,23 +96,37 @@
 
 
 
-                        <div class="form-group">
-                            <label>Header Image</label>
-                            <input type="file" name="image" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                              <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                              </span>
-                            </div>
+
+                    <div class="form-group" style="display: flex;">
+                        <label>Header Image</label>
+                        <input type="file" name="header_image" class="file-upload-default">
+                        <div class="input-group col-xs-12 col-md-8" style="height:3rem;">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                        <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                        </span>
                         </div>
+                        <div class="col-xs-12 col-md-4 homesec-image-container">
+                            <img src="{{ asset($header->header_image) }}" alt="">
+                        </div>
+                    </div>
                         <div class="form-group">
-                            <label for="exampleInputUsername1">Caption</label>
+                            <label for="exampleInputUsername1">Header Caption</label>
                             <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ $header->header_caption }}</textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Body</label>
-                            <textarea class="form-control" id="myeditorinstance-body" name="body">{{ $header->header_body }}</textarea>
+
+                        <div class="form-group" style="display: flex;">
+                            <label>Section Image</label>
+                            <input type="file" name="section_image" class="file-upload-default">
+                            <div class="input-group col-xs-12 col-md-8" style="height:3rem;">
+                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                            </span>
+                            </div>
+                            <div class="col-xs-12 col-md-4 homesec-image-container">
+                                <img src="{{ asset($header->section_image) }}" alt="">
+                            </div>
                         </div>
                       <button type="submit" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
@@ -122,7 +136,7 @@
                 </div>
               </div>
 
-              <div class="col-lg-6 grid-margin stretch-card">
+              {{-- <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Product and Services Header</h4>
@@ -141,7 +155,6 @@
                           </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($sliders as $slider) --}}
 
                           <tr>
                             <td class="py-1">
@@ -162,13 +175,12 @@
                                 <label class="badge badge-success">Active</label>
                             </td>
                           </tr>
-                            {{-- @endforeach --}}
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> --}}
           </div>
 
 

@@ -83,15 +83,17 @@
                         <h4 class="card-title">DOSH Products & Services</h4>
                     </div>
                     <div class="pns-row">
-                        <a href="{{ route('pns-section', 'insurance') }}/?type=insurance"><button type="button" class="btn btn-primary btn-lg {{ request('type') == 'insurance' || !request('type') ? 'btn-active' : ''}}">Dosh Insurance</button></a>
+                        <a href="{{ route('pns-section', 'insurance') }}/?type=insurance"><button type="button" class="btn btn-primary btn-lg {{ request('type') == 'insurance' || !request('type') ? 'btn-active' : ''}}"> Health</button></a>
 
-                        <a href="{{ route('pns-section', 'financial') }}/?type=financial"><button type="button" class="btn btn-primary btn-lg {{ request('type') == 'financial' ? 'btn-active' : ''}}">Dosh Financial</button></a>
+                        <a href="{{ route('pns-section', 'financial') }}/?type=financial"><button type="button" class="btn btn-primary btn-lg {{ request('type') == 'financial' ? 'btn-active' : ''}}">Financial</button></a>
 
-                        <a href="#"><button disabled type="button" class="btn btn-primary btn-lg">Dosh Ride</button></a>
+                        <a href="#"><button disabled type="button" class="btn btn-primary btn-lg">Risk</button></a>
 
-                        <a href="#"><button disabled type="button" class="btn btn-primary btn-lg">Dosh ERP</button></a>
+                        <a href="#"><button disabled type="button" class="btn btn-primary btn-lg">Ride</button></a>
 
-                        <a href="#"><button disabled type="button" class="btn btn-primary btn-lg">Dosh Commerce</button></a>
+                        <a href="#"><button disabled type="button" class="btn btn-primary btn-lg">ERP</button></a>
+
+                        <a href="#"><button disabled type="button" class="btn btn-primary btn-lg">Commerce</button></a>
 
                         {{-- <form method="POST" action="{{ route('submit-pns-header') }}">
                             @csrf
@@ -120,32 +122,62 @@
 
                             <a href="{{ route('pns-section', ['name' => '365'])  }}">
                                 <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == '365' ? 'btn-active' : '' }}">
-                                DOSH 365
+                                365 - Standard
                                 </button>
                             </a>
                             <a href="{{ route('pns-section', ['name' => '750']) }}">
                                 <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == '750' ? 'btn-active' : '' }}">
-                                DOSH 750
+                                750 - Standard
                                 </button>
                             </a>
                             <a href="{{ route('pns-section', ['name' => '1000']) }}">
                                 <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == '1000' ? 'btn-active' : '' }}">
-                                DOSH 1000
+                                1000 - Standard
                                 </button>
                             </a>
                             <a href="{{ route('pns-section', ['name' => '2500']) }}">
                                 <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == '2500' ? 'btn-active' : '' }}">
-                                DOSH 2500
+                                2500 - Standard
                                 </button>
                             </a>
                             <a href="{{ route('pns-section', ['name' => '5000']) }}">
                                 <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == '5000' ? 'btn-active' : '' }}">
-                                DOSH 5000
+                                5000 - Standard
                                 </button>
                             </a>
                             <a href="{{ route('pns-section', ['name' => '10000'])}}">
                                 <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == '10000' ? 'btn-active' : '' }}">
-                                DOSH 10000
+                                10000 - Standard
+                                </button>
+                            </a>
+                            <a href="{{ route('pns-section', ['name' => '500'])  }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == '500' ? 'btn-active' : '' }}">
+                                500 - Enhanced
+                                </button>
+                            </a>
+                            <a href="{{ route('pns-section', ['name' => '900'])  }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == '900' ? 'btn-active' : '' }}">
+                                900 - Enhanced
+                                </button>
+                            </a>
+                            <a href="{{ route('pns-section', ['name' => '1200'])  }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == '1200' ? 'btn-active' : '' }}">
+                                1200 - Enhanced
+                                </button>
+                            </a>
+                            <a href="{{ route('pns-section', ['name' => '2800'])  }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == '2800' ? 'btn-active' : '' }}">
+                                2800 - Enhanced
+                                </button>
+                            </a>
+                            <a href="{{ route('pns-section', ['name' => '5500'])  }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == '5500' ? 'btn-active' : '' }}">
+                                5500 - Enhanced
+                                </button>
+                            </a>
+                            <a href="{{ route('pns-section', ['name' => '11000'])  }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == '11000' ? 'btn-active' : '' }}">
+                                11000 - Enhanced
                                 </button>
                             </a>
 
@@ -159,27 +191,27 @@
 
                             <a href="{{ route('pns-section', 'personal') }}/?type=financial">
                                 <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == 'personal' ? 'btn-active' : '' }}">
-                                Personal
+                                Individual - Personal
                                 </button>
                             </a>
                             <a href="{{ route('pns-section', 'family') }}/?type=financial">
                                 <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == 'family' ? 'btn-active' : '' }}">
-                                Family
+                                Family - Personal
                                 </button>
                             </a>
                             <a href="{{ route('pns-section', 'soho') }}/?type=financial">
                                 <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == 'soho' ? 'btn-active' : '' }}">
-                                SOHO
+                                SOHO - Business
                                 </button>
                             </a>
                             <a href="{{ route('pns-section', 'smb') }}/?type=financial">
                                 <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == 'smb' ? 'btn-active' : '' }}">
-                                SMB
+                                SMB - Business
                                 </button>
                             </a>
                             <a href="{{ route('pns-section', 'enterprise') }}/?type=financial">
                                 <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == 'enterprise' ? 'btn-active' : '' }}">
-                                Enterprise
+                                Enterprise - Business
                                 </button>
                             </a>
                         @endif

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AboutUsController;
+use App\Http\Controllers\Api\ContactpageController;
 use App\Http\Controllers\Api\HomepageController;
 use App\Http\Controllers\Api\ProductsAndServicesController;
 use Illuminate\Http\Request;
@@ -15,3 +16,6 @@ Route::get('/fetch-about-data', [AboutUsController::class, 'fetchAboutUsData']);
 
 // Products and Services
 Route::get('/fetch-pns-data', [ProductsAndServicesController::class, 'fetchProductsAndServicesData']);
+
+// Contact Page
+Route::get('/fetch-contact-data', [ContactpageController::class, 'contactPage']);
