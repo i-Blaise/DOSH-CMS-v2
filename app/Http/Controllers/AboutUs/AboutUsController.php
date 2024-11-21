@@ -71,8 +71,8 @@ class AboutUsController extends Controller
         }else{
             $request->validate([
                 'aboutus_section_image' => 'nullable|mimes:jpg,webp,png,jpeg',
-                'caption' => 'required|max:100',
-                'body' => 'required|max:900',
+                'caption' => 'required',
+                'body' => 'required',
             ]);
         }
 
@@ -109,6 +109,8 @@ class AboutUsController extends Controller
                 break;
 
             case 'values':
+                !isset($imagePath) ?
+                '' : $aboutus_section->values_image = $imagePath;
                 $aboutus_section->values_caption = $request->input('caption');
                 $aboutus_section->values_body = $request->input('body');
                 break;

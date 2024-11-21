@@ -10,7 +10,9 @@ class AboutUsController extends Controller
 {
     public function fetchAboutUsData()
     {
-        $data = AboutUs::all();
+        $data = AboutUs::select('*')
+            ->get()
+            ->makeHidden(['created_at', 'updated_at']);
         return response()->json($data);
     }
 }

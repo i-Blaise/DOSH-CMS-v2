@@ -158,6 +158,8 @@
 
                         @case('values')
                             @php
+                                $image = $aboutUsSection->values_image;
+
                                 $caption = old('caption') !== null ? old('caption') : $aboutUsSection->values_caption;
 
                                 $body = old('body') !== null ? old('body') : $aboutUsSection->values_body;

@@ -45,10 +45,11 @@ class HomeSectionsController extends Controller
      */
     public function edit(string $section)
     {
-        $sections = ['insurance', 'finance', 'ride', 'erp', 'risk'];
+        // dd($section);
+        $sections = ['insurance', 'finance', 'ride', 'erp', 'commerce', 'risk'];
         if(!in_array($section, $sections))
         {
-            return back()->with('info', 'no');
+            return back()->with('info', 'Invalid section selected');
         }
         $homeSections = HomeSections::all();
         return view('dashboard.pages.homepage.index', [
@@ -64,8 +65,9 @@ class HomeSectionsController extends Controller
     {
         $request->validate([
             'home_section_image' => 'nullable|mimes:jpg,webp,png,jpeg',
-            'caption' => 'required|max:100',
-            'body' => 'required|max:800',
+            'caption' => 'required',
+            'body' => 'required',
+            'modal_body' => 'required'
         ]);
 
         if(!is_null($request->file('home_section_image')))
@@ -81,6 +83,7 @@ class HomeSectionsController extends Controller
                 '' : $home_section->insurance_image = $imagePath;
                 $home_section->insurance_caption = $request->input('caption');
                 $home_section->insurance_body = $request->input('body');
+                $home_section->insurance_modal_body = $request->input('modal_body');
                 break;
 
             case 'finance':
@@ -88,6 +91,7 @@ class HomeSectionsController extends Controller
                 '' : $home_section->finance_image = $imagePath;
                 $home_section->finance_caption = $request->input('caption');
                 $home_section->finance_body = $request->input('body');
+                $home_section->finance_modal_body = $request->input('modal_body');
                 break;
 
             case 'ride':
@@ -95,6 +99,7 @@ class HomeSectionsController extends Controller
                 '' : $home_section->ride_image = $imagePath;
                 $home_section->ride_caption = $request->input('caption');
                 $home_section->ride_body = $request->input('body');
+                $home_section->ride_modal_body = $request->input('modal_body');
                 break;
 
             case 'erp':
@@ -102,13 +107,23 @@ class HomeSectionsController extends Controller
                 '' : $home_section->erp_image = $imagePath;
                 $home_section->erp_caption = $request->input('caption');
                 $home_section->erp_body = $request->input('body');
+                $home_section->erp_modal_body = $request->input('modal_body');
                 break;
 
-            case 'risk':
+            case 'commerce':
                 !isset($imagePath) ?
                 '' : $home_section->commerce_image = $imagePath;
                 $home_section->commerce_caption = $request->input('caption');
                 $home_section->commerce_body = $request->input('body');
+                $home_section->commerce_modal_body = $request->input('modal_body');
+                break;
+
+            case 'risk':
+                !isset($imagePath) ?
+                '' : $home_section->risk_image = $imagePath;
+                $home_section->risk_caption = $request->input('caption');
+                $home_section->risk_body = $request->input('body');
+                $home_section->risk_modal_body = $request->input('modal_body');
                 break;
         }
 

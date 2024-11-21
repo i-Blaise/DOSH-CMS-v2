@@ -89,7 +89,7 @@
 
                         <a href="{{ route('home-sections.edit', 'finance') }}">
                             <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'finance' ? 'btn-active' : '' }}">
-                             Finance Insurance
+                             Financial Insurance
                             </button>
                         </a>
 
@@ -108,6 +108,12 @@
                         <a href="{{ route('home-sections.edit', 'risk') }}">
                             <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'risk' ? 'btn-active' : '' }}">
                              Risk
+                            </button>
+                        </a>
+
+                        <a href="{{ route('home-sections.edit', 'commerce') }}">
+                            <button type="button" class="btn btn-primary btn-lg btn-block {{ $section == 'commerce' ? 'btn-active' : '' }}">
+                             E-Commerce
                             </button>
                         </a>
                       </div>
@@ -131,6 +137,8 @@
                                 $caption = old('caption') !== null ? old('caption') : $homeSection->insurance_caption;
 
                                 $body = old('body') !== null ? old('body') : $homeSection->insurance_body;
+
+                                $modalBody = old('modal_body') !== null ? old('modal_body') : $homeSection->insurance_modal_body;
                             @endphp
                         @break
 
@@ -141,6 +149,8 @@
                                 $caption = old('caption') !== null ? old('caption') : $homeSection->finance_caption;
 
                                 $body = old('body') !== null ? old('body') : $homeSection->finance_body;
+
+                                $modalBody = old('modal_body') !== null ? old('modal_body') : $homeSection->finance_modal_body;
                             @endphp
                         @break
 
@@ -151,6 +161,8 @@
                                 $caption = old('caption') !== null ? old('caption') : $homeSection->ride_caption;
 
                                 $body = old('body') !== null ? old('body') : $homeSection->ride_body;
+
+                                $modalBody = old('modal_body') !== null ? old('modal_body') : $homeSection->ride_modal_body;
                             @endphp
                         @break
 
@@ -161,16 +173,32 @@
                                 $caption = old('caption') !== null ? old('caption') : $homeSection->erp_caption;
 
                                 $body = old('body') !== null ? old('body') : $homeSection->erp_body;
+
+                                $modalBody = old('modal_body') !== null ? old('modal_body') : $homeSection->erp_modal_body;
                             @endphp
                         @break
 
-                        @case('risk')
+                        @case('commerce')
                             @php
                                 $image = $homeSection->commerce_image;
 
                                 $caption = old('caption') !== null ? old('caption') : $homeSection->commerce_caption;
 
                                 $body = old('body') !== null ? old('body') : $homeSection->commerce_body;
+
+                                $modalBody = old('modal_body') !== null ? old('modal_body') : $homeSection->commerce_modal_body;
+                            @endphp
+                        @break
+
+                        @case('risk')
+                            @php
+                                $image = $homeSection->risk_image;
+
+                                $caption = old('caption') !== null ? old('caption') : $homeSection->risk_caption;
+
+                                $body = old('body') !== null ? old('body') : $homeSection->risk_body;
+
+                                $modalBody = old('modal_body') !== null ? old('modal_body') : $homeSection->risk_modal_body;
                             @endphp
                         @break
 
@@ -203,6 +231,10 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Body</label>
                             <textarea class="form-control" id="myeditorinstance-body" name="body">{{ $body }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Modal Body</label>
+                            <textarea class="form-control" id="myeditorinstance-modal-body" name="modal_body">{{ $modalBody }}</textarea>
                         </div>
                       <button type="submit" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
