@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactPage\ContactPageController;
 use App\Http\Controllers\Homepage\HomeSectionsController;
 use App\Http\Controllers\Homepage\SlideshowController;
+use App\Http\Controllers\Misc\MiscController;
 use App\Http\Controllers\PnS\PnSController;
 use App\Http\Controllers\PnS\PnSHeaderController;
 use App\Http\Controllers\UserProfileController;
@@ -54,6 +55,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('contact-header', [ContactPageController::class, 'index'])->name('contact-page');
 
     Route::post('contact-header-update', [ContactPageController::class, 'storeContactPageHeader'])->name('contact-page-update');
+
+
+
+    // Privacy Statement
+    Route::get('privacy-statement', [MiscController::class, 'index'])->name('privacy-statement');
+    Route::post('privacy-statement-update', [MiscController::class, 'updatePrivacyStatement'])->name('privacy-statement-update');
+
+
 
 
     Route::get('preview', function () {

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AboutUsController;
 use App\Http\Controllers\Api\ContactpageController;
 use App\Http\Controllers\Api\HomepageController;
+use App\Http\Controllers\Api\MiscController;
 use App\Http\Controllers\Api\ProductsAndServicesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,3 +20,7 @@ Route::get('/fetch-pns-data', [ProductsAndServicesController::class, 'fetchProdu
 
 // Contact Page
 Route::get('/fetch-contact-data', [ContactpageController::class, 'contactPage']);
+
+
+// Privacy Statement
+Route::get('/privacy-statement', [MiscController::class, 'getPrivacyStatement']);

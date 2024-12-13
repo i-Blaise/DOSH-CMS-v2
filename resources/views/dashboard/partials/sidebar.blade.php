@@ -69,6 +69,13 @@
             </a>
           </li>
 
+          <li class="nav-item {{ Route::currentRouteNamed('privacy-statement') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('privacy-statement') }}">
+              <i class="icon-file menu-icon"></i>
+              <span class="menu-title">Privacy Statement</span>
+            </a>
+          </li>
+
           {{-- <li class="nav-item">
             <a class="nav-link" href="pages/forms/basic_elements.html">
               <i class="icon-file menu-icon"></i>
