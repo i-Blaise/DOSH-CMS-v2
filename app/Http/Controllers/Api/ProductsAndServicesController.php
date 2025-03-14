@@ -63,7 +63,7 @@ class ProductsAndServicesController extends Controller
         $data = [
             'header' => $pnsHeader,
             'insurance_section' => $insuraceSec,
-            'insurance_readmore' => $insuranceReadMore,
+            'insurance_readmore_modal' => $insuranceReadMore,
             'health_insurance' => $health_insurance,
             'financial_insurance' => $financial_insurance,
             // 'risk_insurance' => $risk_insurance
