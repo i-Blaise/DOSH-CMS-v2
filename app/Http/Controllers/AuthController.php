@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
@@ -16,7 +18,6 @@ class AuthController extends Controller
         return view('dashboard.pages.auth.login');
     }
 
-
     public function customLogin(Request $request)
     {
         $request->validate([
@@ -24,21 +25,14 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // dd($request);
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->intended("admin")
                 ->withSuccess('Signed in');
         }
+
         return redirect("login")->withErrors('Login details are not valid');
     }
-
-
-
-
-
-
-
 
     /**
      * Show the form for creating a new resource.

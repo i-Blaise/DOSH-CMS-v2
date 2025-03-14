@@ -5,6 +5,7 @@ namespace App\Http\Controllers\PnS;
 use App\Http\Controllers\Controller;
 use App\Models\PnSHeader;
 use App\Models\DoshInsurance;
+use App\Models\HealthInsuranceReadMoreModal;
 use App\Models\PnSPage;
 use Illuminate\Http\Request;
 
@@ -86,12 +87,15 @@ class PnSController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $name = null)
+    public function edit(?string $name = null)
     {
 
+        // dd($name);
         if($name == 'insurance' || $name == 'financial')
         {
             $pns_page = DoshInsurance::where('insurance_type', $name)->first();
+        }elseif($name == 'readmore'){
+            $pns_page = HealthInsuranceReadMoreModal::find(1);
         }else{
             $name = is_null($name) ? '365' : $name;
             $pns_page = DoshInsurance::where('insurance_name', $name)->get();
@@ -145,6 +149,24 @@ class PnSController extends Controller
         }
 
 
+    }
+
+
+    function updateHealthInsuranceReadMoreModal(Request $request)
+    {
+        $request->validate([
+            'description' => 'required',
+            'references' => 'required',
+        ]);
+
+        $health_insurance_readmore_modal = HealthInsuranceReadMoreModal::find(1);
+
+        $health_insurance_readmore_modal->description = $request->input('description');
+        $health_insurance_readmore_modal->references = $request->input('references');
+
+        $health_insurance_readmore_modal->save();
+
+        return back()->with('success', 'Update Successful');
     }
 
     /**
