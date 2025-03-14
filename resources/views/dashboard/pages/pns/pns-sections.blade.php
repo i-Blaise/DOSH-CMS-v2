@@ -120,7 +120,7 @@
                                 </button>
                             </a>
 
-                            <a href="{{ route('pns-section', ['name' => 'readmore']) }}">
+                            <a href="{{ route('pns-section', ['name' => 'readmore', 'type' => 'insurance']) }}">
                                 <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == 'readmore' ? 'btn-active' : '' }}">
                                 Read  More Modal
                                 </button>
@@ -196,6 +196,12 @@
                                 </button>
                             </a>
 
+                            <a href="{{ route('pns-section', ['name' => 'readmore', 'type' => 'financial']) }}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == 'readmore' ? 'btn-active' : '' }}">
+                                Read  More Modal
+                                </button>
+                            </a>
+
                             <a href="{{ route('pns-section', 'personal') }}/?type=financial">
                                 <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == 'personal' ? 'btn-active' : '' }}">
                                 Individual - Personal
@@ -268,6 +274,8 @@
                         <textarea class="form-control" id="myeditorinstance-caption" name="caption" required>{{ $pns_page->home_caption }}</textarea>
                     </div>
 
+                    <input type="text" name="type" value="{{ request('type') }}" hidden>
+
                     <div class="form-group">
                         <label for="exampleInputEmail1">Body</label>
                         <textarea class="form-control" id="myeditorinstance-body" name="body" required>{{ $pns_page->home_body }}</textarea>
@@ -277,7 +285,7 @@
                     @elseif (request('name') == 'readmore')
 
                     <div class="form-group" style="display: flex;">
-                        <label>Section Image</label>
+                        <label>Modal Image</label>
                         <input type="file" name="image" class="file-upload-default">
                         <div class="input-group col-xs-12 col-md-8" style="height:3rem;">
                         <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
@@ -292,12 +300,12 @@
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Description</label>
-                        <textarea class="form-control" id="myeditorinstance-body" name="body" required>{{ $pns_page->description }}</textarea>
+                        <textarea class="form-control" id="myeditorinstance-modal-body" name="description" required>{{ $pns_page->description }}</textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">References</label>
-                        <textarea class="form-control" id="myeditorinstance-body" name="body" required>{{ $pns_page->references }}</textarea>
+                        <textarea class="form-control" id="myeditorinstance-body" name="references" required>{{ $pns_page->references }}</textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary mr-2" name="submit" value="{{ request('name') }}">Submit</button>

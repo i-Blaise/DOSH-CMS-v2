@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('health_insurance_readmore_modal', function (Blueprint $table) {
+        Schema::create('insurance_readmore_modal', function (Blueprint $table) {
             $table->id();
             $table->string('image');
             $table->text('description');
             $table->text('references');
+            $table->string('insurance_name');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('health_insurance_readmore_modal');
+        Schema::dropIfExists('insurance_readmore_modal');
     }
 };

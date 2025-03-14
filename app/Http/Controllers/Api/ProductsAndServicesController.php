@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\DoshInsurance;
 use App\Models\HomeSections;
+use App\Models\InsuranceReadMoreModal;
 use App\Models\PnSHeader;
 use App\Models\PnSPage;
 use Illuminate\Http\Request;
@@ -25,6 +26,9 @@ class ProductsAndServicesController extends Controller
             ];
         });
 
+        $insuranceReadMore = InsuranceReadMoreModal::select('image', 'description', 'references', 'insurance_name')
+            ->get();
+
         $pnsHeader = PnSHeader::select('*')
             ->get()
             ->makeHidden(['created_at', 'updated_at']);
@@ -35,12 +39,10 @@ class ProductsAndServicesController extends Controller
             ->get();
 
         $health_insurance = $health_insurance->map(function($insurance) {
-            $modal_body = HomeSections::first()->insurance_modal_body;
             return [
                 'insurance_name' => $insurance->insurance_name,
                 'image' => $insurance->image,
-                'desc' => $insurance->desc,
-                'read_more' => $modal_body
+                'desc' => $insurance->desc
             ];
         });
 
@@ -49,23 +51,22 @@ class ProductsAndServicesController extends Controller
             ->get();
 
         $financial_insurance = $financial_insurance->map(function($insurance) {
-            $modal_body = HomeSections::first()->finance_modal_body;
             return [
                 'insurance_name' => $insurance->insurance_name,
                 'image' => $insurance->image,
                 'desc' => $insurance->desc,
-                'read_more' => $modal_body
             ];
         });
 
-        $risk_insurance = HomeSections::first()->risk_modal_body;
+        // $risk_insurance = HomeSections::first()->risk_modal_body;
 
         $data = [
             'header' => $pnsHeader,
             'insurance_section' => $insuraceSec,
+            'insurance_readmore' => $insuranceReadMore,
             'health_insurance' => $health_insurance,
             'financial_insurance' => $financial_insurance,
-            'risk_insurance' => $risk_insurance
+            // 'risk_insurance' => $risk_insurance
         ];
 
         return response()->json($data);
