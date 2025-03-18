@@ -125,7 +125,7 @@ class PnSController extends Controller
 
         // dd($request->input('submit'));
 
-        if($request->input('submit') == 'financial'|| $request->input('submit') == 'insurance')
+        if($request->input('submit') == 'financial'|| $request->input('submit') == 'insurance' || $request->input('submit') == 'risk')
         {
             $insurance = DoshInsurance::where('insurance_type', $request->input('submit'))->first();
 
@@ -138,17 +138,18 @@ class PnSController extends Controller
 
             return back()->with('success', 'Update Successful');
         }elseif($request->input('submit') == 'readmore'){
-            if($request->input('type') == 'health'){
-                $insurance_readmore_modal = InsuranceReadMoreModal::find(1);
-                !isset($imagePath) ?
-                '' : $insurance_readmore_modal->image = $imagePath;
-                $insurance_readmore_modal->description = $request->input('description');
-                $insurance_readmore_modal->references = $request->input('references');
+            $insurance_readmore_modal = InsuranceReadMoreModal::where('insurance_name', $request->input('type'))->first();
 
-                $insurance_readmore_modal->save();
+            // dd($request->input('type'));
 
-                return back()->with('success', 'Update Successful');
-            }
+            !isset($imagePath) ?
+            '' : $insurance_readmore_modal->image = $imagePath;
+            $insurance_readmore_modal->description = $request->input('description');
+            $insurance_readmore_modal->references = $request->input('references');
+
+            $insurance_readmore_modal->save();
+
+            return back()->with('success', 'Update Successful');
         }else{
 
             $insurance = DoshInsurance::where('insurance_name', $request->input('submit'))->first();

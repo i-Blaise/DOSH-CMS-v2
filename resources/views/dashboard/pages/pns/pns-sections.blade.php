@@ -321,6 +321,8 @@
                         <textarea class="form-control" id="myeditorinstance-modal-body" name="description" required>{{ $pns_page->description }}</textarea>
                     </div>
 
+                    <input type="text" name="type" value="{{ request('type') }}" hidden>
+
                     <div class="form-group">
                         <label for="exampleInputEmail1">References</label>
                         <textarea class="form-control" id="myeditorinstance-body" name="references" required>{{ $pns_page->references }}</textarea>
