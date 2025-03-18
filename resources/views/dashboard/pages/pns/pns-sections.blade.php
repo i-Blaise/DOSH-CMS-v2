@@ -87,7 +87,7 @@
 
                         <a href="{{ route('pns-section', 'financial') }}/?type=financial"><button type="button" class="btn btn-primary btn-lg {{ request('type') == 'financial' ? 'btn-active' : ''}}">Financial</button></a>
 
-                        <a href="#"><button disabled type="button" class="btn btn-primary btn-lg">Risk</button></a>
+                        <a href="{{ route('pns-section', 'risk') }}/?type=risk"><button type="button" class="btn btn-primary btn-lg {{ request('type') == 'risk' ? 'btn-active' : ''}}">Risk</button></a>
 
                         <a href="#"><button disabled type="button" class="btn btn-primary btn-lg">Ride</button></a>
 
@@ -227,6 +227,24 @@
                                 Enterprise - Business
                                 </button>
                             </a>
+
+
+
+                        @elseif (request('type') == 'risk')
+
+                        <a href="{{ route('pns-section', 'risk') }}/?type=risk">
+                            <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == 'risk' ? 'btn-active' : '' }}">
+                            Risk Section
+                            </button>
+                        </a>
+
+                        <a href="{{ route('pns-section', ['name' => 'readmore', 'type' => 'risk']) }}">
+                            <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == 'readmore' ? 'btn-active' : '' }}">
+                            Read  More Modal
+                            </button>
+                        </a>
+
+
                         @endif
 
                       </div>
@@ -252,7 +270,7 @@
                     @csrf
                     @method('POST')
 
-                    @if (request('name') == 'insurance' || request('name') == 'financial')
+                    @if (request('name') == 'insurance' || request('name') == 'financial' || request('name') == 'risk')
 
 
                     <div class="form-group" style="display: flex;">

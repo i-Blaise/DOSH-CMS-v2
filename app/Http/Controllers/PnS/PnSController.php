@@ -90,7 +90,7 @@ class PnSController extends Controller
     public function edit(?string $name = null, ?string $type = null)
     {
 
-        if($name == 'insurance' || $name == 'financial')
+        if($name == 'insurance' || $name == 'financial' || $name == 'risk')
         {
             $pns_page = DoshInsurance::where('insurance_type', $name)->first();
         }elseif($name == 'readmore'){

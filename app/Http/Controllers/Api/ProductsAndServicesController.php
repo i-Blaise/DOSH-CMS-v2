@@ -71,4 +71,14 @@ class ProductsAndServicesController extends Controller
 
         return response()->json($data);
     }
+
+    public function fetchPnSModalData()
+    {
+        $insuranceReadMore = InsuranceReadMoreModal::select('image', 'description', 'references', 'insurance_name')
+            ->get();
+        // dd('okay');
+
+        return response()->json($insuranceReadMore);
+
+    }
 }

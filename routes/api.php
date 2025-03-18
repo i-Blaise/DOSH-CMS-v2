@@ -18,6 +18,8 @@ Route::get('/fetch-about-data', [AboutUsController::class, 'fetchAboutUsData']);
 // Products and Services
 Route::get('/fetch-pns-data', [ProductsAndServicesController::class, 'fetchProductsAndServicesData']);
 
+Route::get('/fetch-pns-modal-data', [ProductsAndServicesController::class,'fetchPnSModalData']);
+
 // Contact Page
 Route::get('/fetch-contact-data', [ContactpageController::class, 'contactPage']);
 
