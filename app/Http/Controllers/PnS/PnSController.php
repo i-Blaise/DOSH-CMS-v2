@@ -111,7 +111,7 @@ class PnSController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'image' => 'nullable|image|mimes:jpg,webp,png,jpeg,jpg file|max:10048',
+            'image' => 'nullable|image|mimes:jpg,webp,png,jpeg,jpg',
             'caption' => 'nullable',
             'body' => 'nullable',
             'description' => 'nullable',
