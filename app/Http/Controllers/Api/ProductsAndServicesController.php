@@ -72,13 +72,46 @@ class ProductsAndServicesController extends Controller
         return response()->json($data);
     }
 
-    public function fetchPnSModalData()
+    public function HealthInsuranceModal()
     {
-        $insuranceReadMore = InsuranceReadMoreModal::select('image', 'description', 'references', 'insurance_name')
+        $insuranceReadMore = InsuranceReadMoreModal::where('insurance_name', 'insurance')->select('image', 'description', 'references')
             ->get();
-        // dd('okay');
+
+        $insuranceReadMore = $insuranceReadMore->map(function($insurance) {
+            return [
+            'image' => $insurance->image,
+            'description' => $insurance->description,
+            'references' => $insurance->references,
+            'insurance_name' => 'health insurance'
+            ];
+        });
 
         return response()->json($insuranceReadMore);
 
+    }
+
+    public function FinancialInsuranceModal()
+    {
+        $insuranceReadMore = InsuranceReadMoreModal::where('insurance_name', 'financial')->select('image', 'description', 'references')
+            ->get();
+
+        $insuranceReadMore = $insuranceReadMore->map(function($insurance) {
+            return [
+            'image' => $insurance->image,
+            'description' => $insurance->description,
+            'references' => $insurance->references,
+            'insurance_name' => 'financial insurance'
+            ];
+        });
+
+        return response()->json($insuranceReadMore);
+    }
+
+    public function RiskInsuranceModal()
+    {
+        $insuranceReadMore = InsuranceReadMoreModal::where('insurance_name', 'insurance')->select('image', 'description', 'references', 'insurance_name')
+            ->get();
+
+        return response()->json($insuranceReadMore);
     }
 }

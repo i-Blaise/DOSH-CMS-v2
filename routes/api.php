@@ -18,7 +18,12 @@ Route::get('/fetch-about-data', [AboutUsController::class, 'fetchAboutUsData']);
 // Products and Services
 Route::get('/fetch-pns-data', [ProductsAndServicesController::class, 'fetchProductsAndServicesData']);
 
-Route::get('/fetch-pns-modal-data', [ProductsAndServicesController::class,'fetchPnSModalData']);
+// PnS Modal Routes
+Route::get('/health-insurance-modal', [ProductsAndServicesController::class,'HealthInsuranceModal']);
+
+Route::get('/financial-insurance-modal', [ProductsAndServicesController::class,'FinancialInsuranceModal']);
+
+Route::get('/risk-insurance-modal', [ProductsAndServicesController::class,'RiskInsuranceModal']);
 
 // Contact Page
 Route::get('/fetch-contact-data', [ContactpageController::class, 'contactPage']);
