@@ -72,6 +72,36 @@ class ProductsAndServicesController extends Controller
         return response()->json($data);
     }
 
+
+    public function sliderInsuraceData() {
+        $insuraceSec = DoshInsurance::select('id', 'home_caption', 'home_body', 'home_image')
+            ->whereIn('id', [1, 7, 18])
+            ->get();
+
+        $sectionKeys = [
+            1 => 'financial_slide',
+            7 => 'health_slide',
+            18 => 'risk_slide'
+        ];
+
+        $formattedData = [];
+
+        foreach ($insuraceSec as $section) {
+            $key = $sectionKeys[$section->id] ?? 'section_' . $section->id;
+
+            $formattedData[$key] = [
+                'section_caption' => $section->home_caption,
+                'section_body' => $section->home_body,
+                'section_image' => $section->home_image
+            ];
+        }
+
+        return response()->json($formattedData);
+    }
+
+
+
+
     public function HealthInsuranceModal()
     {
         $insuranceReadMore = InsuranceReadMoreModal::where('insurance_name', 'insurance')->select('image', 'description', 'references')
