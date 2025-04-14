@@ -8,6 +8,7 @@ use App\Models\HomeSections;
 use App\Models\InsuranceReadMoreModal;
 use App\Models\PnSHeader;
 use App\Models\PnSPage;
+use App\Models\PnSVideoSec;
 use Illuminate\Http\Request;
 
 class ProductsAndServicesController extends Controller
@@ -143,5 +144,14 @@ class ProductsAndServicesController extends Controller
             ->get();
 
         return response()->json($insuranceReadMore);
+    }
+
+    public function fetchVideoSection()
+    {
+        $video_section = PnSVideoSec::select('video_title', 'video_url', 'video_subtitle', 'video_description')
+            ->first()
+            ->makeHidden(['created_at', 'updated_at']);
+
+        return response()->json($video_section);
     }
 }

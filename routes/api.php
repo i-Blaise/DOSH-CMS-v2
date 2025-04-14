@@ -25,6 +25,10 @@ Route::get('/financial-insurance-modal', [ProductsAndServicesController::class,'
 
 Route::get('/risk-insurance-modal', [ProductsAndServicesController::class,'RiskInsuranceModal']);
 
+
+// PnS Video Section
+Route::get('/fetch-pns-video-sec', [ProductsAndServicesController::class, 'fetchVideoSection']);
+
 // PnS Slider Section
 Route::get('/fetch-pns-slider-sec', [ProductsAndServicesController::class, 'sliderInsuraceData']);
 

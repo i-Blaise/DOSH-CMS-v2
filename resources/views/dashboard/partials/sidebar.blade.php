@@ -58,6 +58,8 @@
                 </li>
                 <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('pns-section') ? 'active' : '' }}" href="{{ route('pns-section', 'insurance') }}"> P&S Sections </a>
                 </li>
+                <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('pns-video-section') ? 'active' : '' }}" href="{{ route('pns-video-section') }}"> Video Sections </a>
+                </li>
               </ul>
             </div>
           </li>

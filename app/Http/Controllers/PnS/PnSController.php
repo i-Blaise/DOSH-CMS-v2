@@ -7,6 +7,7 @@ use App\Models\PnSHeader;
 use App\Models\DoshInsurance;
 use App\Models\InsuranceReadMoreModal;
 use App\Models\PnSPage;
+use App\Models\PnSVideoSec;
 use Illuminate\Http\Request;
 
 class PnSController extends Controller
@@ -163,6 +164,38 @@ class PnSController extends Controller
         }
 
 
+    }
+
+
+    public function showVideoSection()
+    {
+        $video_section = PnSVideoSec::where('id', 1)->first();
+
+        return view('dashboard.pages.pns.video-section', [
+            'video_section' => $video_section
+        ]);
+    }
+
+
+    public function updateVideoeSection(Request $request)
+    {
+        $request->validate([
+            'video_url' => 'required',
+            'video_title' => 'required',
+            'video_subtitle' => 'required',
+            'video_description' => 'required',
+        ]);
+
+        $video_section = PnSPage::where('section_name', 'video_section')->first();
+
+        $video_section->video_url = $request->input('video_url');
+        $video_section->video_title = $request->input('video_title');
+        $video_section->video_subtitle = $request->input('video_subtitle');
+        $video_section->video_description = $request->input('video_description');
+
+        $video_section->save();
+
+        return back()->with('success', 'Update Successful');
     }
 
     /**
