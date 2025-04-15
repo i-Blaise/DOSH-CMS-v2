@@ -113,10 +113,10 @@ class PnSController extends Controller
     {
         $request->validate([
             'image' => 'nullable|image|mimes:jpg,webp,png,jpeg,jpg',
-            'caption' => 'nullable',
-            'body' => 'nullable',
-            'description' => 'nullable',
-            'references' => 'nullable',
+            'caption' => 'required',
+            'body' => 'required',
+            'description' => 'required',
+            'references' => 'required',
         ]);
 
         if(!is_null($request->file('image')))
