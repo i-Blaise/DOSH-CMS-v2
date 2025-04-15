@@ -325,7 +325,7 @@
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">References</label>
-                        <textarea class="form-control" id="myeditorinstance-body" name="references" required>{{ $pns_page->references }}</textarea>
+                        <textarea class="form-control" id="myeditorinstance-modal-body" name="references" required>{{ $pns_page->references }}</textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary mr-2" name="submit" value="{{ request('name') }}">Submit</button>
