@@ -113,10 +113,10 @@ class PnSController extends Controller
     {
         $request->validate([
             'image' => 'nullable|image|mimes:jpg,webp,png,jpeg,jpg',
-            'caption' => 'required',
-            'body' => 'required',
-            'description' => 'required',
-            'references' => 'required',
+            'caption' => 'nullable',
+            'body' => 'nullable',
+            'description' => 'nullable',
+            'references' => 'nullable',
         ]);
 
         if(!is_null($request->file('image')))
@@ -130,8 +130,8 @@ class PnSController extends Controller
         {
             $insurance = DoshInsurance::where('insurance_type', $request->input('submit'))->first();
 
-            $insurance->home_caption = $request->input('caption');
-            $insurance->home_body = $request->input('body');
+            $insurance->home_caption = $request->input('caption') ?? '';
+            $insurance->home_body = $request->input('body') ?? '';
             !isset($imagePath) ?
             '' : $insurance->home_image = $imagePath;
 
@@ -145,8 +145,8 @@ class PnSController extends Controller
 
             !isset($imagePath) ?
             '' : $insurance_readmore_modal->image = $imagePath;
-            $insurance_readmore_modal->description = $request->input('description');
-            $insurance_readmore_modal->references = $request->input('references');
+            $insurance_readmore_modal->description = $request->input('description') ?? '';
+            $insurance_readmore_modal->references = $request->input('references') ?? '';
 
             $insurance_readmore_modal->save();
 
@@ -156,7 +156,7 @@ class PnSController extends Controller
             $insurance = DoshInsurance::where('insurance_name', $request->input('submit'))->first();
             !isset($imagePath) ?
             '' : $insurance->image = $imagePath;
-            $insurance->desc = $request->input('body');
+            $insurance->desc = $request->input('body') ?? '';
 
             $insurance->save();
 
