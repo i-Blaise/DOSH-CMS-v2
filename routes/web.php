@@ -49,6 +49,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('pns-video-section', [PnSController::class, 'showVideoSection'])->name('pns-video-section');
 
+    Route::post('pns-video-section-update', [PnSController::class, 'updateVideoSection'])->name('pns-video-section-update');
+
 
 
 

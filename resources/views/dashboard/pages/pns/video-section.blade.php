@@ -80,7 +80,7 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="title-row" style="display: inline-flex; width: 100%;">
-                        <h4 class="card-title">Products and Services Header</h4>
+                        <h4 class="card-title">Products and Services Video Section</h4>
                     </div>
 
 
@@ -88,19 +88,18 @@
 
 
                     <form class="forms-sample" method="POST"
-                    {{-- action="{{ route('submit-pns-header') }}" --}}
+                    action="{{ route('pns-video-section-update') }}"
                     enctype="multipart/form-data">
                     @method('POST')
                     @csrf
 
 
 
-
                         <div class="form-group">
                             <label>Upload Video</label>
-                            <input type="file" name="image" class="file-upload-default">
+                            <input type="file" name="video_url" class="file-upload-default">
                             <div class="input-group col-xs-12">
-                              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Video">
                               <span class="input-group-append">
                                 <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                               </span>
@@ -111,8 +110,8 @@
                             <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ $video_section->video_title }}</textarea>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputUsername1">Sub-caption</label>
-                            <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ $video_section->video_subtitle }}</textarea>
+                            <label for="exampleInputUsername1">Sub Caption</label>
+                            <textarea class="form-control" id="myeditorinstance-caption" name="sub_caption">{{ $video_section->video_subtitle }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Body</label>

@@ -177,26 +177,60 @@ class PnSController extends Controller
     }
 
 
-    public function updateVideoeSection(Request $request)
+
+    protected function uploadVideo($videoFile)
+    {
+        // Check if file is valid
+        if (!$videoFile->isValid()) {
+            throw new \Exception("Uploaded file is not valid.");
+        }
+
+        // Store the file in storage/app/public/uploads/videos
+        $path = $videoFile->store('uploads/videos', 'public');
+
+        if (!$path) {
+            throw new \Exception("Failed to store video.");
+        }
+
+        return 'storage/' . $path;
+    }
+
+
+
+
+    public function updateVideoSection(Request $request)
     {
         $request->validate([
-            'video_url' => 'required',
-            'video_title' => 'required',
-            'video_subtitle' => 'required',
-            'video_description' => 'required',
+            // 'video_url' => 'required|mimes:mp4,webm,ogg,avi,mov,mpg,mkv|max:512000',
+            'caption' => 'required',
+            'sub_caption' => 'required',
+            'body' => 'required',
         ]);
 
-        $video_section = PnSPage::where('section_name', 'video_section')->first();
+        dd($this->uploadVideo($request->file('video_url')));
+        $videoPath = $this->uploadVideo($request->file('video_url'));
+        dd($videoPath);
 
-        $video_section->video_url = $request->input('video_url');
-        $video_section->video_title = $request->input('video_title');
-        $video_section->video_subtitle = $request->input('video_subtitle');
-        $video_section->video_description = $request->input('video_description');
+        // if(!is_null($request->file('video_url')))
+        // {
+        //     dd($request->file('video_url'));
+        //     $videoPath = $this->uploadVideo($request->file('video_url'));
+        // }
+
+        // dd($videoPath);
+
+        $video_section = PnSVideoSec::where('id', 1)->first();
+
+        $video_section->video_url = $videoPath ?? "";
+        $video_section->video_title = $request->input('caption');
+        $video_section->video_subtitle = $request->input('sub_caption');
+        $video_section->video_description = $request->input('body');
 
         $video_section->save();
 
         return back()->with('success', 'Update Successful');
     }
+
 
     /**
      * Remove the specified resource from storage.

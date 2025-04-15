@@ -140,7 +140,7 @@ class ProductsAndServicesController extends Controller
 
     public function RiskInsuranceModal()
     {
-        $insuranceReadMore = InsuranceReadMoreModal::where('insurance_name', 'insurance')->select('image', 'description', 'references', 'insurance_name')
+        $insuranceReadMore = InsuranceReadMoreModal::where('insurance_name', 'risk')->select('image', 'description', 'references', 'insurance_name')
             ->get();
 
         return response()->json($insuranceReadMore);
