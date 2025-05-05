@@ -198,38 +198,76 @@ class PnSController extends Controller
 
 
 
+    // public function updateVideoSection(Request $request)
+    // {
+    //     $request->validate([
+    //         'video_url' => 'required|mimes:mp4,webm,ogg,avi,mov,mpg,mkv|max:512000', // max = 500MB
+    //         'caption' => 'required',
+    //         'sub_caption' => 'required',
+    //         'body' => 'required',
+    //     ]);
+
+    //     if (!$request->hasFile('video_url')) {
+    //         dd('No file uploaded.');
+    //     }
+    //     // $videoPath = $this->uploadVideo($request->file('video_url'));
+    //     $videoFile = $request->file('video_url');
+
+    //     if (!$videoFile->isValid()) {
+    //         dd('Upload failed: ' . $videoFile->getErrorMessage());
+    //     }
+
+    //     // if(!is_null($request->file('video_url')))
+    //     // {
+    //     //     dd($request->file('video_url'));
+    //     //     $videoPath = $this->uploadVideo($request->file('video_url'));
+    //     // }
+
+    //     // dd($videoPath);
+
+    //     $video_section = PnSVideoSec::where('id', 1)->first();
+
+    //     $video_section->video_url = $videoFile ?? "";
+    //     $video_section->video_title = $request->input('caption');
+    //     $video_section->video_subtitle = $request->input('sub_caption');
+    //     $video_section->video_description = $request->input('body');
+
+    //     $video_section->save();
+
+    //     return back()->with('success', 'Update Successful');
+    // }
+
+
     public function updateVideoSection(Request $request)
-    {
-        $request->validate([
-            // 'video_url' => 'required|mimes:mp4,webm,ogg,avi,mov,mpg,mkv|max:512000',
-            'caption' => 'required',
-            'sub_caption' => 'required',
-            'body' => 'required',
-        ]);
+{
+    $request->validate([
+        'video_url' => 'required|mimes:mp4,webm,ogg,avi,mov,mpg,mkv|max:512000', // max = 500MB
+        'caption' => 'required',
+        'sub_caption' => 'required',
+        'body' => 'required',
+    ]);
 
-        dd($this->uploadVideo($request->file('video_url')));
-        $videoPath = $this->uploadVideo($request->file('video_url'));
-        dd($videoPath);
-
-        // if(!is_null($request->file('video_url')))
-        // {
-        //     dd($request->file('video_url'));
-        //     $videoPath = $this->uploadVideo($request->file('video_url'));
-        // }
-
-        // dd($videoPath);
-
-        $video_section = PnSVideoSec::where('id', 1)->first();
-
-        $video_section->video_url = $videoPath ?? "";
-        $video_section->video_title = $request->input('caption');
-        $video_section->video_subtitle = $request->input('sub_caption');
-        $video_section->video_description = $request->input('body');
-
-        $video_section->save();
-
-        return back()->with('success', 'Update Successful');
+    if (!$request->hasFile('video_url')) {
+        return back()->withErrors(['video_url' => 'No file uploaded']);
     }
+
+    $videoFile = $request->file('video_url');
+
+    if (!$videoFile->isValid()) {
+        return back()->withErrors(['video_url' => 'Upload failed: ' . $videoFile->getErrorMessage()]);
+    }
+
+    $videoPath = $videoFile->store('uploads/videos', 'public');
+
+    $video_section = PnSVideoSec::where('id', 1)->first();
+    $video_section->video_url = 'storage/' . $videoPath;
+    $video_section->video_title = $request->input('caption');
+    $video_section->video_subtitle = $request->input('sub_caption');
+    $video_section->video_description = $request->input('body');
+    $video_section->save();
+
+    return back()->with('success', 'Update Successful');
+}
 
 
     /**

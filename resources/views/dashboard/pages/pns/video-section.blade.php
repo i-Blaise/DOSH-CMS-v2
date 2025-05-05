@@ -136,8 +136,7 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <th>Video</th>
-                            <th>Live Preview</th>
+                            <th>Preview</th>
                             <th>Last Edited</th>
                             <th>Last Edited By</th>
                             <th>Status</th>
@@ -147,19 +146,16 @@
                             {{-- @foreach ($sliders as $slider) --}}
 
                           <tr>
-                            <td class="py-1">
-                              <img src="{{ asset($video_section->video_url) }}" alt="image"/>
-                            </td>
                             <td>
-                                <a href="{{ route('preview') }}">
+                                <a href="{{ asset($video_section->video_url) }}">
                                 <button type="button" class="btn btn-inverse-success btn-fw">Preview</button>
                                 </a>
                             </td>
                             <td>
-                                17.09.2924
+                                {{ $video_section->updated_at->format('Y-m-d') }}
                             </td>
                             <td>
-                                John Doe
+                                {{ Auth::user()->name }}
                             </td>
                             <td>
                                 <label class="badge badge-success">Active</label>
