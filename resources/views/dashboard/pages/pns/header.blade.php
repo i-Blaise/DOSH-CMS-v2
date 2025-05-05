@@ -153,10 +153,10 @@
                                 </a>
                             </td>
                             <td>
-                                17.09.2924
+                                {{ $header->updated_at->format('Y-m-d') }}
                             </td>
                             <td>
-                                John Doe
+                                {{ Auth::user()->name }}
                             </td>
                             <td>
                                 <label class="badge badge-success">Active</label>
