@@ -20,14 +20,14 @@ class ContactPageController extends Controller
     public function storeContactPageHeader(Request $request)
     {
         $request->validate([
-            'image' => 'nullable|mimes:jpg,webp,png,jpeg',
+            'header_image' => 'nullable|mimes:jpg,webp,png,jpeg',
             'caption' => 'required',
             'section_image' => 'nullable|mimes:jpg,webp,png,jpeg',
         ]);
 
-        if(!is_null($request->file('image')))
+        if(!is_null($request->file('header_image')))
         {
-            $imagePath = $this->uploadProfileImage($request->file('image'));
+            $imagePath = $this->uploadProfileImage($request->file('header_image'));
         }
 
         if(!is_null($request->file('section_image')))
