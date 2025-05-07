@@ -45,7 +45,11 @@ class PageVisitController extends Controller
             ]);
 
             // Optional: Reject if referer doesn't match
-            if (!str_contains($referer, 'https://www.0800dosh.me/')) {
+            if (
+                !str_contains($referer, 'https://www.0800dosh.me') &&
+                !str_contains($referer, 'https://0800dosh.me')
+                )
+            {
                 Log::warning('Unauthorized page visit attempt blocked', [
                     'referer' => $referer,
                     'ip' => $userIp,
