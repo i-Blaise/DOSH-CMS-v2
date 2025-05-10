@@ -4,26 +4,80 @@ $(function() {
    * Data and config for chartjs
    */
   'use strict';
+
+  var rawPagesData = document.getElementById('barchart1-pages').value;
+  var rawPagesData = JSON.parse(rawPagesData);
+  var rawPageVisitsData = document.getElementById('barchart1-visits').value;
+  var rawPageVisitsData = JSON.parse(rawPageVisitsData);
   var data = {
-    labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
+    labels: rawPagesData,
+    // labels,
     datasets: [{
-      label: '# of Votes',
-      data: [10, 19, 3, 5, 2, 3],
+      label: '# of Visits',
+      data: rawPageVisitsData,
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
         'rgba(255, 206, 86, 0.2)',
         'rgba(75, 192, 192, 0.2)',
         'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(199, 199, 199, 0.2)',
+        'rgba(83, 102, 255, 0.2)',
+        'rgba(255, 99, 255, 0.2)',
+        'rgba(99, 255, 132, 0.2)',
+        'rgba(255, 120, 120, 0.2)',
+        'rgba(120, 255, 255, 0.2)',
+        'rgba(200, 100, 100, 0.2)',
+        'rgba(0, 200, 83, 0.2)',
+        'rgba(255, 205, 86, 0.2)',
+        'rgba(100, 255, 100, 0.2)',
+        'rgba(255, 87, 34, 0.2)',
+        'rgba(63, 81, 181, 0.2)',
+        'rgba(244, 67, 54, 0.2)',
+        'rgba(33, 150, 243, 0.2)',
+        'rgba(0, 188, 212, 0.2)',
+        'rgba(139, 195, 74, 0.2)',
+        'rgba(205, 220, 57, 0.2)',
+        'rgba(255, 193, 7, 0.2)',
+        'rgba(255, 152, 0, 0.2)',
+        'rgba(121, 85, 72, 0.2)',
+        'rgba(96, 125, 139, 0.2)',
+        'rgba(186, 104, 200, 0.2)',
+        'rgba(0, 150, 136, 0.2)'
       ],
       borderColor: [
-        'rgba(255,99,132,1)',
+        'rgba(255, 99, 132, 1)',
         'rgba(54, 162, 235, 1)',
         'rgba(255, 206, 86, 1)',
         'rgba(75, 192, 192, 1)',
         'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
+        'rgba(255, 159, 64, 1)',
+        'rgba(255, 99, 132, 1)',
+        'rgba(199, 199, 199, 1)',
+        'rgba(83, 102, 255, 1)',
+        'rgba(255, 99, 255, 1)',
+        'rgba(99, 255, 132, 1)',
+        'rgba(255, 120, 120, 1)',
+        'rgba(120, 255, 255, 1)',
+        'rgba(200, 100, 100, 1)',
+        'rgba(0, 200, 83, 1)',
+        'rgba(255, 205, 86, 1)',
+        'rgba(100, 255, 100, 1)',
+        'rgba(255, 87, 34, 1)',
+        'rgba(63, 81, 181, 1)',
+        'rgba(244, 67, 54, 1)',
+        'rgba(33, 150, 243, 1)',
+        'rgba(0, 188, 212, 1)',
+        'rgba(139, 195, 74, 1)',
+        'rgba(205, 220, 57, 1)',
+        'rgba(255, 193, 7, 1)',
+        'rgba(255, 152, 0, 1)',
+        'rgba(121, 85, 72, 1)',
+        'rgba(96, 125, 139, 1)',
+        'rgba(186, 104, 200, 1)',
+        'rgba(0, 150, 136, 1)'
       ],
       borderWidth: 1,
       fill: false
@@ -78,9 +132,14 @@ $(function() {
     }
 
   };
+
+  var doughNutDevices = document.getElementById('doughnut-device').value;
+  var doughNutDevices = JSON.parse(doughNutDevices);
+  var doughNutDevicesCount = document.getElementById('doughnut-count').value;
+  var doughNutDevicesCount = JSON.parse(doughNutDevicesCount);
   var doughnutPieData = {
     datasets: [{
-      data: [30, 40, 30],
+      data: doughNutDevicesCount,
       backgroundColor: [
         'rgba(255, 99, 132, 0.5)',
         'rgba(54, 162, 235, 0.5)',
@@ -100,11 +159,7 @@ $(function() {
     }],
 
     // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: [
-      'Pink',
-      'Blue',
-      'Yellow',
-    ]
+    labels: doughNutDevices
   };
   var doughnutPieOptions = {
     responsive: true,
@@ -113,18 +168,30 @@ $(function() {
       animateRotate: true
     }
   };
+
+  var rawMonthData = document.getElementById('areachart1-month').value;
+  var rawMonthData = JSON.parse(rawMonthData);
+  var rawVisitData = document.getElementById('areachart1-visits').value;
+  var rawVisitDatas = JSON.parse(rawVisitData);
   var areaData = {
-    labels: ["2013", "2014", "2015", "2016", "2017"],
+    // labels: ["2013", "2014", "2015", "2016", "2017", "2017", "2017", "2017", "2015", "2015", "2222"],
+    labels: rawMonthData,
+    // labels,
     datasets: [{
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
+      label: '# of Site Visits',
+      data: rawVisitDatas,
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
         'rgba(255, 206, 86, 0.2)',
         'rgba(75, 192, 192, 0.2)',
         'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(255,99,132,0.2)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(153, 102, 255, 1)'
       ],
       borderColor: [
         'rgba(255,99,132,1)',
@@ -132,7 +199,11 @@ $(function() {
         'rgba(255, 206, 86, 1)',
         'rgba(75, 192, 192, 1)',
         'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
+        'rgba(255, 159, 64, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(255,99,132,1)'
       ],
       borderWidth: 1,
       fill: true, // 3: no fill

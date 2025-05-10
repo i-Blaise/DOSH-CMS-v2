@@ -59,11 +59,16 @@
               <p class="font-weight-normal mb-2 text-muted">{{ now()->format('l');}}</p>
             </div>
           </div>
+          {{-- @php dd($pageData); @endphp --}}
+          {{-- {{ $deviceNames }} --}}
+          {{-- <pre>{{ print_r($pageURLS, true) }}</pre> --}}
           <div class="row">
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Area chart</h4>
+                  <h4 class="card-title">Current Month: {{ $currentMonth }}</h4>
+                  <input type="hidden" id="areachart1-month" value='@json($month)'>
+                  <input type="hidden" id="areachart1-visits" value='@json($visits)'>
                   <canvas id="areaChart"></canvas>
                 </div>
               </div>
@@ -72,6 +77,8 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Doughnut chart</h4>
+                  <input type="hidden" id="doughnut-device" value='@json($deviceNames)'>
+                  <input type="hidden" id="doughnut-count" value='@json($deviceCounts)'>
                   <canvas id="doughnutChart"></canvas>
                 </div>
               </div>
@@ -81,13 +88,15 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Bar chart</h4>
+                    <h4 class="card-title">Number of Visits Per Page</h4>
+                    <input type="hidden" id="barchart1-pages" value='@json($pages)'>
+                    <input type="hidden" id="barchart1-visits" value='@json($page_visits)'>
                     <canvas id="barChart"></canvas>
                   </div>
                 </div>
               </div>
           </div>
-          <div class="row mt-3">
+          {{-- <div class="row mt-3">
             <div class="col-xl-3 flex-column d-flex grid-margin stretch-card">
               <div class="row flex-grow">
                 <div class="col-sm-12 grid-margin stretch-card">
@@ -223,7 +232,7 @@
                   </div>
                 </div>
               </div>
-              {{-- <div class="col-xl-4 grid-margin stretch-card">
+              <div class="col-xl-4 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title mb-3">Recent Activity</h4>
@@ -267,8 +276,8 @@
                     </div>
                   </div>
                 </div>
-              </div> --}}
-          </div>
+              </div>
+          </div> --}}
           <div class="row">
             <div class="col-xl-12 grid-margin-lg-0 grid-margin stretch-card">
               <div class="card">

@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutUs\AboutUsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactPage\ContactPageController;
+use App\Http\Controllers\DashboardChartsController;
 use App\Http\Controllers\Homepage\HomeSectionsController;
 use App\Http\Controllers\Homepage\SlideshowController;
 use App\Http\Controllers\Misc\MiscController;
@@ -77,4 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
     //     return view('dashboard.pages.pns.pns-sections');
     // })->name('pns-section');
 
+    // Dashboard Charts
+    Route::get('/', [DashboardChartsController::class, 'index']);
+    // Route::get('/', [DashboardChartsController::class, 'visitsThisMonth']);
 });
