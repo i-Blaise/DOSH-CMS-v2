@@ -76,7 +76,7 @@
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Doughnut chart</h4>
+                  <h4 class="card-title">Devices of Users on the Site</h4>
                   <input type="hidden" id="doughnut-device" value='@json($deviceNames)'>
                   <input type="hidden" id="doughnut-count" value='@json($deviceCounts)'>
                   <canvas id="doughnutChart"></canvas>
