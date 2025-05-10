@@ -60,7 +60,7 @@
             </div>
           </div>
           {{-- @php dd($pageData); @endphp --}}
-          {{-- {{ $deviceNames }} --}}
+          {{ $currentMonth }}
           {{-- <pre>{{ print_r($pageURLS, true) }}</pre> --}}
           <div class="row">
             <div class="col-lg-6 grid-margin stretch-card">

@@ -16,8 +16,8 @@
         </div>
         <ul class="nav">
 
-          <li class="nav-item {{ Route::currentRouteNamed('admin') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('admin') }}">
+          <li class="nav-item {{ Route::currentRouteNamed('dashboard') ? 'active' : '' }}">
+            <a class="nav-link" href="/">
               <i class="icon-box menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>

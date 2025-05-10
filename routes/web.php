@@ -23,9 +23,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', function () {
         return view('dashboard.index');
     });
-    Route::get('/admin', function () {
-        return view('dashboard.index');
-    })->name('admin');
+    // Route::get('/admin', function () {
+    //     return view('dashboard.index');
+    // })->name('admin');
 
     // Route::resource('/profile', UserProfileController::class);
     // Route::resource('slideshow', SlideshowController::class);
@@ -79,6 +79,6 @@ Route::group(['middleware' => 'auth'], function () {
     // })->name('pns-section');
 
     // Dashboard Charts
-    Route::get('/', [DashboardChartsController::class, 'index']);
+    Route::get('/', [DashboardChartsController::class, 'index'])->name('dashboard');
     // Route::get('/', [DashboardChartsController::class, 'visitsThisMonth']);
 });
