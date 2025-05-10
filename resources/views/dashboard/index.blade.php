@@ -568,7 +568,7 @@
 
     {{-- Chart  --}}
   <script src="{{ asset('vendors/chart.js/Chart.min.js') }}"></script>
-  <script src="{{ asset('js/chart.js') }}"></script>
+  <script src="{{ asset('js/chart.js?v=1') }}"></script>
     <!-- End custom js for this page-->
 
   {{-- Toastify Notifications  --}}
