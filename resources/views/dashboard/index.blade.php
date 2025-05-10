@@ -60,7 +60,7 @@
             </div>
           </div>
           {{-- @php dd($pageData); @endphp --}}
-          {{ $currentMonth }}
+          {{-- {{ $currentMonth }} --}}
           {{-- <pre>{{ print_r($pageURLS, true) }}</pre> --}}
           <div class="row">
             <div class="col-lg-6 grid-margin stretch-card">
@@ -282,7 +282,7 @@
             <div class="col-xl-12 grid-margin-lg-0 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Recent Activities</h4>
+                    <h4 class="card-title">Devices Used to Visit Website Stat</h4>
                     <div class="table-responsive mt-3">
                       <table class="table table-header-bg">
                         <thead>
