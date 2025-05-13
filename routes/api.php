@@ -36,6 +36,8 @@ Route::get('/fetch-pns-slider-sec', [ProductsAndServicesController::class, 'slid
 // Service Providers Header
 Route::get('/fetch-hsp-header', [ServiceProvidersController::class, 'fetchHSPHeader']);
 
+Route::get('/fetch-hsp-page-titles', [ServiceProvidersController::class, 'fetchHSPPageTitles']);
+
 // Contact Page
 Route::get('/fetch-contact-data', [ContactpageController::class, 'contactPage']);
 

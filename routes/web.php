@@ -10,6 +10,7 @@ use App\Http\Controllers\Homepage\SlideshowController;
 use App\Http\Controllers\Misc\MiscController;
 use App\Http\Controllers\PnS\PnSController;
 use App\Http\Controllers\PnS\PnSHeaderController;
+use App\Http\Controllers\ServiceProvidersPage\HSPsController;
 use App\Http\Controllers\ServiceProvidersPage\ServiceProvidersHeaderController;
 use App\Http\Controllers\UserProfileController;
 use App\Models\ServiceProvidersHeader;
@@ -57,6 +58,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('submit-serviceproviders-header', [ServiceProvidersHeaderController::class, 'storeServiceProvidersHeader'])->name('submit-serviceproviders-header');
 
+    Route::get('hsp-titles', [HSPsController::class, 'pageTitles'])->name('hsp-titles');
+
+    Route::post('submit-serviceproviders-titles', [HSPsController::class, 'updatePageTitles'])->name('submit-serviceproviders-titles');
 
 
 

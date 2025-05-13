@@ -74,6 +74,8 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('hsp-header') ? 'active' : '' }}" href="{{ route('hsp-header') }}"> Header </a>
                 </li>
+                <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('hsp-titles') ? 'active' : '' }}" href="{{ route('hsp-titles') }}"> Page Titles </a>
+                </li>
                 <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('pns-section') ? 'active' : '' }}" href="#"> HSP's </a>
                 </li>
               </ul>
