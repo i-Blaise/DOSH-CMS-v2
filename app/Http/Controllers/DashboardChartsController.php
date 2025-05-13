@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\PageVisit;
+use App\Models\UserActivity;
 use Carbon\Carbon;
 use Jenssegers\Agent\Agent;
 use Illuminate\Http\Request;
@@ -148,6 +149,18 @@ public function index()
         }
     }
 
+    // === 4. User Activity===
+    $logs = UserActivity::with('user')->latest()->take(10)->get();
+
+    $logs->transform(function ($log) {
+    $agent = new Agent();
+    $agent->setUserAgent($log->user_agent);
+
+    $log->device = $agent->device() ?: 'Unknown';
+
+    return $log;
+    });
+
     // === Return to View ===
     return view('dashboard.index', [
         'month' => $dailyVisits->keys(),
@@ -158,6 +171,7 @@ public function index()
         'page_visits' => $pageData->values(),
         'deviceNames' => collect($deviceCounts)->keys(),
         'deviceCounts' => collect($deviceCounts)->values(),
+        'userActivity' => $logs,
     ]);
 }
 

@@ -282,7 +282,7 @@
             <div class="col-xl-12 grid-margin-lg-0 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Devices Used to Visit Website Stat</h4>
+                    <h4 class="card-title">User Activities</h4>
                     <div class="table-responsive mt-3">
                       <table class="table table-header-bg">
                         <thead>
@@ -292,6 +292,9 @@
                             </th>
                             <th>
                                 User Name
+                            </th>
+                            <th>
+                                User Device
                             </th>
                             <th>
                                 Date
@@ -305,60 +308,18 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td class="py-1">
-                                <img src="{{ Auth::user()->profile_picture }}" alt="image"/>
-                            </td>
+                          @foreach ($userActivity as $log)
+                        <tr>
                             <td>
-                            John Doe
+                                <img src="{{ $log->user->profile_picture }}" width="40">
                             </td>
-                            <td>
-                              15/07/2024
-                            </td>
-                            <td>
-                              9:32 AM
-                            </td>
-                            <td>
-                              Updated About Us Page Header
-                            </td>
-
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                                <img src="" alt="image"/>
-                            </td>
-                            <td>
-                                Jane Doe
-                            </td>
-                            <td>
-                              15/07/2024
-                            </td>
-                            <td>
-                              9:32 AM
-                            </td>
-                            <td>
-                              Updated About Us Page Header
-                            </td>
-
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                                <img src="" alt="image"/>
-                            </td>
-                            <td>
-                                Jack Doe
-                            </td>
-                            <td>
-                              15/07/2024
-                            </td>
-                            <td>
-                              9:32 AM
-                            </td>
-                            <td>
-                              Updated About Us Page Header
-                            </td>
-
-                          </tr>
+                            <td>{{ $log->user->name ?? 'Unknown' }}</td>
+                            <td>{{ $log->device }}</td>
+                            <td>{{ $log->created_at->format('d/m/Y') }}</td>
+                            <td>{{ $log->created_at->format('g:i A') }}</td>
+                            <td>{{ $log->activity }}</td>
+                        </tr>
+                        @endforeach
 
                         </tbody>
                       </table>
