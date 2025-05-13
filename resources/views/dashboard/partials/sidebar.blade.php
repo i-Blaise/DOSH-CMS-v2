@@ -18,7 +18,7 @@
 
           <li class="nav-item {{ Route::currentRouteNamed('dashboard') ? 'active' : '' }}">
             <a class="nav-link" href="/">
-              <i class="icon-box menu-icon"></i>
+              <i class="icon-bar-graph-2 menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
@@ -66,7 +66,7 @@
 
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#hsp" aria-expanded="{{ Route::currentRouteNamed('pns-section') || Route::currentRouteNamed('hsp-header') ? 'true' : 'false' }}" aria-controls="hsp">
-              <i class="icon-content-left menu-icon"></i>
+              <i class="icon-content-right menu-icon"></i>
               <span class="menu-title">Service Providers</span>
               <i class="menu-arrow"></i>
             </a>
@@ -84,14 +84,14 @@
 
           <li class="nav-item {{ Route::currentRouteNamed('contact-page') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('contact-page') }}">
-              <i class="icon-file menu-icon"></i>
+              <i class="icon-mail menu-icon"></i>
               <span class="menu-title">Contact Page</span>
             </a>
           </li>
 
           <li class="nav-item {{ Route::currentRouteNamed('privacy-statement') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('privacy-statement') }}">
-              <i class="icon-file menu-icon"></i>
+              <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Privacy Statement</span>
             </a>
           </li>
