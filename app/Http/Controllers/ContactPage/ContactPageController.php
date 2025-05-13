@@ -46,6 +46,8 @@ class ContactPageController extends Controller
 
         $header->save();
 
+        logActivity("Updated Contact Page Header");
+
         return back()->with(
             'success', 'Header Updated Successfully');
     }

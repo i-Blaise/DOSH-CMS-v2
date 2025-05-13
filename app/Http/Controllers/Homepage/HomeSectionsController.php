@@ -128,6 +128,9 @@ class HomeSectionsController extends Controller
         }
 
         $home_section->save();
+        // Log the activity
+        logActivity("Updated Home Page $section Section");
+
         return back()
         ->with('success', ucfirst($section).' Section Successfully Updated');
     }

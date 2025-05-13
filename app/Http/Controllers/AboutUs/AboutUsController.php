@@ -127,6 +127,8 @@ class AboutUsController extends Controller
         }
 
         $aboutus_section->save();
+        // Log the activity
+        logActivity('About Us Section Updated: '.$section);
         return back()
         ->with('success', ucfirst($section).' Section Successfully Updated');
     }

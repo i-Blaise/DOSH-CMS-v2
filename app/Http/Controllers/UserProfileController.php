@@ -89,9 +89,14 @@ class UserProfileController extends Controller
                  'password' => Hash::make($request->new_password)
                  ])->save();
 
+                // Log the activity
+                logActivity('User updated their password');
                  return back()->with('success', 'Profile updated successfully');
 
              } else {
+                // Log the activity
+                logActivity('User failed to update their password');
+
                 return back()->with('error', 'Current password does not match this accounts password');
              }
 
@@ -119,6 +124,9 @@ class UserProfileController extends Controller
             '' : $profile->profile_picture = $profile_img_path;
 
             $profile->save();
+            // Log the activity
+            logActivity('User updated their profile');
+
             return back()->with('success', 'Profile updated successfully');
         }
     }

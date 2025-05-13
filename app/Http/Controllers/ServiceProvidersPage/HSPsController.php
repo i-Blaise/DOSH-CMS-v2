@@ -28,6 +28,7 @@ class HSPsController extends Controller
         $titles->sub_title = $request->input('sub_title');
 
         $titles->save();
+        logActivity("Updated Service Providers Page Titles");
 
         return back()->with(
             'success', 'Title Updated Successfully');

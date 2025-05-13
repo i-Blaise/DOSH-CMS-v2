@@ -27,10 +27,12 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
+            logActivity("Logged in user: " . $request->email);
             return redirect()->intended("/")
                 ->withSuccess('Signed in');
         }
 
+        logActivity("Logging in failed for user: " . $request->email);
         return redirect("login")->withErrors('Login details are not valid');
     }
 
@@ -93,6 +95,7 @@ class AuthController extends Controller
     public function signOut()
     {
         // Session::flush();
+        logActivity("Logged out user: " . Auth::user()->email);
         Auth::logout();
         return redirect('login');
     }

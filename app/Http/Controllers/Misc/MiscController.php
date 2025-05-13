@@ -22,6 +22,7 @@ class MiscController extends Controller
         $statement->privacy_statement = $request->privacy_statement;
         $statement->save();
 
+        logActivity("Updated Privacy Statement");
         return redirect()->back()->with('success', 'Privacy Statement updated successfully');
     }
 }

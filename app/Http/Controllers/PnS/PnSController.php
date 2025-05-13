@@ -46,6 +46,7 @@ class PnSController extends Controller
 
         $header->save();
 
+        logActivity("Updated PnS Page Header");
         return back()->with(
             'success', 'Header Updated Successfully');
     }
@@ -136,6 +137,7 @@ class PnSController extends Controller
             '' : $insurance->home_image = $imagePath;
 
             $insurance->save();
+            logActivity("Updated PnS Page");
 
             return back()->with('success', 'Update Successful');
         }elseif($request->input('submit') == 'readmore'){
@@ -149,7 +151,7 @@ class PnSController extends Controller
             $insurance_readmore_modal->references = $request->input('references') ?? '';
 
             $insurance_readmore_modal->save();
-
+            logActivity("Updated PnS Page Read More Modal");
             return back()->with('success', 'Update Successful');
         }else{
 
@@ -159,7 +161,7 @@ class PnSController extends Controller
             $insurance->desc = $request->input('body') ?? '';
 
             $insurance->save();
-
+            logActivity("Updated PnS Page");
             return back()->with('success', 'Update Successful');
         }
 
@@ -266,6 +268,7 @@ class PnSController extends Controller
     $video_section->video_description = $request->input('body');
     $video_section->save();
 
+    logActivity("Updated PnS Page Video Section");
     return back()->with('success', 'Update Successful');
 }
 

@@ -51,6 +51,7 @@ class SlideshowController extends Controller
         $sliders->uploaded_by = Auth::user()->name;
 
         $sliders->save();
+        logActivity('Homepage Slideshow Created');
         return back()->with('success', 'Slideshow updated successfully');
     }
 
@@ -120,6 +121,7 @@ class SlideshowController extends Controller
 
         $slider->save();
         $sliders = Slideshow::all();
+        logActivity('Homepage Slideshow Updated');
         return back()
                ->with('success', 'Slider Successfully Updated')
                ->with('sliders', $sliders);
@@ -137,6 +139,7 @@ class SlideshowController extends Controller
     public function destroy(string $id)
     {
         Slideshow::where('id', $id)->delete();
+        logActivity('Homepage Slideshow Deleted');
         return redirect()->back()->with('success', 'Slider Successfully Deleted');
     }
 
@@ -152,6 +155,7 @@ class SlideshowController extends Controller
 
         $slider->save();
         $sliders = Slideshow::all();
+        logActivity('Homepage Slideshow Published');
         return back()
                ->with('success', $request->input('publish') == 1 ? 'Slider Published Successfully' : 'Slider Removed Successfully')
                ->with('sliders', $sliders);

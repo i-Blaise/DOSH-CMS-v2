@@ -39,6 +39,7 @@ class ServiceProvidersHeaderController extends Controller
         $header->body = !is_null($request->input('body')) ? $request->input('body') : '';
 
         $header->save();
+        logActivity("Updated Service Providers Page Header");
 
         return back()->with(
             'success', 'Header Updated Successfully');
