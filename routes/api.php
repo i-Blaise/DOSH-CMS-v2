@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\HomepageController;
 use App\Http\Controllers\Api\MiscController;
 use App\Http\Controllers\Api\PageVisitController;
 use App\Http\Controllers\Api\ProductsAndServicesController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\ServiceProvidersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/show-slideshow', [HomepageController::class, 'showSlideShowData']);
@@ -32,6 +32,9 @@ Route::get('/fetch-pns-video-sec', [ProductsAndServicesController::class, 'fetch
 
 // PnS Slider Section
 Route::get('/fetch-pns-slider-sec', [ProductsAndServicesController::class, 'sliderInsuraceData']);
+
+// Service Providers Header
+Route::get('/fetch-hsp-header', [ServiceProvidersController::class, 'fetchHSPHeader']);
 
 // Contact Page
 Route::get('/fetch-contact-data', [ContactpageController::class, 'contactPage']);
