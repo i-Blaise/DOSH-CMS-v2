@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AboutUsController;
 use App\Http\Controllers\Api\ContactpageController;
 use App\Http\Controllers\Api\HomepageController;
+use App\Http\Controllers\Api\HSPController;
 use App\Http\Controllers\Api\MiscController;
 use App\Http\Controllers\Api\PageVisitController;
 use App\Http\Controllers\Api\ProductsAndServicesController;
@@ -37,6 +38,9 @@ Route::get('/fetch-pns-slider-sec', [ProductsAndServicesController::class, 'slid
 Route::get('/fetch-hsp-header', [ServiceProvidersController::class, 'fetchHSPHeader']);
 
 Route::get('/fetch-hsp-page-titles', [ServiceProvidersController::class, 'fetchHSPPageTitles']);
+
+// Service Providers Data
+Route::get('/fetch-hsp-data/{region}', [HSPController::class, 'getHspDataByRegion']);
 
 // Contact Page
 Route::get('/fetch-contact-data', [ContactpageController::class, 'contactPage']);
