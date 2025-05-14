@@ -12,7 +12,7 @@ class HSPController extends Controller
     {
         $data = HSP::where('region_name', $region)
             ->get()
-            ->makeHidden(['created_at', 'updated_at', 'longitude', 'latitude']);
+            ->makeHidden(['created_at', 'updated_at']);
         return response()->json($data);
     }
 }
