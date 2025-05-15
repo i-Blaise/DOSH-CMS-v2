@@ -62,6 +62,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('submit-serviceproviders-titles', [HSPsController::class, 'updatePageTitles'])->name('submit-serviceproviders-titles');
 
+    Route::get('hsp-list', [HSPsController::class, 'hspList'])->name('hsp-list');
+
 
 
     // Contact Page

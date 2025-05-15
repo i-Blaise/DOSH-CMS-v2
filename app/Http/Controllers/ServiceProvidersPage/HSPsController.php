@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ServiceProvidersPage;
 
 use App\Http\Controllers\Controller;
+use App\Models\HSP;
 use App\Models\ServiceProvidersTitles;
 use Illuminate\Http\Request;
 
@@ -33,4 +34,29 @@ class HSPsController extends Controller
         return back()->with(
             'success', 'Title Updated Successfully');
     }
+
+
+    public function hspList(Request $request)
+    {
+        $query = HSP::query();
+
+        if ($request->filled('country')) {
+            $query->where('country', $request->input('country'));
+        }
+
+        if ($request->filled('region')) {
+            $query->where('region_name', $request->input('region'));
+        }
+
+        $hsp = $query->get();
+        $countries = HSP::select('country')->distinct()->get();
+        $regions = HSP::select('region_name')->distinct()->get();
+
+        return view('dashboard.pages.serviceproviders.hsp-list', [
+            'hsp' => $hsp,
+            'countries' => $countries,
+            'regions' => $regions,
+        ]);
+    }
+
 }

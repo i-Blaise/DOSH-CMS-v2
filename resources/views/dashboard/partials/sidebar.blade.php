@@ -65,18 +65,18 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#hsp" aria-expanded="{{ Route::currentRouteNamed('pns-section') || Route::currentRouteNamed('hsp-header') ? 'true' : 'false' }}" aria-controls="hsp">
+            <a class="nav-link" data-toggle="collapse" href="#hsp" aria-expanded="{{ Route::currentRouteNamed('hsp-titles') || Route::currentRouteNamed('hsp-header') || Route::currentRouteNamed('hsp-list') ? 'true' : 'false' }}" aria-controls="hsp">
               <i class="icon-content-right menu-icon"></i>
               <span class="menu-title">Service Providers</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse {{ Route::currentRouteNamed('pns-section') || Route::currentRouteNamed('hsp-header') ? 'show' : '' }}" id="hsp">
+            <div class="collapse {{ Route::currentRouteNamed('hsp-titles') || Route::currentRouteNamed('hsp-header') || Route::currentRouteNamed('hsp-list') ? 'show' : '' }}" id="hsp">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('hsp-header') ? 'active' : '' }}" href="{{ route('hsp-header') }}"> Header </a>
                 </li>
                 <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('hsp-titles') ? 'active' : '' }}" href="{{ route('hsp-titles') }}"> Page Titles </a>
                 </li>
-                <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('pns-section') ? 'active' : '' }}" href="#"> HSP's </a>
+                <li class="nav-item"> <a class="nav-link {{ Route::currentRouteNamed('hsp-list') ? 'active' : '' }}" href="{{ route('hsp-list') }}"> HSP's </a>
                 </li>
               </ul>
             </div>
