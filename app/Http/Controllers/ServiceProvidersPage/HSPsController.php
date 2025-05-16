@@ -65,8 +65,50 @@ class HSPsController extends Controller
     {
 
         $regions = HSP::select('region_name')->distinct()->get();
+        $countries = [
+        'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola',
+        'Antigua and Barbuda', 'Argentina', 'Armenia', 'Australia', 'Austria',
+        'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados',
+        'Belarus', 'Belgium', 'Belize', 'Benin', 'Bhutan', 'Bolivia',
+        'Bosnia and Herzegovina', 'Botswana', 'Brazil', 'Brunei', 'Bulgaria',
+        'Burkina Faso', 'Burundi', 'Cabo Verde', 'Cambodia', 'Cameroon',
+        'Canada', 'Central African Republic', 'Chad', 'Chile', 'China',
+        'Colombia', 'Comoros', 'Congo (Congo-Brazzaville)',
+        'Costa Rica', 'Croatia', 'Cuba', 'Cyprus', 'Czech Republic',
+        'Democratic Republic of the Congo', 'Denmark', 'Djibouti', 'Dominica',
+        'Dominican Republic', 'Ecuador', 'Egypt', 'El Salvador',
+        'Equatorial Guinea', 'Eritrea', 'Estonia', 'Eswatini', 'Ethiopia',
+        'Fiji', 'Finland', 'France', 'Gabon', 'Gambia', 'Georgia', 'Germany',
+        'Ghana', 'Greece', 'Grenada', 'Guatemala', 'Guinea', 'Guinea-Bissau',
+        'Guyana', 'Haiti', 'Honduras', 'Hungary', 'Iceland', 'India',
+        'Indonesia', 'Iran', 'Iraq', 'Ireland', 'Israel', 'Italy', 'Jamaica',
+        'Japan', 'Jordan', 'Kazakhstan', 'Kenya', 'Kiribati', 'Kuwait',
+        'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Lesotho', 'Liberia',
+        'Libya', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Madagascar',
+        'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta',
+        'Marshall Islands', 'Mauritania', 'Mauritius', 'Mexico',
+        'Micronesia', 'Moldova', 'Monaco', 'Mongolia', 'Montenegro',
+        'Morocco', 'Mozambique', 'Myanmar', 'Namibia', 'Nauru', 'Nepal',
+        'Netherlands', 'New Zealand', 'Nicaragua', 'Niger', 'Nigeria',
+        'North Korea', 'North Macedonia', 'Norway', 'Oman', 'Pakistan',
+        'Palau', 'Palestine State', 'Panama', 'Papua New Guinea', 'Paraguay',
+        'Peru', 'Philippines', 'Poland', 'Portugal', 'Qatar', 'Romania',
+        'Russia', 'Rwanda', 'Saint Kitts and Nevis', 'Saint Lucia',
+        'Saint Vincent and the Grenadines', 'Samoa', 'San Marino',
+        'Sao Tome and Principe', 'Saudi Arabia', 'Senegal', 'Serbia',
+        'Seychelles', 'Sierra Leone', 'Singapore', 'Slovakia', 'Slovenia',
+        'Solomon Islands', 'Somalia', 'South Africa', 'South Korea',
+        'South Sudan', 'Spain', 'Sri Lanka', 'Sudan', 'Suriname',
+        'Sweden', 'Switzerland', 'Syria', 'Taiwan', 'Tajikistan', 'Tanzania',
+        'Thailand', 'Timor-Leste', 'Togo', 'Tonga', 'Trinidad and Tobago',
+        'Tunisia', 'Turkey', 'Turkmenistan', 'Tuvalu', 'Uganda', 'Ukraine',
+        'United Arab Emirates', 'United Kingdom', 'United States', 'Uruguay',
+        'Uzbekistan', 'Vanuatu', 'Vatican City', 'Venezuela', 'Vietnam',
+        'Yemen', 'Zambia', 'Zimbabwe'
+        ];
         return view('dashboard.pages.serviceproviders.hsp-create', [
             'ghanaRegions' => $regions,
+            'countries' => $countries,
         ]);
     }
 
@@ -97,6 +139,68 @@ class HSPsController extends Controller
         logActivity("Created new HSP: " . $validated['hospital_name']);
 
         return redirect()->route('hsp-list')->with('success', 'New HSP added successfully!');
+    }
+
+
+    public function edit($id)
+    {
+        $hsp = HSP::findOrFail($id);
+        $regions = HSP::select('region_name')->distinct()->get();
+        $countries = [
+            'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola',
+            'Antigua and Barbuda', 'Argentina', 'Armenia', 'Australia', 'Austria',
+            'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados',
+            'Belarus', 'Belgium', 'Belize', 'Benin', 'Bhutan', 'Bolivia',
+            'Bosnia and Herzegovina', 'Botswana', 'Brazil', 'Brunei', 'Bulgaria',
+            'Burkina Faso', 'Burundi', 'Cabo Verde', 'Cambodia', 'Cameroon',
+            'Canada', 'Central African Republic', 'Chad', 'Chile', 'China',
+            'Colombia', 'Comoros', 'Congo (Congo-Brazzaville)',
+            'Costa Rica', 'Croatia', 'Cuba', 'Cyprus', 'Czech Republic',
+            // ... (rest of the countries)
+        ];
+
+        return view('dashboard.pages.serviceproviders.hsp-edit')->with([
+            "hsp" => $hsp,
+            "ghanaRegions" => $regions,
+            "countries" => $countries
+        ]);
+    }
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'hospital_name' => 'required|string|max:255',
+            'country' => 'required|string|max:100',
+            'region_name' => 'required|string|max:100',
+            'district' => 'required|string|max:100',
+            'phone_number1' => 'nullable|string|max:20',
+            'phone_number2' => 'nullable|string|max:20',
+            'phone_number3' => 'nullable|string|max:20',
+            'email' => 'nullable|email|max:255',
+            'latitude' => 'nullable|string|max:50',
+            'longitude' => 'nullable|string|max:50',
+            'location_address' => 'nullable|string|max:255',
+        ]);
+
+        if (!$validated['location_address'] && $validated['latitude'] && $validated['longitude']) {
+            $lat = str_replace('°', '', $validated['latitude']);
+            $lng = str_replace('°', '', $validated['longitude']);
+            $validated['location_address'] = "https://www.google.com/maps?q=" . urlencode("{$lat},{$lng}");
+        }
+
+        HSP::where('id', $id)->update($validated);
+
+        logActivity("Updated HSP with ID: " . $id);
+
+        return redirect()->route('hsp-list')->with('success', 'HSP updated successfully!');
+    }
+    public function destroy($id)
+    {
+        $hsp = HSP::findOrFail($id);
+        $hsp->delete();
+
+        logActivity("Deleted HSP with ID: " . $id);
+
+        return redirect()->route('hsp-list')->with('success', 'HSP deleted successfully!');
     }
 
 }

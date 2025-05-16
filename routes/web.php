@@ -66,6 +66,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('hsp-create', [HSPsController::class, 'createHSP'])->name('hsp-create');
     Route::post('/hsp-store', [HSPsController::class, 'store'])->name('hsp-store');
+    Route::get('hsp-edit/{id}', [HSPsController::class, 'edit'])->name('hsp-edit');
+    Route::post('hsp-update/{id}', [HSPsController::class, 'update'])->name('hsp-update');
+    Route::post('hsp-delete/{id}', [HSPsController::class, 'destroy'])->name('hsp-delete');
 
 
 

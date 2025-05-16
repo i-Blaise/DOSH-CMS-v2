@@ -76,6 +76,21 @@
       <div class="main-panel">
         <div class="content-wrapper">
 
+
+            <div class="col-md-4 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add New HSP</h4>
+                  <div class="template-demo">
+                    <a href="{{ route('hsp-create') }}" class="btn btn-primary btn-lg btn-block">
+                      <i class="icon-plus"></i>
+                      Create New HSP
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
 <div class="col-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
@@ -144,17 +159,17 @@
                                 <i class="mdi mdi-menu"></i>
                             </button>
                             <div class="dropdown-menu">
-                                {{-- <form method="GET" action="{{ route('hsp.edit', $hospital->id) }}"> --}}
+                                <form method="GET" action="{{ route('hsp-edit', $hospital->id) }}">
                                 @csrf
                                 <button type="submit" class="dropdown-item btn btn-inverse-info">
                                     Edit
                                 </button>
                                 </form>
 
-                                {{-- <form method="POST" action="{{ route('hsp.destroy', $hospital->id) }}"> --}}
+                                <form method="POST" action="{{ route('hsp-delete', $hospital->id) }}">
                                 @csrf
-                                @method('DELETE')
-                                <button type="submit" class="dropdown-item btn btn-inverse-danger">
+                                @method('POST')
+                                <button type="submit" class="dropdown-item btn btn-inverse-danger" onclick="return confirm('Are you sure you want to delete this HSP?')">
                                     Delete
                                 </button>
                                 </form>

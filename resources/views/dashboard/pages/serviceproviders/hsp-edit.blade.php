@@ -81,18 +81,18 @@
                     <div class="card-body">
                     <h4 class="card-title">Add New Health Service Provider</h4>
 
-                    <form method="POST" action="{{ route('hsp-store') }}" class="forms-sample">
+                    <form method="POST" action="{{ route('hsp-update', $hsp->id) }}" class="forms-sample">
                         @csrf
 
                         <div class="form-group">
                         <label for="hospital_name">Hospital Name</label>
-                        <input type="text" name="hospital_name" class="form-control" id="hospital_name" placeholder="Enter hospital name" value="{{ old('hospital_name') }}" required>
+                        <input type="text" name="hospital_name" class="form-control" id="hospital_name" placeholder="Enter hospital name" value="{{ $hsp->hospital_name }}" required>
                         </div>
 
                         <div class="form-group">
                             <label for="country">Country</label>
                             <select id="country" name="country" class="form-control">
-                                <option selected disabled>Choose Country</option>
+                                <option selected value="{{ $hsp->country }}">{{ $hsp->country }}</option>
                                 <option value="Ghana">Ghana</option>
                                     @foreach($countries as $country)
                                         <option value="{{ $country }}">{{ $country }}</option>
@@ -103,52 +103,52 @@
                         <div class="form-group" id="region-group">
                             <label for="region">Region</label>
                             <select id="region-select" name="region_name" class="form-control d-none">
-                                <option selected disabled>Choose Region</option>
+                                <option selected value="{{ $hsp->region_name }}">{{ $hsp->region_name }}</option>
                                 @foreach($ghanaRegions as $region)
                                     <option value="{{ $region }}">{{ $region->region_name }}</option>
                                 @endforeach
                             </select>
-                            <input type="text" id="region-text" name="region_name" class="form-control" placeholder="Enter Region" value="{{ old('region_name') }}">
+                            <input type="text" id="region-text" name="region_name" class="form-control" placeholder="Enter Region" value="{{ $hsp->region_name }}">
                         </div>
 
                         <div class="form-group">
                             <label for="district">District</label>
-                            <input type="text" id="district" name="district" class="form-control" placeholder="Enter District" value="{{ old('district') }}">
+                            <input type="text" id="district" name="district" class="form-control" placeholder="Enter District" value="{{ $hsp->district }}">
                         </div>
 
                         <div class="form-group">
                         <label for="phone_number1">Phone Number 1</label>
-                        <input type="text" name="phone_number1" class="form-control" id="phone_number1" placeholder="Enter phone number 1" value="{{ old('phone_number1') }}">
+                        <input type="text" name="phone_number1" class="form-control" id="phone_number1" value="{{ $hsp->phone_number1 }}">
                         </div>
 
                         <div class="form-group">
                         <label for="phone_number2">Phone Number 2</label>
-                        <input type="text" name="phone_number2" class="form-control" id="phone_number2" placeholder="Enter phone number 2" value="{{ old('phone_number2') }}">
+                        <input type="text" name="phone_number2" class="form-control" id="phone_number2" value="{{ $hsp->phone_number2 }}">
                         </div>
 
                         <div class="form-group">
                         <label for="phone_number3">Phone Number 3</label>
-                        <input type="text" name="phone_number3" class="form-control" id="phone_number3" placeholder="Enter phone number 3" value="{{ old('phone_number3') }}">
+                        <input type="text" name="phone_number3" class="form-control" id="phone_number3" value="{{ $hsp->phone_number3 }}">
                         </div>
 
                         <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" value="{{ old('email') }}">
+                        <input type="email" name="email" class="form-control" id="email" value="{{ $hsp->email }}">
                         </div>
 
                         <div class="form-group">
                         <label for="latitude">Latitude</label>
-                        <input type="text" name="latitude" class="form-control" id="latitude" placeholder="Enter latitude" value="{{ old('latitude') }}">
+                        <input type="text" name="latitude" class="form-control" id="latitude" value="{{ $hsp->latitude }}">
                         </div>
 
                         <div class="form-group">
                         <label for="longitude">Longitude</label>
-                        <input type="text" name="longitude" class="form-control" id="longitude" placeholder="Enter longitude" value="{{ old('longitude') }}">
+                        <input type="text" name="longitude" class="form-control" id="longitude" value="{{ $hsp->longitude }}">
                         </div>
 
                         <div class="form-group">
                         <label for="location_address">Google Maps Link</label>
-                        <input type="text" name="location_address" class="form-control" id="location_address" placeholder="Auto-generated if left empty" value="{{ old('location_address') }}">
+                        <input type="text" name="location_address" class="form-control" id="location_address" placeholder="Auto-generated if left empty" value="{{ $hsp->location_address }}">
                         </div>
 
                         <button type="submit" class="btn btn-primary me-2">Submit</button>
