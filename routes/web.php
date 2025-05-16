@@ -64,6 +64,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('hsp-list', [HSPsController::class, 'hspList'])->name('hsp-list');
 
+    Route::get('hsp-create', [HSPsController::class, 'createHSP'])->name('hsp-create');
+    Route::post('/hsp-store', [HSPsController::class, 'store'])->name('hsp-store');
+
 
 
     // Contact Page

@@ -15,4 +15,5 @@ class HSPController extends Controller
             ->makeHidden(['created_at', 'updated_at']);
         return response()->json($data);
     }
+
 }
