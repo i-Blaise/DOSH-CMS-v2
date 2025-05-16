@@ -100,16 +100,35 @@
                             </select>
                         </div>
 
-                        <div class="form-group" id="region-group">
+                        {{-- <div class="form-group" id="region-group">
                             <label for="region">Region</label>
                             <select id="region-select" name="region_name" class="form-control d-none">
                                 <option selected disabled>Choose Region</option>
                                 @foreach($ghanaRegions as $region)
-                                    <option value="{{ $region }}">{{ $region->region_name }}</option>
+                                    <option value="{{ $region->region_name }}">{{ $region->region_name }}</option>
                                 @endforeach
                             </select>
                             <input type="text" id="region-text" name="region_name" class="form-control" placeholder="Enter Region" value="{{ old('region_name') }}">
+                        </div> --}}
+
+                        <div class="form-group" id="region-group">
+                            <label for="region">Region</label>
+
+                            <!-- Hidden field that will be submitted -->
+                            <input type="hidden" name="region_name" id="region_name_final">
+
+                            <!-- Ghana-specific select -->
+                            <select id="region-select" class="form-control d-none">
+                                <option selected disabled>Choose Region</option>
+                                @foreach($ghanaRegions as $region)
+                                    <option value="{{ $region->region_name }}">{{ $region->region_name }}</option>
+                                @endforeach
+                            </select>
+
+                            <!-- Text input for non-Ghana -->
+                            <input type="text" id="region-text" class="form-control" placeholder="Enter Region" value="">
                         </div>
+
 
                         <div class="form-group">
                             <label for="district">District</label>
@@ -168,7 +187,7 @@
 
         <!-- content-wrapper ends -->
 
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function () {
         const countrySelect = document.getElementById('country');
         const regionSelect = document.getElementById('region-select');
@@ -186,7 +205,44 @@
             }
         });
     });
+</script> --}}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const countrySelect = document.getElementById('country');
+        const regionSelect = document.getElementById('region-select');
+        const regionText = document.getElementById('region-text');
+        const regionNameFinal = document.getElementById('region_name_final');
+
+        function updateFinalRegion() {
+            if (countrySelect.value === 'Ghana') {
+                regionNameFinal.value = regionSelect.value;
+            } else {
+                regionNameFinal.value = regionText.value;
+            }
+        }
+
+        // Toggle fields on country change
+        countrySelect.addEventListener('change', function () {
+            if (this.value === 'Ghana') {
+                regionSelect.classList.remove('d-none');
+                regionText.classList.add('d-none');
+                regionText.value = '';
+                updateFinalRegion();
+            } else {
+                regionSelect.classList.add('d-none');
+                regionText.classList.remove('d-none');
+                regionSelect.value = '';
+                updateFinalRegion();
+            }
+        });
+
+        // Update hidden field on input/select change
+        regionSelect.addEventListener('change', updateFinalRegion);
+        regionText.addEventListener('input', updateFinalRegion);
+    });
 </script>
+
 
 
       <!-- main-panel ends -->

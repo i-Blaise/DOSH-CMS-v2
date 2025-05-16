@@ -114,6 +114,7 @@ class HSPsController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
         $validated = $request->validate([
             'hospital_name' => 'required|string|max:255',
             'country' => 'required|string|max:100',
