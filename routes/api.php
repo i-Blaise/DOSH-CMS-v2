@@ -41,6 +41,7 @@ Route::get('/fetch-hsp-page-titles', [ServiceProvidersController::class, 'fetchH
 
 // Service Providers Data
 Route::get('/fetch-hsp-data/{region}', [HSPController::class, 'getHspDataByRegion']);
+Route::get('/fetch-hsp-data-all', [HSPController::class, 'getAllHspData']);
 
 // Contact Page
 Route::get('/fetch-contact-data', [ContactpageController::class, 'contactPage']);

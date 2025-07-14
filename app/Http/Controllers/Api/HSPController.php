@@ -16,4 +16,11 @@ class HSPController extends Controller
         return response()->json($data);
     }
 
+
+    public function getAllHspData()
+    {
+        $data = HSP::all()->makeHidden(['created_at', 'updated_at']);
+        return response()->json($data);
+    }
+
 }
