@@ -24,6 +24,11 @@ Route::get('/fetch-insurance-packages', [ProductsAndServicesController::class, '
 
 Route::get('/fetch-insurance-packages-enhanced', [ProductsAndServicesController::class, 'fetchInsurancePackagesEnhanced']);
 
+Route::get('/fetch-financial-personal', [ProductsAndServicesController::class, 'fetchFinancialPersonal']);
+
+
+
+
 // PnS Modal Routes
 Route::get('/health-insurance-modal', [ProductsAndServicesController::class,'HealthInsuranceModal']);
 
