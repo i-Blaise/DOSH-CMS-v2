@@ -121,6 +121,21 @@ class ProductsAndServicesController extends Controller
     }
 
 
+    public function fetchFinancialBusiness() {
+        $dosh365 = DoshInsurance::select('image', 'desc')
+            ->whereIn('id', [9, 10, 11])
+            ->get()
+            ->map(function($item, $index) {
+                return [
+                    'id' => $index + 1,
+                    'image' => $item->image,
+                    'details' => $item->desc
+                ];
+            });
+
+        return response()->json($dosh365);
+    }
+
 
     public function sliderInsuraceData() {
         $insuraceSec = DoshInsurance::select('id', 'home_caption', 'home_body', 'home_image')

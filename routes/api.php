@@ -26,6 +26,8 @@ Route::get('/fetch-insurance-packages-enhanced', [ProductsAndServicesController:
 
 Route::get('/fetch-financial-personal', [ProductsAndServicesController::class, 'fetchFinancialPersonal']);
 
+Route::get('/fetch-financial-business', [ProductsAndServicesController::class, 'fetchFinancialBusiness']);
+
 
 
 
