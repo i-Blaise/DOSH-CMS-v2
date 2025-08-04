@@ -202,8 +202,8 @@
                                 </button>
                             </a>
 
-                            <a href="{{ route('pns-section', 'personal') }}/?type=financial">
-                                <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == 'personal' ? 'btn-active' : '' }}">
+                            <a href="{{ route('pns-section', 'individual') }}/?type=financial">
+                                <button type="button" class="btn btn-primary btn-lg btn-block {{ request('name') == 'individual' ? 'btn-active' : '' }}">
                                 Individual - Personal
                                 </button>
                             </a>
@@ -342,7 +342,7 @@
                         </span>
                         </div>
                         <div class="col-xs-12 col-md-4 homesec-image-container">
-                            <img src="{{ asset($pns_page[0]->image ?? '') }}" alt="">
+                            <img src="{{ asset($pns_page[0]->image) }}" alt="">
                         </div>
                     </div>
 
