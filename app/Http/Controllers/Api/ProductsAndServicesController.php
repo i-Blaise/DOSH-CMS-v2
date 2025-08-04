@@ -74,6 +74,21 @@ class ProductsAndServicesController extends Controller
     }
 
 
+    public function fetchDosh356() {
+        $dosh365 = DoshInsurance::select('home_image', 'home_body')
+            ->whereIn('id', [1])
+            ->get()
+            ->map(function($item) {
+                return [
+                    'image' => $item->home_image,
+                    'details' => $item->home_body
+                ];
+            });
+
+        return response()->json($dosh365);
+    }
+
+
     public function sliderInsuraceData() {
         $insuraceSec = DoshInsurance::select('id', 'home_caption', 'home_body', 'home_image')
             ->whereIn('id', [1, 7, 18])
