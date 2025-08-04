@@ -311,7 +311,7 @@
                           @foreach ($userActivity as $log)
                         <tr>
                             <td>
-                                <img src="{{ $log->user->profile_picture }}" width="40">
+                                <img src="{{ $log->user->profile_picture ?? '' }}" width="40">
                             </td>
                             <td>{{ $log->user->name ?? 'Unknown' }}</td>
                             <td>{{ $log->device }}</td>
