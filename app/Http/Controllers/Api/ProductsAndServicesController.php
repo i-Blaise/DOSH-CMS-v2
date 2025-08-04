@@ -89,6 +89,22 @@ class ProductsAndServicesController extends Controller
         return response()->json($dosh365);
     }
 
+        public function fetchInsurancePackagesEnhanced() {
+        $dosh365 = DoshInsurance::select('image', 'desc')
+            ->whereIn('id', [12, 13, 14, 15, 16, 17])
+            ->get()
+            ->map(function($item, $index) {
+                return [
+                    'id' => $index + 1,
+                    'image' => $item->image,
+                    'details' => $item->desc
+                ];
+            });
+
+        return response()->json($dosh365);
+    }
+
+
 
     public function sliderInsuraceData() {
         $insuraceSec = DoshInsurance::select('id', 'home_caption', 'home_body', 'home_image')
