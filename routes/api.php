@@ -20,7 +20,7 @@ Route::get('/fetch-about-data', [AboutUsController::class, 'fetchAboutUsData']);
 // Products and Services
 Route::get('/fetch-pns-data', [ProductsAndServicesController::class, 'fetchProductsAndServicesData']);
 
-Route::get('/fetch-365', [ProductsAndServicesController::class, 'fetchDosh356']);
+Route::get('/fetch-insurance-packages', [ProductsAndServicesController::class, 'fetchInsurancePackages']);
 
 // PnS Modal Routes
 Route::get('/health-insurance-modal', [ProductsAndServicesController::class,'HealthInsuranceModal']);
