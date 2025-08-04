@@ -113,20 +113,71 @@ public function index()
     $dailyVisits = collect($uniqueVisitorsPerDay);
 
     // === 2. Page Visit Counts (cleaned URLs) ===
-    $pageData = PageVisit::selectRaw('page_url, COUNT(*) as count')
+    // $pageData = PageVisit::selectRaw('page_url, COUNT(*) as count')
+    // ->groupBy('page_url')
+    // ->get()
+    // ->mapWithKeys(function ($item) {
+    //     $cleanedUrl = str_replace([
+    //         'https://www.0800dosh.me/',
+    //         'https://0800dosh.me/',
+    //         'https://www.0800dosh.me',
+    //         'https://0800dosh.me'
+    //     ], '', $item->page_url);
+
+    //     $label = $cleanedUrl === '' ? 'home' : $cleanedUrl;
+
+    //     return [$label => $item->count];
+    // });
+    $allowed = [
+    'home',
+    'about',
+    'productservices',
+    'contact',
+    'serviceproviders',
+    'register',
+    'insurance',
+    'about',
+    'errorpage',
+    'popup',
+    'terms',
+    'login',
+    // 'about-us.php',
+    // …add any others you want shown individually
+];
+
+// 2) Pull your raw counts, clean off the domain, and turn each visit into a “label”
+$visits = PageVisit::selectRaw('page_url, COUNT(*) as count')
     ->groupBy('page_url')
     ->get()
-    ->mapWithKeys(function ($item) {
-        $cleanedUrl = str_replace([
+    ->map(function($item) use ($allowed) {
+        // strip off your domain variants
+        $cleaned = str_replace([
             'https://www.0800dosh.me/',
             'https://0800dosh.me/',
             'https://www.0800dosh.me',
-            'https://0800dosh.me'
+            'https://0800dosh.me',
         ], '', $item->page_url);
 
-        $label = $cleanedUrl === '' ? 'home' : $cleanedUrl;
+        // grab the first path segment (or empty ⇒ home)
+        $seg = explode('/', ltrim($cleaned, '/'))[0] ?? '';
+        $label = $seg === '' ? 'home' : $seg;
 
-        return [$label => $item->count];
+        // if it’s not in our whitelist, call it “unknown”
+        if ( ! in_array($label, $allowed) ) {
+            $label = 'unknown';
+        }
+
+        return [
+            'label' => $label,
+            'count' => $item->count,
+        ];
+    });
+
+// 3) Now regroup by label and sum up the counts
+$pageData = $visits
+    ->groupBy('label')
+    ->map(function($group) {
+        return $group->sum('count');
     });
 
 
