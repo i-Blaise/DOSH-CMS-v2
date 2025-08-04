@@ -342,7 +342,7 @@
                         </span>
                         </div>
                         <div class="col-xs-12 col-md-4 homesec-image-container">
-                            <img src="{{ asset($pns_page[0]->image) }}" alt="">
+                            <img src="{{ asset($pns_page[0]->image) ?? '' }}" alt="">
                         </div>
                     </div>
 
