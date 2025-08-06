@@ -98,6 +98,7 @@ class AboutUsController extends Controller
                 !isset($imagePath) ?
                 '' : $aboutus_section->who_we_are_image = $imagePath;
                 $aboutus_section->who_we_are_caption = $request->input('caption');
+                $aboutus_section->who_we_are_header = $request->input('header');
                 $aboutus_section->who_we_are_body = $request->input('body');
                 break;
 

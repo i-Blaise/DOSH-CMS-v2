@@ -138,9 +138,12 @@
 
                         @case('whoweare')
                             @php
+                                $who_we_are_header = True;
                                 $image = $aboutUsSection->who_we_are_image;
 
                                 $caption = old('caption') !== null ? old('caption') : $aboutUsSection->who_we_are_caption;
+
+                                $header = old('header') !== null ? old('header') : $aboutUsSection->who_we_are_header;
 
                                 $body = old('body') !== null ? old('body') : $aboutUsSection->who_we_are_body;
                             @endphp
@@ -219,6 +222,12 @@
                             <label for="exampleInputUsername1">Caption</label>
                             <textarea class="form-control" id="myeditorinstance-caption" name="caption">{{ $caption }}</textarea>
                         </div>
+                        @if (isset($who_we_are_header))
+                        <div class="form-group">
+                            <label for="exampleInputUsername1">Header</label>
+                            <textarea class="form-control" id="myeditorinstance-caption" name="header">{{ $header }}</textarea>
+                        </div>
+                        @endif
                         <div class="form-group">
                             <label for="exampleInputEmail1">Body</label>
                             <textarea class="form-control" id="myeditorinstance-body" name="body">{{ $body }}</textarea>
