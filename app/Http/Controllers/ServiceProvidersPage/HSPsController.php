@@ -60,6 +60,24 @@ class HSPsController extends Controller
     }
 
 
+    public function search(Request $request)
+    {
+        $validated = $request->validate([
+            'hsp_name' => 'required|string|max:255',
+        ]);
+        $hsp = HSP::where('hospital_name', 'LIKE', "%{$validated['hsp_name']}%")->get();
+        $regions = HSP::select('region_name')->distinct()->get();
+        $countries = HSP::select('country')->distinct()->get();
+
+        return view('dashboard.pages.serviceproviders.hsp-list')->with([
+            "hsp" => $hsp,
+            'regions' => $regions,
+            "countries" => $countries
+        ]);
+    }
+
+
+
 
     public function createHSP()
     {
@@ -164,6 +182,7 @@ class HSPsController extends Controller
             "countries" => $countries
         ]);
     }
+
     public function update(Request $request, $id)
     {
         $validated = $request->validate([

@@ -76,7 +76,7 @@
       <div class="main-panel">
         <div class="content-wrapper">
 
-
+<div class="col-12 grid-margin stretch-card">
             <div class="col-md-4 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -90,6 +90,24 @@
                 </div>
               </div>
             </div>
+            <div class="col-md-8 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Search HSP</h4>
+                  <form method="POST" action="{{ route('hsp-search') }}" class="forms-sample">
+                        @csrf
+                        <div class="form-group">
+                        <input type="text" name="hsp_name" class="form-control" id="" value="" placeholder="Health Service Provider Name">
+                        </div>
+                        <button class="btn btn-primary btn-lg btn-block" type="submit" value="submit">
+                            <i class="icon-search"></i>
+                            Search
+                        </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</div>
 
 <div class="col-12 grid-margin stretch-card">
   <div class="card">
