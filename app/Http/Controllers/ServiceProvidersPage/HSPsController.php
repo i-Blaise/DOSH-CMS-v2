@@ -124,16 +124,14 @@ class HSPsController extends Controller
             'phone_number2' => 'nullable|string|max:20',
             'phone_number3' => 'nullable|string|max:20',
             'email' => 'nullable|email|max:255',
-            'latitude' => 'nullable|string|max:50',
-            'longitude' => 'nullable|string|max:50',
             'location_address' => 'nullable|string|max:255',
         ]);
 
-        if (!$validated['location_address'] && $validated['latitude'] && $validated['longitude']) {
-            $lat = str_replace('°', '', $validated['latitude']);
-            $lng = str_replace('°', '', $validated['longitude']);
-            $validated['location_address'] = "https://www.google.com/maps?q=" . urlencode("{$lat},{$lng}");
-        }
+        // if (!$validated['location_address'] && $validated['latitude'] && $validated['longitude']) {
+        //     $lat = str_replace('°', '', $validated['latitude']);
+        //     $lng = str_replace('°', '', $validated['longitude']);
+        //     $validated['location_address'] = "https://www.google.com/maps?q=" . urlencode("{$lat},{$lng}");
+        // }
 
         HSP::create($validated);
 
@@ -177,16 +175,16 @@ class HSPsController extends Controller
             'phone_number2' => 'nullable|string|max:20',
             'phone_number3' => 'nullable|string|max:20',
             'email' => 'nullable|email|max:255',
-            'latitude' => 'nullable|string|max:50',
-            'longitude' => 'nullable|string|max:50',
+            // 'latitude' => 'nullable|string|max:50',
+            // 'longitude' => 'nullable|string|max:50',
             'location_address' => 'nullable|string|max:255',
         ]);
 
-        if (!$validated['location_address'] && $validated['latitude'] && $validated['longitude']) {
-            $lat = str_replace('°', '', $validated['latitude']);
-            $lng = str_replace('°', '', $validated['longitude']);
-            $validated['location_address'] = "https://www.google.com/maps?q=" . urlencode("{$lat},{$lng}");
-        }
+        // if (!$validated['location_address'] && $validated['latitude'] && $validated['longitude']) {
+        //     $lat = str_replace('°', '', $validated['latitude']);
+        //     $lng = str_replace('°', '', $validated['longitude']);
+        //     $validated['location_address'] = "https://www.google.com/maps?q=" . urlencode("{$lat},{$lng}");
+        // }
 
         HSP::where('id', $id)->update($validated);
 

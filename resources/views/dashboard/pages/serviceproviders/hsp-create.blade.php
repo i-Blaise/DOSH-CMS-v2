@@ -155,7 +155,7 @@
                         <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" value="{{ old('email') }}">
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                         <label for="latitude">Latitude</label>
                         <input type="text" name="latitude" class="form-control" id="latitude" placeholder="Enter latitude" value="{{ old('latitude') }}">
                         </div>
@@ -163,11 +163,11 @@
                         <div class="form-group">
                         <label for="longitude">Longitude</label>
                         <input type="text" name="longitude" class="form-control" id="longitude" placeholder="Enter longitude" value="{{ old('longitude') }}">
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
-                        <label for="location_address">Google Maps Link</label>
-                        <input type="text" name="location_address" class="form-control" id="location_address" placeholder="Auto-generated if left empty" value="{{ old('location_address') }}">
+                        <label for="location_address">Location Coodinates</label>
+                        <input type="text" name="location_address" class="form-control" id="location_address" placeholder="" value="{{ old('location_address') }}">
                         </div>
 
                         <button type="submit" class="btn btn-primary me-2">Submit</button>

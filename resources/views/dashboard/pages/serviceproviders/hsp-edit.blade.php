@@ -79,7 +79,7 @@
                 <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                    <h4 class="card-title">Add New Health Service Provider</h4>
+                    <h4 class="card-title">Edit Health Service Provider</h4>
 
                     <form method="POST" action="{{ route('hsp-update', $hsp->id) }}" class="forms-sample">
                         @csrf
@@ -136,7 +136,7 @@
                         <input type="email" name="email" class="form-control" id="email" value="{{ $hsp->email }}">
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                         <label for="latitude">Latitude</label>
                         <input type="text" name="latitude" class="form-control" id="latitude" value="{{ $hsp->latitude }}">
                         </div>
@@ -144,11 +144,11 @@
                         <div class="form-group">
                         <label for="longitude">Longitude</label>
                         <input type="text" name="longitude" class="form-control" id="longitude" value="{{ $hsp->longitude }}">
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
-                        <label for="location_address">Google Maps Link</label>
-                        <input type="text" name="location_address" class="form-control" id="location_address" placeholder="Auto-generated if left empty" value="{{ $hsp->location_address }}">
+                        <label for="location_address">Location Coodinates</label>
+                        <input type="text" name="location_address" class="form-control" id="location_addresss" placeholder="" value="{{ $hsp->location_address }}">
                         </div>
 
                         <button type="submit" class="btn btn-primary me-2">Submit</button>
