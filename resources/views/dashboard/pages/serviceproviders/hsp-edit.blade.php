@@ -150,7 +150,7 @@
                         <label for="location_address">Location Coodinates</label>
                         <input type="text" name="location_address" class="form-control" id="location_addresss" placeholder="" value="{{ $hsp->location_address }}">
                         </div>
-                        <p style="color:red; font-style:italic;">Do not leave any spaces between the cordinate or degree sign eg. <span style="color: blue">5°36'44"N 0°10'56"W</span></p>
+                        <p style="color:red; font-style:italic;">Separate the Longitude and Latitude with a comma (,) and ensure there are no spaces in the formatted coordinates. Eg. <span style="color: blue">5°36'44"N,0°10'56"W</span></p>
                         </div>
 
                         <button type="submit" class="btn btn-primary me-2">Submit</button>

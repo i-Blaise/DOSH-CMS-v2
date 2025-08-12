@@ -168,7 +168,7 @@
                         <div class="form-group">
                         <label for="location_address">Location Coodinates</label>
                         <input type="text" name="location_address" class="form-control" id="location_address" placeholder="" value="{{ old('location_address') }}">
-                        <p style="color:red; font-style:italic;">Do not leave any spaces between the cordinate or degree sign eg. <span style="color: blue">5°36'44"N 0°10'56"W</span></p>
+                        <p style="color:red; font-style:italic;">Separate the Longitude and Latitude with a comma (,) and ensure there are no spaces in the formatted coordinates. Eg. <span style="color: blue">5°36'44"N,0°10'56"W</span></p>
                         </div>
 
                         <button type="submit" class="btn btn-primary me-2">Submit</button>
